@@ -76,6 +76,7 @@
                 <li><a href="index.php"><i class="fa fa-home"></i>Ana Səhifə</a></li>
                 <li><a href="about.php"><i class="fa fa-info"></i>Haqqımızda</a></li>
                 <li><a href="users.php"><i class="fa fa-user"></i>İstifadəçilər</a></li>
+                <li><a href="menuler.php"><i class="fa fa-list"></i>Menyular</a></li>
                   <li><a><i class="fa fa-cogs"></i>Parametrlər <span class="fa fa-cogs"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="generalP.php">Ümumi Parametrlər</a></li>
