@@ -1,4 +1,6 @@
 <?php
+   ob_start();
+   session_start();
    require_once("./baglan.php");
    if(isset($_POST["general"])) {
       if(isset($_POST["ayar_title"])) {
@@ -262,6 +264,188 @@
             exit();
          } else {
             header("Location: ../production/socialP.php?status=no");
+            exit();
+         }
+      }
+      
+
+   }
+
+
+   if(isset($_POST["about"])) {
+      if(isset($_POST["about_title"])) {
+         $about_title = $_POST["about_title"];
+      } else {
+         $about_title = "";
+      }
+
+      if(isset($_POST["about_desc"])) {
+         $about_desc = $_POST["about_desc"];
+      } else {
+         $about_desc = "";
+      }
+
+      if(isset($_POST["about_video"])) {
+         $about_video = $_POST["about_video"];
+      } else {
+         $about_video = "";
+      }
+
+      if(isset($_POST["about_vizyon"])) {
+         $about_vizyon = $_POST["about_vizyon"];
+      } else {
+         $about_vizyon = "";
+      }
+
+      if(isset($_POST["about_misyon"])) {
+         $about_misyon = $_POST["about_misyon"];
+      } else {
+         $about_misyon = "";
+      }
+      if(($about_title == "") or ($about_desc == "") or ($about_video == "") or ($about_vizyon == "") or ($about_misyon == "")) {
+         header("Location: ../production/about.php?status=empty");
+         exit();
+      } else {
+         $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE about SET about_title = ?, about_desc = ?, about_video = ?, about_vizyon = ?, about_misyon = ?");
+         $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$about_title, $about_desc, $about_video, $about_vizyon, $about_misyon]);
+         $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
+         if(!$ayarIf) {
+            header("Location: ../production/about.php?status=error");
+            exit();
+         };
+         if($deyisenAyarlar > 0) {
+            header("Location: ../production/about.php?status=ok");
+            exit();
+         } else {
+            header("Location: ../production/about.php?status=no");
+            exit();
+         }
+      }
+      
+
+   }
+
+
+
+
+
+   if(isset($_POST["admingiris"])) {
+      if(isset($_POST["user_email"])) {
+         $user_email = $_POST["user_email"];
+      } else {
+         $user_email = "";
+      }
+
+      if(isset($_POST["user_pass"])) {
+         $user_pass = md5($_POST["user_pass"]);
+      } else {
+         $user_pass = "";
+      }
+
+ 
+      if(($user_email == "") or ($user_email == "")) {
+         header("Location: ../production/login.php?status=empty");
+         exit();
+      } else {
+         $adminGirisSorgusu = $db->prepare("SELECT * FROM users WHERE user_email = ? AND user_pass = ? AND user_yetki = ?");
+         $adminIf = $adminGirisSorgusu->execute([$user_email, $user_pass, 5]);
+         $adminCount = $adminGirisSorgusu->rowCount();
+     
+         if(!$adminIf) {
+            header("Location: ../production/login.php?status=error");
+            exit();
+         };
+         if($adminCount > 0) {
+            $_SESSION["admin_mail"] = $user_email;
+            header("Location: ../production/index.php");
+            exit();
+         } else {
+            header("Location: ../production/login.php?status=no");
+            exit();
+         }
+      }
+      
+
+   }
+
+
+
+   if(isset($_POST["gullaniciguncelle"])) {
+      if(isset($_POST["user_id"])) {
+         $user_id = $_POST["user_id"];
+      } else {
+         $user_id = "";
+      }
+
+ 
+      if(isset($_POST["user_tc"])) {
+         $user_tc = $_POST["user_tc"];
+      } else {
+         $user_tc = "";
+      }
+      if(isset($_POST["user_name"])) {
+         $user_name = $_POST["user_name"];
+      } else {
+         $user_name = "";
+      }
+      if(isset($_POST["user_durum"])) {
+         $user_durum = $_POST["user_durum"];
+      } else {
+         $user_durum = "";
+      }
+      
+      if(($user_id == "") or ($user_tc == "") or ($user_name == "") or ($user_durum == "")) {
+         header("Location: ../production/user-update.php?userid=$user_id&status=empty");
+         exit();
+      } else {
+         $adminGirisSorgusu = $db->prepare("UPDATE users SET user_tc = ?,  user_name = ?, user_durum = ? WHERE user_id = ? ");
+         $adminIf = $adminGirisSorgusu->execute([$user_tc, $user_name, $user_durum, $user_id]);
+         $adminCount = $adminGirisSorgusu->rowCount();
+     
+         if(!$adminIf) {
+            header("Location: ../production/user-update.php?userid=$user_id?status=error");
+            exit();
+         };
+         if($adminCount > 0) {
+            header("Location: ../production/user-update.php?userid=$user_id");
+            exit();
+         } else {
+             header("Location: ../production/user-update.php?userid=$user_id?status=no");
+            exit();
+         }
+      }
+      
+
+   }
+
+
+   if($_GET["kullanicisil"] == "ok") {
+      if(isset($_GET["userid"])) {
+         $userid = $_GET["userid"];
+      } else {
+         $userid = "";
+      }
+
+  
+
+ 
+      if(($userid == "")) {
+         header("Location: ../production/users.php?status=empty");
+         exit();
+      } else {
+         $adminGirisSorgusu = $db->prepare("DELETE FROM users WHERE user_id = ?");
+         $adminIf = $adminGirisSorgusu->execute([$userid]);
+         $adminCount = $adminGirisSorgusu->rowCount();
+     
+         if(!$adminIf) {
+            header("Location: ../production/users.php?status=error");
+            exit();
+         };
+         if($adminCount > 0) {
+            header("Location: ../production/users.php");
+            exit();
+         } else {
+            header("Location: ../production/users.php?status=no");
             exit();
          }
       }

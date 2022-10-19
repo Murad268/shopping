@@ -31,6 +31,25 @@
       $ayar_smtppassword = $__AYARLAR["ayar_smtppassword"];
       $ayar_bakim = $__AYARLAR["ayar_bakim"];
       $ayar_keywords = $__AYARLAR["ayar_keywords"];
+
+
+
+
+      $__HAKKIMIZDASORGUSU = $db->prepare("SELECT * FROM about WHERE id = 1");
+      $__HAKKIMIZDASORGUSU->execute();
+      $__HAKKIMIZDA = $__HAKKIMIZDASORGUSU->fetch(PDO::FETCH_ASSOC);
+      $about_title = $__HAKKIMIZDA["about_title"];
+      $about_desc = $__HAKKIMIZDA["about_desc"];
+      $about_video = $__HAKKIMIZDA["about_video"];
+      $about_vizyon = $__HAKKIMIZDA["about_vizyon"];
+      $about_misyon = $__HAKKIMIZDA["about_misyon"];
+
+
+
+   
+        
+
+    
    } catch(PDOException $e) {
       echo $e->getMessage();
    }

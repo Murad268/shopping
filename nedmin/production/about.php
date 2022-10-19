@@ -1,9 +1,11 @@
-
+﻿
 <?php
    include_once("header.php");
 ?>
+ 
+           <!-- top navigation -->
    
-      
+           <!-- /top navigation -->
    
            <!-- page content -->
            <div class="right_col" role="main">
@@ -52,39 +54,49 @@
                        <br />
                        <form action="../netting/islem.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                          <div class="form-group">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Facebook Linki <span class="required">*</span>
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Başlıq <span class="required">*</span>
                            </label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
-                             <input type="text" value="<?=$ayar_facebook?>" id="first-name" name="ayar_facebook" required="required" class="form-control col-md-7 col-xs-12">
+                             <input type="text" value="<?=$about_title?>" id="first-name" name="about_title" required="required" class="form-control col-md-7 col-xs-12">
                            </div>
                          </div>
+                         
                          <div class="form-group">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Twitter Linki <span class="required">*</span>
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Məzmun <span class="required">*</span>
                            </label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
-                             <input value="<?=$ayar_twitter?>" type="text" id="first-name" name="ayar_twitter" required="required" class="form-control col-md-7 col-xs-12">
-                           </div>
-                         </div>
-
-                         <div class="form-group">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Google Linki <span class="required">*</span>
-                           </label>
-                           <div class="col-md-6 col-sm-6 col-xs-12">
-                             <input value="<?=$ayar_google?>" type="text" id="first-name" name="ayar_google" required="required" class="form-control col-md-7 col-xs-12">
+                            <textarea id="first-name" name="about_desc" required="required" class="form-control col-md-7 col-xs-12" name="" id="" cols="30" rows="10"><?=$about_desc?></textarea>
+                             
                            </div>
                          </div>
 
                          <div class="form-group">
-                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Youtube Linki <span class="required">*</span>
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Video <span class="required">*</span>
                            </label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
-                             <input value="<?=$ayar_youtube?>" type="text" id="first-name" name="ayar_youtube" required="required" class="form-control col-md-7 col-xs-12">
+                             <input value="<?=$about_video?>" type="text" id="first-name" name="about_video" required="required" class="form-control col-md-7 col-xs-12">
+                           </div>
+                         </div>
+
+								        <div class="form-group">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Vizyon <span class="required">*</span>
+                           </label>
+                           <div class="col-md-6 col-sm-6 col-xs-12">
+                             <input value="<?=$about_vizyon?>" type="text" id="first-name" name="about_vizyon" required="required" class="form-control col-md-7 col-xs-12">
+                           </div>
+                         </div>
+
+								        <div class="form-group">
+                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Misyon <span class="required">*</span>
+                           </label>
+                           <div class="col-md-6 col-sm-6 col-xs-12">
+                             <input value="<?=$about_misyon?>" type="text" id="first-name" name="about_misyon" required="required" class="form-control col-md-7 col-xs-12">
                            </div>
                          </div>
                          <div class="ln_solid"></div>
                          <div class="form-group">
                            <div align="right" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                             <button type="submit" name="social" class="btn btn-success">Yenilə</button>
+                             <button type="submit" name="about" class="btn btn-success">Yenilə</button>
                            </div>
                          </div>
                        </form>
