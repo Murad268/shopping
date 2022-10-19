@@ -145,7 +145,7 @@
                      </div>
                      <div class="x_content">
                        <br />
-                       <form action="../../netting/islem.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                       <form action="../netting/islem.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                          <div class="form-group">
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sayt Başlığı <span class="required">*</span>
                            </label>

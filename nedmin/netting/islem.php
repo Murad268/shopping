@@ -26,21 +26,21 @@
       }
 
       if(($ayar_title == "") or ($ayar_description == "") or ($ayar_keywords == "") or ($ayar_author == "")) {
-         header("Location: ../nedmin/production/generalP.php?status=empty");
+         header("Location: ../production/generalP.php?status=empty");
          exit();
       } else {
          $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE ayarlar SET ayar_title = ?, ayar_description = ?, ayar_keywords = ?, ayar_author = ?");
          $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$ayar_title, $ayar_description, $ayar_keywords, $ayar_author]);
          $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
          if(!$ayarIf) {
-            header("Location: ../nedmin/production/generalP.php?status=error");
+            header("Location: ../production/generalP.php?status=error");
             exit();
          };
          if($deyisenAyarlar > 0) {
-            header("Location: ../nedmin/production/generalP.php?status=ok");
+            header("Location: ../production/generalP.php?status=ok");
             exit();
          } else {
-            header("Location: ../nedmin/production/generalP.php?status=no");
+            header("Location: ../production/generalP.php?status=no");
             exit();
          }
       }
@@ -97,21 +97,21 @@
          $ayar_mesai = "";
       }
       if(($ayar_tel == "") or ($ayar_gsm == "") or ($ayar_faks == "") or ($ayar_mail == "") or ($ayar_seher == "") or ($ayar_rayon == "") or ($ayar_adres == "") or ($ayar_mesai == "")) {
-         header("Location: ../nedmin/production/contactP.php?status=empty");
+         header("Location: ../production/contactP.php?status=empty");
          exit();
       } else {
          $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE ayarlar SET ayar_tel = ?, ayar_gsm = ?, ayar_faks = ?, ayar_mail = ?, ayar_seher = ?,ayar_rayon = ?, ayar_adres = ?, ayar_mesai = ?");
          $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$ayar_tel, $ayar_gsm, $ayar_faks, $ayar_mail, $ayar_seher, $ayar_rayon, $ayar_adres, $ayar_mesai]);
          $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
          if(!$ayarIf) {
-            header("Location: ../nedmin/production/contactP.php?status=error");
+            header("Location: ../production/contactP.php?status=error");
             exit();
          };
          if($deyisenAyarlar > 0) {
-            header("Location: ../nedmin/production/contactP.php?status=ok");
+            header("Location: ../production/contactP.php?status=ok");
             exit();
          } else {
-            header("Location: ../nedmin/production/contactP.php?status=no");
+            header("Location: ../production/contactP.php?status=no");
             exit();
          }
       }
@@ -146,21 +146,21 @@
     
 
       if(($ayar_zopim == "") or ($ayar_analystic == "") or ($ayar_zopim == "")) {
-         header("Location: ../nedmin/production/apiP.php?status=empty");
+         header("Location: ../production/apiP.php?status=empty");
          exit();
       } else {
          $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE ayarlar SET ayar_maps = ?, ayar_analystic = ?, ayar_zopim = ?");
          $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$ayar_maps, $ayar_analystic, $ayar_zopim]);
          $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
          if(!$ayarIf) {
-            header("Location: ../nedmin/production/apiP.php?status=error");
+            header("Location: ../production/apiP.php?status=error");
             exit();
          };
          if($deyisenAyarlar > 0) {
-            header("Location: ../nedmin/production/apiP.php?status=ok");
+            header("Location: ../production/apiP.php?status=ok");
             exit();
          } else {
-            header("Location: ../nedmin/production/apiP.php?status=no");
+            header("Location: ../production/apiP.php?status=no");
             exit();
          }
       }
@@ -198,21 +198,21 @@
     
 
       if(($smtp_user == "") or ($ayar_smtpport == "") or ($ayar_smtphost == "") or ($ayar_smtppassword == "")) {
-         header("Location: ../nedmin/production/mailP.php?status=empty");
+         header("Location: ../production/mailP.php?status=empty");
          exit();
       } else {
          $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE ayarlar SET smtp_user = ?, ayar_smtpport = ?, ayar_smtphost = ?, ayar_smtppassword = ?");
          $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$smtp_user, $ayar_smtpport, $ayar_smtphost, $ayar_smtppassword,]);
          $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
          if(!$ayarIf) {
-            header("Location: ../nedmin/production/mailP.php?status=error");
+            header("Location: ../production/mailP.php?status=error");
             exit();
          };
          if($deyisenAyarlar > 0) {
-            header("Location: ../nedmin/production/mailP.php?status=ok");
+            header("Location: ../production/mailP.php?status=ok");
             exit();
          } else {
-            header("Location: ../nedmin/production/mailP.php?status=no");
+            header("Location: ../production/mailP.php?status=no");
             exit();
          }
       }
@@ -247,21 +247,21 @@
       }
 
       if(($ayar_facebook == "") or ($ayar_twitter == "") or ($ayar_google == "") or ($ayar_youtube == "")) {
-         header("Location: ../nedmin/production/socialP.php?status=empty");
+         header("Location: ../production/socialP.php?status=empty");
          exit();
       } else {
          $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE ayarlar SET ayar_facebook = ?, ayar_twitter = ?, ayar_google = ?, ayar_youtube = ?");
          $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$ayar_facebook, $ayar_twitter, $ayar_google, $ayar_youtube]);
          $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
          if(!$ayarIf) {
-            header("Location: ../nedmin/production/socialP.php?status=error");
+            header("Location: ../production/socialP.php?status=error");
             exit();
          };
          if($deyisenAyarlar > 0) {
-            header("Location: ../nedmin/production/socialP.php?status=ok");
+            header("Location: ../production/socialP.php?status=ok");
             exit();
          } else {
-            header("Location: ../nedmin/production/socialP.php?status=no");
+            header("Location: ../production/socialP.php?status=no");
             exit();
          }
       }
