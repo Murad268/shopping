@@ -128,7 +128,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="title-bg">
-					<div class="title">Şifrenizi Unuttunuz?</div>
+					<div class="title">Şifrənizi Unuttunuz?</div>
 				</div>
 
 
