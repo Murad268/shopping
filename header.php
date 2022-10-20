@@ -41,7 +41,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6 col-md-4 main-logo">
-					<a href="index.php"><img src="images\logo.png" alt="logo" class="logo img-responsive"></a>
+					<a href="index.php"><img style="height: 55px" width="150px" src="<?=$ayar_logo?>" alt="logo" class="logo img-responsive"></a>
 				</div>
 				<div class="col-md-8">
 					<div class="pushright">
