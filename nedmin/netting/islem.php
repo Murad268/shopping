@@ -3,6 +3,11 @@
    session_start();
    require_once("./baglan.php");
    if(isset($_POST["general"])) {
+      if(isset($_POST["site_linki"])) {
+         $site_linki = $_POST["site_linki"];
+      } else {
+         $site_linki = "";
+      }
       if(isset($_POST["ayar_title"])) {
          $ayar_title = $_POST["ayar_title"];
       } else {
@@ -27,12 +32,12 @@
          $ayar_author = "";
       }
 
-      if(($ayar_title == "") or ($ayar_description == "") or ($ayar_keywords == "") or ($ayar_author == "")) {
+      if(($ayar_title == "") or ($site_linki == "") or ($ayar_description == "") or ($ayar_keywords == "") or ($ayar_author == "")) {
          header("Location: ../production/generalP.php?status=empty");
          exit();
       } else {
-         $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE ayarlar SET ayar_title = ?, ayar_description = ?, ayar_keywords = ?, ayar_author = ?");
-         $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$ayar_title, $ayar_description, $ayar_keywords, $ayar_author]);
+         $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE ayarlar SET ayar_title = ?, site_linki = ?, ayar_description = ?, ayar_keywords = ?, ayar_author = ?");
+         $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$ayar_title, $site_linki, $ayar_description, $ayar_keywords, $ayar_author]);
          $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
          if(!$ayarIf) {
             header("Location: ../production/generalP.php?status=error");
@@ -452,4 +457,163 @@
       
 
    }
+
+
+
+
+   if(isset($_POST["menuguncelle"])) {
+      include_once("functions.php");
+      if(isset($_POST["menu_id"])) {
+         $menu_id = $_POST["menu_id"];
+      } else {
+         $menu_id = "";
+      }
+
+ 
+      if(isset($_POST["menu_ad"])) {
+         $menu_ad = $_POST["menu_ad"];
+         $seo_url = seo($_POST["menu_ad"]);
+      } else {
+         $menu_ad = "";
+         $seo_url = "";
+      }
+      if(isset($_POST["menu_detay"])) {
+         $menu_detay = $_POST["menu_detay"];
+      } else {
+         $menu_detay = "";
+      }
+      if(isset($_POST["menu_durum"])) {
+         $menu_durum = $_POST["menu_durum"];
+      } else {
+         $menu_durum = "";
+      }
+      if(isset($_POST["menu_url"])) {
+         $menu_url = $_POST["menu_url"];
+      } else {
+         $menu_url = "";
+      }
+      if(isset($_POST["menu_sira"])) {
+         $menu_sira = $_POST["menu_sira"];
+      } else {
+         $menu_sira = "";
+      }
+      if(($menu_id == "") or ($menu_ad == "") or ($menu_detay == "") or ($menu_durum == "") or ($menu_sira == "")) {
+         header("Location: ../production/menu-duzenle.php?menuid=$menu_id&status=empty");
+         exit();
+      } else {
+         $adminGirisSorgusu = $db->prepare("UPDATE menuler SET menu_ad = ?,  menu_detay = ?, menu_durum = ?, menu_url = ?, menu_sira = ?, menu_seourl = ? WHERE menu_id = ? ");
+         $adminIf = $adminGirisSorgusu->execute([$menu_ad, $menu_detay, $menu_durum, $menu_url, $menu_sira, $seo_url, $menu_id]);
+         $adminCount = $adminGirisSorgusu->rowCount();
+     
+         if(!$adminIf) {
+            header("Location: ../production/menu-duzenle.php?menuid=$menu_id?status=error");
+            exit();
+         };
+         if($adminCount > 0) {
+            header("Location: ../production/menu-duzenle.php?menuid=$menu_id");
+            exit();
+         } else {
+             header("Location: ../production/menu-duzenle.php?menuid=$menu_id?status=no");
+            exit();
+         }
+      }
+      
+
+   }
+
+
+
+
+   if($_GET["menusil"] == "ok") {
+      if(isset($_GET["menuid"])) {
+         $menuid = $_GET["menuid"];
+      } else {
+         $menuid = "";
+      }
+
+  
+
+ 
+      if(($menuid == "")) {
+         header("Location: ../production/menuler.php?status=empty");
+         exit();
+      } else {
+         $menuSilSorgusu = $db->prepare("DELETE FROM menuler WHERE menu_id = ?");
+         $menuIf = $menuSilSorgusu->execute([$menuid]);
+         $silinmisMenuSayi = $menuSilSorgusu->rowCount();
+     
+         if(!$menuIf) {
+            header("Location: ../production/menuler.php?status=error");
+            exit();
+         };
+         if($silinmisMenuSayi > 0) {
+            header("Location: ../production/menuler.php");
+            exit();
+         } else {
+            header("Location: ../production/menuler.php?status=no");
+            exit();
+         }
+      }
+      
+
+   }
+
+
+   if(isset($_POST["menyuekle"])) {
+    
+      include_once("functions.php");
+
+
+ 
+      if(isset($_POST["menu_ad"])) {
+         $menu_ad = $_POST["menu_ad"];
+         $seo_url = seo($_POST["menu_ad"]);
+      } else {
+         $menu_ad = "";
+         $seo_url = "";
+      }
+      if(isset($_POST["menu_detay"])) {
+         $menu_detay = $_POST["menu_detay"];
+      } else {
+         $menu_detay = "";
+      }
+      if(isset($_POST["menu_durum"])) {
+         $menu_durum = $_POST["menu_durum"];
+      } else {
+         $menu_durum = "";
+      }
+      if(isset($_POST["menu_url"])) {
+         $menu_url = $_POST["menu_url"];
+      } else {
+         $menu_url = "";
+      }
+      if(isset($_POST["menu_sira"])) {
+         $menu_sira = $_POST["menu_sira"];
+      } else {
+         $menu_sira = "";
+      }
+      if(($menu_ad == "") or ($menu_detay == "") or ($menu_durum == "") or ($menu_sira == "")) {
+         header("Location: ../production/menuler.php?status=empty");
+         exit();
+      } else {
+         $menyuekleSorgusu = $db->prepare("INSERT INTO menuler(menu_ad, menu_detay, menu_durum, menu_url, menu_sira, menu_seourl) VALUES(?, ?, ?, ?, ?, ?)");
+         $menuIf = $menyuekleSorgusu->execute([$menu_ad, $menu_detay, $menu_durum, $menu_url, $menu_sira, $seo_url]);
+         $eklenenMenyuCount = $menyuekleSorgusu->rowCount();
+     
+         if(!$menuIf) {
+            header("Location: ../production/menuler.php?status=error");
+            exit();
+         };
+         if($eklenenMenyuCount > 0) {
+            header("Location: ../production/menuler.php?status=ok");
+            exit();
+         } else {
+             header("Location: ../production/menuler.php");
+            exit();
+         }
+      }
+      
+
+   }
+
 ?>

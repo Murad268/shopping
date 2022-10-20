@@ -31,7 +31,7 @@
       $ayar_smtppassword = $__AYARLAR["ayar_smtppassword"];
       $ayar_bakim = $__AYARLAR["ayar_bakim"];
       $ayar_keywords = $__AYARLAR["ayar_keywords"];
-
+      $site_linki = $__AYARLAR["site_linki"];
 
 
 

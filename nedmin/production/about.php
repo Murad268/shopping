@@ -65,7 +65,7 @@
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Məzmun <span class="required">*</span>
                            </label>
                            <div class="col-md-6 col-sm-6 col-xs-12">
-                            <textarea id="first-name" name="about_desc" required="required" class="form-control col-md-7 col-xs-12" name="" id="" cols="30" rows="10"><?=$about_desc?></textarea>
+                            <textarea id="first-name" name="about_desc" required="required" class="form-control col-md-7 col-xs-12"  id="" cols="30" rows="10"><?=$about_desc?></textarea>
                              
                            </div>
                          </div>

@@ -28,10 +28,10 @@ $menyusor->execute();
                   <b style="color: blue">Hər Hansısa məlumat və ya bütün məlmatlar boş göndərilib.</b>
                   <?php
                   } else if($_GET["status"] == "ok") {?>
-                     <b style="color: green">Məlumatlar uğurla yeniləndilər.</b>
+                     <b style="color: green">Menyu uğurla əlavə edildi.</b>
                   <?php
                   } else {?>
-                     <b style="color: red">Məlumatların silinməsi zamanı xəta.</b>
+                     <b style="color: red">Məlumatların əlavəsi zamanı xəta.</b>
                   <?php
                   }
                }
@@ -41,13 +41,13 @@ $menyusor->execute();
           
             <div class="clearfix"></div>
             <div align="right">
-               <a href="kullanici-ekle">
+               <a href="menu-ekle">
                   <button class="btn btn-success btn-xs">Yeni Menyu Əlavə Elə</button>
                </a>
             </div>
           </div>
           <div class="x_content">
-
+               
 
             <!-- Div İçerik Başlangıç -->
 
@@ -87,8 +87,8 @@ $menyusor->execute();
                         }
                      ?>
                   </td>
-                  <td><center><a href="user-update.php?userid=<?=$kullanicicek['user_id']?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
-                  <td><center><a href="../netting/islem.php?userid=<?=$kullanicicek['user_id']?>&kullanicisil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
+                  <td><center><a href="menu-duzenle.php?menuid=<?=$menyucek['menu_id']?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
+                  <td><center><a href="../netting/islem.php?menuid=<?=$menyucek['menu_id']?>&menusil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
                 </tr>
 
 

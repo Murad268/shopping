@@ -2,6 +2,7 @@
   ob_start();
   session_start();
   require_once("../netting/baglan.php");
+  require_once("../netting/functions.php");
   $__ADMINSORGUSU = $db->prepare("SELECT * FROM users WHERE user_email = ?");
   $__ADMINSORGUSU->execute([$_SESSION["admin_mail"]]);
   $ADMIN = $__ADMINSORGUSU->fetch(PDO::FETCH_ASSOC);
