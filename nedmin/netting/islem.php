@@ -424,38 +424,40 @@
    }
 
 
-   if($_GET["kullanicisil"] == "ok") {
-      if(isset($_GET["userid"])) {
-         $userid = $_GET["userid"];
-      } else {
-         $userid = "";
-      }
-
-  
-
- 
-      if(($userid == "")) {
-         header("Location: ../production/users.php?status=empty");
-         exit();
-      } else {
-         $adminGirisSorgusu = $db->prepare("DELETE FROM users WHERE user_id = ?");
-         $adminIf = $adminGirisSorgusu->execute([$userid]);
-         $adminCount = $adminGirisSorgusu->rowCount();
+   if(isset(($_GET["kullanicisil"]))) {
+      if($_GET["kullanicisil"] == "ok") {
+         if(isset($_GET["userid"])) {
+            $userid = $_GET["userid"];
+         } else {
+            $userid = "";
+         }
+   
      
-         if(!$adminIf) {
-            header("Location: ../production/users.php?status=error");
-            exit();
-         };
-         if($adminCount > 0) {
-            header("Location: ../production/users.php");
+   
+    
+         if(($userid == "")) {
+            header("Location: ../production/users.php?status=empty");
             exit();
          } else {
-            header("Location: ../production/users.php?status=no");
-            exit();
+            $adminGirisSorgusu = $db->prepare("DELETE FROM users WHERE user_id = ?");
+            $adminIf = $adminGirisSorgusu->execute([$userid]);
+            $adminCount = $adminGirisSorgusu->rowCount();
+        
+            if(!$adminIf) {
+               header("Location: ../production/users.php?status=error");
+               exit();
+            };
+            if($adminCount > 0) {
+               header("Location: ../production/users.php");
+               exit();
+            } else {
+               header("Location: ../production/users.php?status=no");
+               exit();
+            }
          }
+         
+   
       }
-      
-
    }
 
 
@@ -524,38 +526,40 @@
 
 
 
-   if($_GET["menusil"] == "ok") {
-      if(isset($_GET["menuid"])) {
-         $menuid = $_GET["menuid"];
-      } else {
-         $menuid = "";
-      }
-
-  
-
- 
-      if(($menuid == "")) {
-         header("Location: ../production/menuler.php?status=empty");
-         exit();
-      } else {
-         $menuSilSorgusu = $db->prepare("DELETE FROM menuler WHERE menu_id = ?");
-         $menuIf = $menuSilSorgusu->execute([$menuid]);
-         $silinmisMenuSayi = $menuSilSorgusu->rowCount();
+   if(isset($_GET["menusil"])) {
+      if($_GET["menusil"] == "ok") {
+         if(isset($_GET["menuid"])) {
+            $menuid = $_GET["menuid"];
+         } else {
+            $menuid = "";
+         }
+   
      
-         if(!$menuIf) {
-            header("Location: ../production/menuler.php?status=error");
-            exit();
-         };
-         if($silinmisMenuSayi > 0) {
-            header("Location: ../production/menuler.php");
+   
+    
+         if(($menuid == "")) {
+            header("Location: ../production/menuler.php?status=empty");
             exit();
          } else {
-            header("Location: ../production/menuler.php?status=no");
-            exit();
+            $menuSilSorgusu = $db->prepare("DELETE FROM menuler WHERE menu_id = ?");
+            $menuIf = $menuSilSorgusu->execute([$menuid]);
+            $silinmisMenuSayi = $menuSilSorgusu->rowCount();
+        
+            if(!$menuIf) {
+               header("Location: ../production/menuler.php?status=error");
+               exit();
+            };
+            if($silinmisMenuSayi > 0) {
+               header("Location: ../production/menuler.php");
+               exit();
+            } else {
+               header("Location: ../production/menuler.php?status=no");
+               exit();
+            }
          }
+         
+   
       }
-      
-
    }
 
 
@@ -794,35 +798,171 @@
 
 
 
-   if($_GET["slidersil"] == "ok") {
-      if(isset($_GET["slider_id"])) {
-         $slider_id = $_GET["slider_id"];
-      } else {
-         $slider_id = "";
-      }
-
-  
-
- 
-      if(($slider_id == "")) {
-         header("Location: ../production/slider.php?status=empty");
-         exit();
-      } else {
-         $menuSilSorgusu = $db->prepare("DELETE FROM carusel WHERE slider_id = ?");
-         $update = $menuSilSorgusu->execute([$slider_id]);
-    
-
-         if ($update) {
-   
-           
-      
-            Header("Location:../production/slider-duzenle.php?durum=ok");
-      
+   if(isset($_GET["slidersil"])) {
+      if($_GET["slidersil"] == "ok") {
+         if(isset($_GET["slider_id"])) {
+            $slider_id = $_GET["slider_id"];
          } else {
-      
-            Header("Location:../production/slider-duzenle.php?durum=no");
+            $slider_id = "";
          }
+   
+     
+   
+    
+         if(($slider_id == "")) {
+            header("Location: ../production/slider.php?status=empty");
+            exit();
+         } else {
+            $menuSilSorgusu = $db->prepare("DELETE FROM carusel WHERE slider_id = ?");
+            $update = $menuSilSorgusu->execute([$slider_id]);
+       
+   
+            if ($update) {
       
+              
+         
+               Header("Location:../production/slider-duzenle.php?durum=ok");
+         
+            } else {
+         
+               Header("Location:../production/slider-duzenle.php?durum=no");
+            }
+         
+         }
       }
    }
+
+
+
+   if (isset($_POST['kullanicikaydet'])) {
+
+	
+      echo $kullanici_adsoyad=htmlspecialchars($_POST['kullanici_adsoyad']); echo "<br>";
+      echo $kullanici_mail=htmlspecialchars($_POST['kullanici_mail']); echo "<br>";
+   
+      echo $kullanici_passwordone=$_POST['kullanici_passwordone']; echo "<br>";
+      echo $kullanici_passwordtwo=$_POST['kullanici_passwordtwo']; echo "<br>";
+   
+
+      if ($kullanici_passwordone==$kullanici_passwordtwo) {
+         if (strlen($kullanici_passwordone)>=6) {
+            $kullanicisor=$db->prepare("SELECT * from users WHERE user_email=:mail");
+            $kullanicisor->execute(array(
+               'mail' => $kullanici_mail
+               ));
+   
+
+            $say=$kullanicisor->rowCount();
+   
+   
+   
+            if ($say==0) {
+               $password=md5($kullanici_passwordone);
+               $kullanici_yetki=1;
+               $kullanicikaydet=$db->prepare("INSERT INTO users(user_name, user_email, user_pass, user_yetki) VALUES (?, ?, ?, ?)");
+               $insert=$kullanicikaydet->execute([$kullanici_adsoyad, $kullanici_mail, $password, $kullanici_yetki]);
+   
+               if ($insert) {
+                  header("Location:../../index.php?durum=loginbasarili");
+               } else {
+   
+                  header("Location:../../register.php?durum=basarisiz");
+               }
+   
+            } else {
+               header("Location:../../register.php?durum=mukerrerkayit");
+            }
+         } else {
+            header("Location:../../register.php?durum=eksiksifre");
+         }
+      } else {
+         header("Location:../../register.php?durum=farklisifre");
+      }
+      
+   
+   
+   }
+
+
+
+   if(isset($_POST["userenter"])) {
+      if(isset($_POST["username"])) {
+         $username = $_POST["username"];
+      } else {
+         $username = "";
+      }
+
+      if(isset($_POST["password"])) {
+         $password = md5($_POST["password"]);
+      } else {
+         $password = "";
+      }
+
+      
+ 
+         $userGirisSorgusu = $db->prepare("SELECT * FROM users WHERE user_email = ? AND user_pass = ? AND user_yetki = ?");
+         $userIf = $userGirisSorgusu->execute([$username, $password, 1]);
+         $userCount = $userGirisSorgusu->rowCount();
+        
+         if($userCount == 1) {
+            $_SESSION["user"] = $username;
+            header("Location: ../../");
+            exit();
+         } else {
+            header("Location: ../../?durum=basarisiz");
+            exit();
+         };
+   }
+      
+   if(isset($_POST["kullaniciyenile"])) {
+      $gelen_id  = $_POST["user_id"];
+      $gelen_name = $_POST["user_name"];
+      $gelen_email = $_POST["user_email"];
+      $gelen_gsm = $_POST["user_gsm"];
+      $gelen_tel = $_POST["user_tel"];
+      $gelen_pass = md5($_POST["user_pass"]);
+      $gelen_adres = $_POST["user_adres"];
+      $gelen_seher = $_POST["user_seher"];
+      $gelen_rayon = $_POST["user_rayon"];
+      $gelen_unvan = $_POST["user_unvan"];
+      $user_tc = $_POST["user_tc"];
+      $yoxlamaSorgusu = $db->prepare("SELECT * FROM users WHERE user_email = ?");
+      $yoxlamaSorgusu->execute([$gelen_email]);
+      $yoxlamaCount = $yoxlamaSorgusu->rowCount();
+      $yoxlama = $yoxlamaSorgusu->fetch(PDO::FETCH_ASSOC);
+      if($yoxlamaCount > 0) {
+         if($gelen_email !== $_SESSION["user"]) {
+            header("Location: ../../hesabim.php?status=same");
+         } else {
+            $kullaniciSorgusu = $db->prepare("UPDATE users SET user_tc = ?, user_name = ?, user_email = ?, user_gsm = ?, user_tel = ?, user_pass = ?, user_adres = ?, user_seher = ?, user_rayon = ?, user_unvan = ? WHERE user_id = ?");
+            $kullanicidogrulama = $kullaniciSorgusu->execute([$user_tc, $gelen_name, $gelen_email, $gelen_gsm, $gelen_tel, $gelen_pass, $gelen_adres, $gelen_seher, $gelen_rayon, $gelen_unvan, $gelen_id]);
+            $say = $kullaniciSorgusu->rowCount();
+            if($say > 0) {
+               $_SESSION["user"] = $gelen_email;
+            }
+      
+            if(!$kullanicidogrulama) {
+               header("Location: ../../hesabim.php?status=no");
+            } else {
+               header("Location: ../../hesabim.php?status=ok");
+            }
+         }
+      } else {
+
+         $kullaniciSorgusu = $db->prepare("UPDATE users SET user_tc = ?, user_name = ?, user_email = ?, user_gsm = ?, user_tel = ?, user_pass = ?, user_adres = ?, user_seher = ?, user_rayon = ?, user_unvan = ? WHERE user_id = ?");
+         $kullanicidogrulama = $kullaniciSorgusu->execute([$user_tc, $gelen_name, $gelen_email, $gelen_gsm, $gelen_tel, $gelen_pass, $gelen_adres, $gelen_seher, $gelen_rayon, $gelen_unvan, $gelen_id]);
+         $say = $kullaniciSorgusu->rowCount();
+         if($say > 0) {
+            $_SESSION["user"] = $gelen_email;
+         }
+   
+         if(!$kullanicidogrulama) {
+            header("Location: ../hesabim.php?status=no");
+         } else {
+            header("Location: ../../hesabim.php?status=ok");
+         }
+      }
+
+   }
+
 ?>

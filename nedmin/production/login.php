@@ -66,7 +66,7 @@
               <?php
                   if(isset($_GET["status"])) {
                   if($_GET["status"] == "no") {?>
-                     <b style="color: blue">Silinmə zamanı xəta</b>
+                     <b style="color: blue">Belə bir admin mövcud deyil</b>
                   <?php
                   }
                   }

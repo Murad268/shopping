@@ -1,4 +1,6 @@
 <?php
+	ob_start();
+	session_start();
    require_once('nedmin/netting/baglan.php');
 	require_once('./nedmin/netting/functions.php');
 ?>
@@ -46,33 +48,41 @@
 				<div class="col-md-8">
 					<div class="pushright">
 						<div class="top">
-							<a href="#" id="reg" class="btn btn-default btn-dark">Login<span>-- Or --</span>Register</a>
+							<?php
+								if(!isset($_SESSION["user"])) {?>
+									<a href="#"  id="reg" class="btn btn-default btn-dark">Daxil ol<span>-- Ya da --</span>Qeydiyyatdan keç</a>
+								<?php
+								} else {?>
+									<a href="#" class="btn btn-default btn-dark">Xoşgəldin<span>--</span><?=$user_name?></a>
+								<?php
+								}
+							?>
 							<div class="regwrap">
 								<div class="row">
 									<div class="col-md-6 regform">
 										<div class="title-widget-bg">
-											<div class="title-widget">Login</div>
+											<div class="title-widget">İstifadəçi Girişi</div>
 										</div>
-										<form role="form">
+										<form action="./nedmin/netting/islem.php" method="post" role="form">
 											<div class="form-group">
-												<input type="text" class="form-control" id="username" placeholder="Username">
+												<input type="mail" class="form-control" name="username" id="username" placeholder="E-Mail">
 											</div>
 											<div class="form-group">
-												<input type="password" class="form-control" id="password" placeholder="password">
+												<input type="password" class="form-control" name="password" id="password" placeholder="Şifrə">
 											</div>
 											<div class="form-group">
-												<button class="btn btn-default btn-red btn-sm">Sign In</button>
+												<button name="userenter" class="btn btn-default btn-red btn-sm">Daxil Ol</button>
 											</div>
 										</form>
 									</div>
 									<div class="col-md-6">
 										<div class="title-widget-bg">
-											<div class="title-widget">Register</div>
+											<div class="title-widget">Qeydiyyatdan Keç</div>
 										</div>
 										<p>
-											New User? By creating an account you be able to shop faster, be up to date on an order's status...
+											yeni istifadəçi? Hesab yaratmaqla siz daha sürətli alış-veriş edə, sifarişin statusundan xəbərdar ola bilərsiniz...
 										</p>
-										<button class="btn btn-default btn-yellow">Register Now</button>
+										<a href="register.php"><button class="btn btn-default btn-yellow">İndi Qeyd Ol</button></a>
 									</div>
 								</div>
 							</div>
@@ -186,6 +196,17 @@
 							<div class="clearfix"></div>
 						</div>
 					</div>
+					<?php
+						if(isset($_SESSION["user"])) {?>
+							<ul class="small-menu">
+								<li><a href="hesabim.php" class="myacc">Mənim hesabım</a></li>
+								<li><a href="" class="myshop">Sifarişlərim</a></li>
+								<li><a href="logout.php" class="mycheck">Güvənli Çıxış</a></li>
+							</ul>
+						<?php
+						}
+					?>
+				
 				</div>
 			</div>
 		</div>

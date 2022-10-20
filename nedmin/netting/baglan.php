@@ -44,7 +44,26 @@
       $about_vizyon = $__HAKKIMIZDA["about_vizyon"];
       $about_misyon = $__HAKKIMIZDA["about_misyon"];
 
-
+      if(isset($_SESSION["user"])) {
+         $USERSORGUSU = $db->prepare("SELECT * FROM users WHERE user_email = ?");
+         $USERSORGUSU->execute([$_SESSION["user"]]);
+         $USERS = $USERSORGUSU->fetch(PDO::FETCH_ASSOC);
+        
+         $user_id = $USERS["user_id"];
+         $user_name = $USERS["user_name"];
+         $user_email = $USERS["user_email"];
+         $user_date = $USERS["user_date"];
+         $user_tc = $USERS["user_tc"];
+         $user_gsm = $USERS["user_gsm"];
+         $user_gsm = $USERS["user_gsm"];
+         $user_pass = $USERS["user_pass"];
+         $user_adres = $USERS["user_adres"];
+         $user_seher = $USERS["user_seher"];
+         $user_rayon = $USERS["user_rayon"];
+         $user_unvan = $USERS["user_unvan"];
+         $user_tel = $USERS["user_tel"];
+    
+      }
 
    
         
