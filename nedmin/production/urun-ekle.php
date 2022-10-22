@@ -95,7 +95,7 @@ include 'header.php';
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
 
-                    <textarea  style="height: 100px" class="form-control col-md-7 col-xs-12" id="editor1" placeholder="Məhsulun məzmununu daxil edin" name="urun_"></textarea>
+                    <textarea  style="height: 100px" class="form-control col-md-7 col-xs-12" id="editor1" placeholder="Məhsulun məzmununu daxil edin" name="urun_detay"></textarea>
                   </div>
                 </div>
 

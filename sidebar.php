@@ -1,3 +1,6 @@
+<?php
+require_once("header.php");
+?>
 <div class="col-md-3"><!--sidebar-->
 				<div class="title-bg">
 					<div class="title">Kateqoriyalar</div>
@@ -12,7 +15,7 @@
 							$kategoriSayi = $kategoriyalariAlSorgusu->rowCount();
 							if($kategoriSayi>0) {
 								foreach($kagetoriler as $kategori) {?>
-										<li><a href="category.htm"><?=$kategori["category_ad"]?></a></li>
+										<li><a href="kategori-<?=seo($kategori["category_ad"])?>"><?=$kategori["category_ad"]?></a></li>
 								<?php
 								} 
 							} else {

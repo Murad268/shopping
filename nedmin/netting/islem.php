@@ -1096,6 +1096,7 @@ if (isset($_POST['urunduzenle'])) {
 if (isset($_POST['urunekle'])) {
 
 	$urun_seourl=seo($_POST['urun_ad']);
+ 
 
 	$kaydet=$db->prepare("INSERT INTO urunler SET
 		kategori_id=:kategori_id,
