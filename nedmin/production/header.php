@@ -86,9 +86,10 @@
                 <li><a href="index.php"><i class="fa fa-home"></i>Ana Səhifə</a></li>
                 <li><a href="about.php"><i class="fa fa-info"></i>Haqqımızda</a></li>
                 <li><a href="users.php"><i class="fa fa-user"></i>İstifadəçilər</a></li>
+                <li><a href="urun.php"><i class="fa fa-shopping-basket"></i>Məhsullar</a></li>
                 <li><a href="menuler.php"><i class="fa fa-list"></i>Menyular</a></li>
+                <li><a href="kategori.php"><i class="fa fa-list"></i>Kateqoriyalar</a></li>
                 <li><a href="slider.php"><i class="fa fa-image"></i>Slider</a></li>
-                <li><a href="kategori.php"><i class="fa fa-image"></i>Kateqoriyalar</a></li>
                 </ul>
               </div>
             </div>
