@@ -88,7 +88,7 @@
                 <li><a href="users.php"><i class="fa fa-user"></i>İstifadəçilər</a></li>
                 <li><a href="menuler.php"><i class="fa fa-list"></i>Menyular</a></li>
                 <li><a href="slider.php"><i class="fa fa-image"></i>Slider</a></li>
-             
+                <li><a href="kategori.php"><i class="fa fa-image"></i>Kateqoriyalar</a></li>
                 </ul>
               </div>
             </div>

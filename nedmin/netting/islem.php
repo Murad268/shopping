@@ -2,6 +2,7 @@
    ob_start();
    session_start();
    require_once("./baglan.php");
+   require_once('./functions.php');
    if(isset($_POST["general"])) {
       if(isset($_POST["site_linki"])) {
          $site_linki = $_POST["site_linki"];
@@ -964,5 +965,65 @@
       }
 
    }
+   if (isset($_POST['kategoriduzenle'])) {
 
+      $kategori_id=$_POST['category_id'];
+      $kategori_seourl=seo($_POST['category_ad']);
+     
+      
+      $kaydet=$db->prepare("UPDATE categories SET category_ad=?, keteqori_durum=?,	 category_seourl=?, category_sira=? WHERE category_id=?");
+      $update=$kaydet->execute(array($_POST['category_ad'], $_POST['keteqori_durum'], $kategori_seourl,$_POST['category_sira'], $kategori_id));
+   
+      if ($update) {
+   
+         Header("Location:../production/kategori-duzenle.php?durum=ok&kategori_id=$kategori_id");
+   
+      } else {
+   
+         Header("Location:../production/kategori-duzenle.php?durum=no&kategori_id=$kategori_id");
+      }
+   
+   }
+
+
+
+
+   if ($_GET['kategorisil']=="ok") {
+	
+      $sil=$db->prepare("DELETE from categories where category_id=:category_id");
+      $kontrol=$sil->execute(array(
+         'category_id' => $_GET['kategori_id']
+         ));
+   
+      if ($kontrol) {
+   
+         Header("Location:../production/kategori.php?durum=ok");
+   
+      } else {
+   
+         Header("Location:../production/kategori.php?durum=no");
+      }
+   
+   }
+
+
+
+
+   if (isset($_POST['kategoriekle'])) {
+
+      $kategori_seourl=seo($_POST['kategori_ad']);
+   
+      $kaydet=$db->prepare("INSERT INTO categories SET category_ad=?, keteqori_durum=?, category_seourl= ?, category_sira=?");
+      $insert=$kaydet->execute(array($_POST['kategori_ad'], $_POST['kategori_durum'], $kategori_seourl, $_POST['kategori_sira']));
+   
+      if ($insert) {
+   
+         Header("Location:../production/kategori.php?durum=ok");
+   
+      } else {
+   
+         Header("Location:../production/kategori.php?durum=no");
+      }
+   
+   }
 ?>
