@@ -50,7 +50,7 @@ $urunsor->execute();
           <div class="x_content">
 
 
-            <!-- Div İçerik Başlangıç -->
+          
 
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
@@ -58,8 +58,10 @@ $urunsor->execute();
                   <th>S.No</th>
                   <th>Məhsul Adı</th>
                   <th>Məhsul Stoku</th>
-                  <th>Mıhsul Qiyməti</th>
+                  <th>Məhsul Qiyməti</th>
                   <th>Məshul Durum</th>
+                  <th>Məhsulu Öne Çıxarmaq</th>
+                  <th></th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -97,8 +99,16 @@ $urunsor->execute();
 
 
             </td>
-
-
+            <?php
+              if($uruncek['urun_onecikar'] == 1) {?>
+               <td><center><a href="../netting/islem.php?urun_id=<?php echo $uruncek['urun_id']; ?>&məhsuluonecikar=no"><button class="btn btn-danger btn-xs">Məhsulu Önə Çıxarma</button></a></center></td>
+              <?php
+              } else {?>
+               <td><center><a href="../netting/islem.php?urun_id=<?php echo $uruncek['urun_id']; ?>&məhsuluonecikar=ok"><button class="btn btn-primary btn-xs">Məhsulu Önə Çıxar</button></a></center></td>
+              <?php
+              }
+            ?>
+           
             <td><center><a href="urun-duzenle.php?urun_id=<?php echo $uruncek['urun_id']; ?>"><button class="btn btn-primary btn-xs">Yenilə</button></a></center></td>
             <td><center><a href="../netting/islem.php?urun_id=<?php echo $uruncek['urun_id']; ?>&urunsil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
           </tr>
@@ -113,7 +123,7 @@ $urunsor->execute();
         </tbody>
       </table>
 
-      <!-- Div İçerik Bitişi -->
+
 
 
     </div>

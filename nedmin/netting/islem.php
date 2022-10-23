@@ -1062,7 +1062,7 @@ if (isset($_POST['urunduzenle'])) {
 		urun_detay=:urun_detay,
 		urun_fiyat=:urun_fiyat,
 		urun_video=:urun_video,
-		-- urun_onecikar=:urun_onecikar,
+		urun_onecikar=:urun_onecikar,
 		urun_keyword=:urun_keyword,
 		urun_durum=:urun_durum,
 		urun_stok=:urun_stok,	
@@ -1074,7 +1074,7 @@ if (isset($_POST['urunduzenle'])) {
 		'urun_detay' => $_POST['urun_detay'],
 		'urun_fiyat' => $_POST['urun_fiyat'],
 		'urun_video' => $_POST['urun_video'],
-		// 'urun_onecikar' => $_POST['urun_onecikar'],
+		'urun_onecikar' => $_POST['urun_onecikar'],
 		'urun_keyword' => $_POST['urun_keyword'],
 		'urun_durum' => $_POST['urun_durum'],
 		'urun_stok' => $_POST['urun_stok'],
@@ -1129,6 +1129,66 @@ if (isset($_POST['urunekle'])) {
 	} else {
 
 		Header("Location:../production/urun.php?durum=no");
+	}
+
+}
+
+
+
+
+if ($_GET['məhsuluonecikar']=="ok") {
+	
+	$sil=$db->prepare("UPDATE urunler SET  urun_onecikar=? WHERE urun_id = ?");
+	$kontrol=$sil->execute(["1", $_GET['urun_id']]);
+
+	if ($kontrol) {
+
+		Header("Location:../production/urun.php?durum=ok");
+
+	} else {
+
+		Header("Location:../production/urun.php?durum=no");
+	}
+
+}
+
+
+if ($_GET['məhsuluonecikar']=="no") {
+	
+	$sil=$db->prepare("UPDATE urunler SET  urun_onecikar=? WHERE urun_id = ?");
+	$kontrol=$sil->execute(["0", $_GET['urun_id']]);
+
+	if ($kontrol) {
+
+		Header("Location:../production/urun.php?durum=ok");
+
+	} else {
+
+		Header("Location:../production/urun.php?durum=no");
+	}
+
+}
+
+
+
+
+if (isset($_POST['comment'])) {
+
+   $gelen_url = $_POST["url"];
+ 
+	$kommentElaveElemekSorgusu=$db->prepare("INSERT INTO yorumlar  (kullanici_id,yorum_detay, urun_id) VALUES(?, ?, ?)");
+	$kommentElaveElemek=$kommentElaveElemekSorgusu->execute([$user_id, $_POST['urun_detay'], $_GET["urun_id"]]);
+   $urunlerisorgula = $db->prepare("SELECT * FROM urunler WHERE urun_id = ?");
+   $urunlerisorgula->execute([$_GET["urun_id"]]);
+   $urun = $urunlerisorgula->fetch(PDO::FETCH_ASSOC);
+   $urun_adi = seo($urun["urun_ad"]);
+   $urun_id = $urun["urun_id"];
+ 
+	if ($kommentElaveElemek) {
+		header("Location: $gelen_url?durum=ok");
+
+	} else {
+		header("Location: $gelen_url?durum=no");
 	}
 
 }
