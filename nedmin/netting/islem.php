@@ -1173,9 +1173,8 @@ if ($_GET['məhsuluonecikar']=="no") {
 
 
 if (isset($_POST['comment'])) {
-
    $gelen_url = $_POST["url"];
- 
+   $gelen_url = explode("?",  $_POST["url"])[0]."?";
 	$kommentElaveElemekSorgusu=$db->prepare("INSERT INTO yorumlar  (kullanici_id,yorum_detay, urun_id) VALUES(?, ?, ?)");
 	$kommentElaveElemek=$kommentElaveElemekSorgusu->execute([$user_id, $_POST['urun_detay'], $_GET["urun_id"]]);
    $urunlerisorgula = $db->prepare("SELECT * FROM urunler WHERE urun_id = ?");
@@ -1183,13 +1182,33 @@ if (isset($_POST['comment'])) {
    $urun = $urunlerisorgula->fetch(PDO::FETCH_ASSOC);
    $urun_adi = seo($urun["urun_ad"]);
    $urun_id = $urun["urun_id"];
- 
 	if ($kommentElaveElemek) {
-		header("Location: $gelen_url?durum=ok");
-
+		header("Location: $gelen_url durum=ok");
 	} else {
-		header("Location: $gelen_url?durum=no");
+		header("Location: $gelen_url durum=no");
 	}
+}
 
+
+if(isset($_GET["commentisil"])) {
+   if ($_GET['commentisil']=="ok") {
+      $gelen_url = $_GET["url"];
+
+      $gelen_url = explode("? ",  $_GET["url"])[0]."?";
+  
+   
+      $sil=$db->prepare("DELETE from yorumlar where yorum_id = ? AND kullanici_id = ?");
+      $kontrol=$sil->execute([$_GET["yorum_id"], $user_id]);
+   
+      if ($kontrol) {
+   
+         header("Location: $gelen_url del=ok");
+   
+      } else {
+   
+         header("Location: $gelen_url del=ok");
+      }
+   
+   }
 }
 ?>

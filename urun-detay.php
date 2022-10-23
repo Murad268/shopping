@@ -2,7 +2,7 @@
 
 include 'header.php'; 
 
-
+$url = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
 $urunsor=$db->prepare("SELECT * FROM urunler where urun_id=:urun_id");
 $urunsor->execute(array(
 	'urun_id' => $_GET['urun_id']
@@ -34,6 +34,15 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 
          <script type="text/javascript">
             alert("Şərh uğurla əlavə edildi");
+         </script>
+         
+         <?php }
+   }
+	if(isset($_GET["del"])) {
+      if ($_GET['del']=="ok") {?>
+
+         <script type="text/javascript">
+            alert("Şərh uğurla silindi");
          </script>
          
          <?php }
@@ -89,7 +98,7 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 							</div>
 							<input type="hidden" name="kullanici_id" value="<?php echo $kullanicicek['kullanici_id'] ?>">
 
-										<input type="hidden" name="urun_id" value="<?php echo $uruncek['urun_id'] ?>">
+							<input type="hidden" name="urun_id" value="<?php echo $uruncek['urun_id'] ?>">
 							<div class="col-sm-4">
 								<button type="submit" name="sepetekle" class="btn btn-default btn-red btn-sm"><span class="addchart">Səbətə Əlavə Elə</span></button>
 							</div>
@@ -165,11 +174,14 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 								$userleriSorgula = $db->prepare("SELECT * FROM users WHERE user_id = ?");
 								$userleriSorgula->execute([$yorum["kullanici_id"]]);
 								$user = $userleriSorgula->fetch(PDO::FETCH_ASSOC);
+								$id = $yorum["yorum_id"];
+						
 								?>
 								<p class="dash">
-									<span><?=$user["user_name"]?></span> (<?=$yorum["yorum_zaman"]?>)<br><br>
+									<span ><?=$user["user_name"]?></span> (<?=$yorum["yorum_zaman"]?>) <?=$yorum["kullanici_id"]==$user_id?'<span><a class="toDelComment" style="font-size: 20px; color: red; cursor: pointer" href="./nedmin/netting/islem.php?yorum_id='.$id.'&commentisil=ok&url='.$url.'">␡</a></span>':null?><br><br>
 									<?=$yorum["yorum_detay"]?>
 								</p>
+							
 								<?php
 								}
 							} else {
@@ -178,13 +190,13 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 						?>
 						<h4>Yorum Yazın</h4>
 						<?php if (isset($_SESSION['user'])) {
-						$url = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];?>
+					?>
 						<form action="./nedmin/netting/islem.php?urun_id=<?=$_GET['urun_id']?>" method="post" role="form">
 							<div class="form-group">
 								<textarea name="urun_detay" class="form-control" placeholder="Xahirş edirik, şərhinizi bura yazın..." id="text"></textarea>
 							</div>
 							
-							<input name="url" value="<?=$url?>" type="hidden" type="text">
+							<input name="url" value="<?=$url.'?'?>" type="hidden" type="text">
 							<button name="comment" type="submit" class="btn btn-default btn-red btn-sm">Şərhi Göndər</button>
 						</form>
 
@@ -266,5 +278,13 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 			<?php include 'sidebar.php' ?>
 		</div>
 	</div>
-
+	<script>
+		  document.querySelector(".toDelComment").addEventListener("click", (e) => {
+			if(confirm("Şərhi Silmək İstədiyinizdən Əminsiniz?")) {
+				
+			} else {
+				e.preventDefault();
+			}
+		})
+	</script>
 	<?php include 'footer.php' ?>

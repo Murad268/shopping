@@ -5,6 +5,5 @@ if(form && inputs) {
    inputs.forEach(input => {
      input.value = input.value.replace(/\r?\n/g, '<br />');
    })
-
   })
 }
