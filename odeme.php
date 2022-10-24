@@ -31,14 +31,15 @@
 
 
 				<?php 
-		
+			
 				$sepetsor=$db->prepare("SELECT * FROM sepet where kullanici_id=:id");
 				$sepetsor->execute(array(
 					'id' => $user_id
 					));
-
+				$urun_ids = "";
+				$urunAdedleri = '';
+				$toplam_fiyat = 0;
 				while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC)) {
-
 					$urun_id=$sepetcek['urun_id'];
 					$urunsor=$db->prepare("SELECT * FROM urunler where urun_id=:urun_id");
 					$urunsor->execute(array(
@@ -46,9 +47,13 @@
 						));
 
 					$uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
-					$toplam_fiyat+=$uruncek['urun_fiyat']*$sepetcek['urun_adet'];
-					?>
-
+				
+					$toplam_fiyat += $uruncek['urun_fiyat']*$sepetcek['urun_adet'];
+						
+					$urun_ids.=$uruncek["urun_id"]." ";
+			
+					?>	
+				
 					<tr>
 						<td><img src="images\demo-img.jpg" width="100" alt=""></td>
 						<td><?php echo $uruncek['urun_ad'] ?></td>
@@ -102,28 +107,27 @@
 
 				<div class="tab-pane fade " id="rev">
 
-					<form action="nedmin/netting/islem.php" method="POST">
+					<form action="nedmin/netting/islem.php" method="post">
 
 						<p>Ödənişi həyata keçirəcəyiniz hesab nömrəsini seçməklə əməliyyatı tamamlayın.</p>
 
 
 						<?php 
-
 						$bankasor=$db->prepare("SELECT * FROM banka WHERE banka_durum = '1' order by banka_id ASC");
 						$bankasor->execute();
-
 						while($bankacek=$bankasor->fetch(PDO::FETCH_ASSOC)) { ?>
-
+					
 						
-						<input type="radio" name="banka_id" value="<?php echo $bankacek['banka_id'] ?>">
+						<input type="radio" name="banka_ad" value="<?php echo $bankacek['banka_ad'] ?>">
 						<?php echo $bankacek['banka_ad']; echo " ";?><br>
 
-
-						
-
+					
+						<input type="hidden" value="<?=$toplam_fiyat?>" name="siparis_toplam">
+						<input name="urun_ids" type="hidden" value="<?=$urun_ids?>">
+	
 						<?php } ?>
 						<hr>
-						<button class="btn btn-success" type="submit" name="sipariskaydet">Sifariş Ver</button>
+						<button class="btn btn-success" type="submit" name="bankasipariskaydet">Sifariş Ver</button>
 
 					</form>
 

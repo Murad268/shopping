@@ -1376,4 +1376,41 @@ if ($_GET['bankasil']=="ok") {
 	}
 
 }
+
+
+if(isset($_POST["bankasipariskaydet"])) {
+	$siparis_toplam = $_POST["siparis_toplam"];
+
+
+   $siparis_tip = "Bank Köçürməsi";
+   $kullanici_id = $user_id;
+   $siparis_banka = $_POST["banka_ad"];
+   $siparisEkle = $db->prepare("INSERT INTO siparis (siparis_toplam, siparis_tip, kullanici_id, siparis_banka) VALUES(?, ?, ?, ?)");
+   $insert = $siparisEkle->execute([$siparis_toplam, $siparis_tip, $kullanici_id, $siparis_banka]);
+  
+   $eklenenSiparisSayi = $siparisEkle->rowCount();
+   if($eklenenSiparisSayi > 0) {
+      $id = time();
+      $urunler = explode(" ", $_POST["urun_ids"]);
+      $lastindex = count($urunler);
+      for($i=0; $i < $lastindex-1; $i++) {
+         $urunleriSorgula = $db->prepare("SELECT * FROM urunler WHERE urun_id = ?");
+         $urunleriSorgula->execute([$urunler[$i]]);
+         $urun = $urunleriSorgula->fetch(PDO::FETCH_ASSOC);
+         $urun_fiyat = $urun["urun_fiyat"];
+         $sepetiSorgula = $db->prepare("SELECT * FROM sepet WHERE urun_id = ? AND kullanici_id = ?");
+         $sepetiSorgula->execute([$urunler[$i], $user_id]);
+         $sepet = $sepetiSorgula->fetch(PDO::FETCH_ASSOC);
+         $urun_adet = $sepet["urun_adet"];
+      
+         $kaydet = $db->prepare("INSERT INTO siparis_detay(siparis_id, urun_id, urun_fiyat, urun_adet) VALUES($id, $urunler[$i], $urun_fiyat, $urun_adet)");
+         $kaydet->execute();
+      ;
+      }
+      $sepetiBosalt = $db->prepare("DELETE FROM sepet WHERE kullanici_id = $user_id");
+      $sepetiBosalt->execute();
+   } else {
+      echo "ugursuz";
+   }
+}
 ?>

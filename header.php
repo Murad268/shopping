@@ -72,6 +72,7 @@
 											</div>
 											<div class="form-group">
 												<button name="userenter" class="btn btn-default btn-red btn-sm">Daxil Ol</button>
+												<a href="sifre-guncelle" name="userenter" class="btn btn-default btn-red btn-sm">Şifrəni unutmuşam</a>
 											</div>
 										</form>
 									</div>
@@ -145,7 +146,9 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-2 machart">
+					<?php
+						if(isset($_SESSION["user"])) {?>
+						<div class="col-md-2 machart">
 						<?php
 							$toplamFiyatHesaplamaSorgusu = $db->prepare("SELECT * FROM sepet WHERE kullanici_id = ?");;
 							$toplamFiyatHesaplamaSorgusu->execute([$user_id]);
@@ -209,6 +212,9 @@
 							<div class="clearfix"></div>
 						</div>
 					</div>
+						<?php
+						}
+					?>
 					<?php
 						if(isset($_SESSION["user"])) {?>
 							<ul class="small-menu">
