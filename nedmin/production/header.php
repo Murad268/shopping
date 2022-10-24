@@ -90,6 +90,7 @@
                 <li><a href="menuler.php"><i class="fa fa-list"></i>Menyular</a></li>
                 <li><a href="kategori.php"><i class="fa fa-list"></i>Kateqoriyalar</a></li>
                 <li><a href="slider.php"><i class="fa fa-image"></i>Slider</a></li>
+                <li><a href="yorum.php"><i class="fa fa-comment"></i>Şərhlər</a></li>
                 </ul>
               </div>
             </div>

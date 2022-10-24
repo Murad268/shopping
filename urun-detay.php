@@ -17,7 +17,7 @@ if ($say==0) {
 	header("Location:index.php?durum=oynasma");
 	exit;
 }
-$yorumlarisorgula = $db->prepare("SELECT * FROM yorumlar WHERE urun_id = ?");
+$yorumlarisorgula = $db->prepare("SELECT * FROM yorumlar WHERE urun_id = ? AND yorum_onay = '1'");
 $yorumlarisorgula->execute([$_GET['urun_id']]);
 $yorumlar = $yorumlarisorgula->fetchAll(PDO::FETCH_ASSOC);
 $yorumSayi = $yorumlarisorgula->rowCount();
