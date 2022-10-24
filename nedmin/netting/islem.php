@@ -1380,7 +1380,7 @@ if ($_GET['bankasil']=="ok") {
 
 if(isset($_POST["bankasipariskaydet"])) {
 	$siparis_toplam = $_POST["siparis_toplam"];
-
+ 
 
    $siparis_tip = "Bank Köçürməsi";
    $kullanici_id = $user_id;
@@ -1390,7 +1390,8 @@ if(isset($_POST["bankasipariskaydet"])) {
   
    $eklenenSiparisSayi = $siparisEkle->rowCount();
    if($eklenenSiparisSayi > 0) {
-      $id = time();
+      $id = $db->lastInsertId();
+   
       $urunler = explode(" ", $_POST["urun_ids"]);
       $lastindex = count($urunler);
       for($i=0; $i < $lastindex-1; $i++) {
@@ -1403,7 +1404,7 @@ if(isset($_POST["bankasipariskaydet"])) {
          $sepet = $sepetiSorgula->fetch(PDO::FETCH_ASSOC);
          $urun_adet = $sepet["urun_adet"];
       
-         $kayd = $kaydet = $db->prepare("INSERT INTO siparis_detay(siparis_id, urun_id, urun_fiyat, urun_adet) VALUES($id, $urunler[$i], $urun_fiyat, $urun_adet)");
+         $kayd = $kaydet = $db->prepare("INSERT INTO siparis_detay(siparis_id, urun_fiyat, urun_adet, urun_id) VALUES($id, $urun_fiyat, $urun_adet, $urunler[$i])");
          $kaydet->execute();
       }
    
@@ -1411,6 +1412,7 @@ if(isset($_POST["bankasipariskaydet"])) {
          $sepetiBosalt = $db->prepare("DELETE FROM sepet WHERE kullanici_id = $user_id");
          $sepetiBosalt->execute();
          $silinme = $sepetiBosalt->rowCount();
+       
          header("Location:../../siparis.php?durum=ok");
       } else {
          header("Location:../../siparis.php?durum=no");
