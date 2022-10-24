@@ -1211,4 +1211,53 @@ if(isset($_GET["commentisil"])) {
    
    }
 }
+
+
+
+if (isset($_POST['changecomment'])) {
+   $gelen_url = $_POST["url"];
+   $gelen_url = explode("?",  $_POST["url"])[0]."?";
+	$kommentElaveElemekSorgusu=$db->prepare("UPDATE yorumlar SET urun_detay = ? WHERE urun_id = ? AND yorum_id = ? AND kullanici_id = ?");
+	$kommentElaveElemek=$kommentElaveElemekSorgusu->execute([]);
+   
+	if ($kommentElaveElemek) {
+		header("Location: $gelen_url durum=ok");
+	} else {
+		header("Location: $gelen_url durum=no");
+	}
+}
+
+
+if (isset($_POST['sepetekle'])) {
+   $sepetiSorgula = $db->prepare("SELECT * FROM sepet WHERE kullanici_id = ? AND urun_id = ?");
+   $sepetiSorgula->execute([$user_id, $_POST['urun_id']]);
+   $sepet = $sepetiSorgula->rowCount();
+   echo $sepet;
+   if($sepet > 0) {
+      $sepetiGuncelle = $db->prepare("UPDATE sepet SET urun_adet = urun_adet+? WHERE kullanici_id = ? AND urun_id = ?");
+      $update = $sepetiGuncelle->execute([$_POST['urun_adet'], $user_id, $_POST['urun_id']]);
+      if ($update) {
+         Header("Location:../../sepet?durum=ok");
+      } else {
+         Header("Location:../../sepet?durum=no");
+      }
+      } else {
+      $urunekle=$db->prepare("INSERT INTO sepet SET
+		urun_adet=:urun_adet,
+		kullanici_id=:kullanici_id,
+		urun_id=:urun_id	
+		");
+	$insert=$urunekle->execute(array(
+		'urun_adet' => $_POST['urun_adet'],
+		'kullanici_id' => $user_id,
+		'urun_id' => $_POST['urun_id']
+		));
+	if ($insert) {
+		Header("Location:../../sepet?durum=ok");
+	} else {
+		Header("Location:../../sepet?durum=no");
+	}
+   }	
+}
+
 ?>

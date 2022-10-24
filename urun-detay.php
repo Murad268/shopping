@@ -170,7 +170,7 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 						<?php
 					
 							if($yorumSayi > 0) {
-								foreach($yorumlar as $yorum) {
+								foreach($yorumlar as $key => $yorum) {
 								$userleriSorgula = $db->prepare("SELECT * FROM users WHERE user_id = ?");
 								$userleriSorgula->execute([$yorum["kullanici_id"]]);
 								$user = $userleriSorgula->fetch(PDO::FETCH_ASSOC);
@@ -179,7 +179,7 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 								?>
 								<p class="dash">
 									<span ><?=$user["user_name"]?></span> (<?=$yorum["yorum_zaman"]?>) <?=$yorum["kullanici_id"]==$user_id?'<span><a class="toDelComment" style="font-size: 20px; color: red; cursor: pointer" href="./nedmin/netting/islem.php?yorum_id='.$id.'&commentisil=ok&url='.$url.'">␡</a></span>':null?><br><br>
-									<?=$yorum["yorum_detay"]?>
+									<span class="commentown" id="<?=$key?>"><?=$yorum["yorum_detay"]?></span>
 								</p>
 							
 								<?php
@@ -193,11 +193,12 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 					?>
 						<form action="./nedmin/netting/islem.php?urun_id=<?=$_GET['urun_id']?>" method="post" role="form">
 							<div class="form-group">
-								<textarea name="urun_detay" class="form-control" placeholder="Xahirş edirik, şərhinizi bura yazın..." id="text"></textarea>
+								<textarea required="" name="urun_detay" class="form-control" placeholder="Xahiş edirik, şərhinizi bura yazın..." id="text"></textarea>
 							</div>
 							
 							<input name="url" value="<?=$url.'?'?>" type="hidden" type="text">
-							<button name="comment" type="submit" class="btn btn-default btn-red btn-sm">Şərhi Göndər</button>
+							<button id="sendcomment"  name="comment" type="submit" class="btn btn-default btn-red btn-sm">Şərhi Göndər</button>
+							<button class="changecommentbtn" style="display: none" name="changecomment" type="submit" class="btn btn-default btn-red btn-sm">Şərhi Dəyiş</button>
 						</form>
 
 						<?php } else {?>
@@ -263,7 +264,6 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice"><?php echo $urunaltcek['urun_fiyat']*1.50 ?>TL</span><?php echo $urunaltcek['urun_fiyat'] ?>TL</span></div></div>
 							</div>
 							<span class="smalltitle"><a href="product.htm"><?php echo $urunaltcek['urun_ad'] ?></a></span>
-							<span class="smalldesc">Ürün Kodu.: <?php echo $urunaltcek['urun_id'] ?></span>
 						</div>
 					</div>
 
@@ -279,12 +279,16 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 		</div>
 	</div>
 	<script>
-		  document.querySelector(".toDelComment").addEventListener("click", (e) => {
-			if(confirm("Şərhi Silmək İstədiyinizdən Əminsiniz?")) {
-				
-			} else {
-				e.preventDefault();
-			}
-		})
+		  document.querySelectorAll(".toDelComment").forEach(item => {
+			item.addEventListener("click", (e) => {
+				if(confirm("Şərhi Silmək İstədiyinizdən Əminsiniz?")) {
+					
+				} else {
+					e.preventDefault();
+				}
+			})
+		  })
+		
+	
 	</script>
 	<?php include 'footer.php' ?>

@@ -142,55 +142,69 @@
 									<?php
 									}
 								?>
-							
-					
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-2 machart">
-						<button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Cart</span>|<span class="allprice">$0.00</span></button>
+						<?php
+							$toplamFiyatHesaplamaSorgusu = $db->prepare("SELECT * FROM sepet WHERE kullanici_id = ?");;
+							$toplamFiyatHesaplamaSorgusu->execute([$user_id]);
+							$sepetIcindekiler = $toplamFiyatHesaplamaSorgusu->fetchAll(PDO::FETCH_ASSOC);
+							$sepetIcerikSayi = $toplamFiyatHesaplamaSorgusu->rowCount();
+							$toplam_fiyat = "0.00";
+							if($sepetIcerikSayi > 0) {	
+								foreach($sepetIcindekiler as $sepet) {
+									$urunleriSorgula = $db->prepare("SELECT * FROM urunler WHERE urun_id = ?");
+									$urunleriSorgula->execute([$sepet["urun_id"]]);
+									$urun = $urunleriSorgula->fetch(PDO::FETCH_ASSOC);
+									$toplam_fiyat+=$urun["urun_fiyat"] * $sepet["urun_adet"];
+								}
+							}
+						?>
+						<button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Səbət</span>|<span class="allprice">$<?=$toplam_fiyat?></span></button>
 						<div class="popcart">
 							<table class="table table-condensed popcart-inner">
 								<tbody>
-									<tr>
-										<td>
-										<a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
-										</td>
-										<td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-										<td>1X</td>
-										<td>$138.80</td>
-										<td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
-									</tr>
-									<tr>
-										<td>
-										<a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
-										</td>
-										<td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-										<td>1X</td>
-										<td>$138.80</td>
-										<td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
-									</tr>
-									<tr>
-										<td>
-										<a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
-										</td>
-										<td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-										<td>1X</td>
-										<td>$138.80</td>
-										<td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
-									</tr>
+									<?php
+										$sepetsorgula = $db->prepare("SELECT * FROM sepet WHERE kullanici_id = ?");
+										$sepetsorgula->execute([$user_id]);
+										$sepetIcerikleri = $sepetsorgula->fetchAll(PDO::FETCH_ASSOC);
+										$sepetSayi = $sepetsorgula->rowCount();
+										if($sepetSayi>0) {
+											$toplam_fiyat = 0;
+											foreach($sepetIcerikleri as $sepet) {
+												$urunleriSorgula = $db->prepare("SELECT * FROM urunler WHERE urun_id = ?");
+												$urunleriSorgula->execute([$sepet["urun_id"]]);
+												$urun = $urunleriSorgula->fetch(PDO::FETCH_ASSOC);
+												$toplam_fiyat+=$urun["urun_fiyat"] * $sepet["urun_adet"];
+												?>
+												<tr>
+													<td>
+													<a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
+													</td>
+													<td><a href="product.htm"><?=substr($urun["urun_ad"], 0, 25)."</br>".substr($urun["urun_ad"], 25)?></a></td>
+													<td><?=$sepet["urun_adet"]?>X</td>
+													<td>$<?=$urun["urun_fiyat"] * $sepet["urun_adet"]?></td>
+												
+												</tr>
+											<?php
+											}
+										} else {
+											echo "Səbətdə məhsul yoxdur";
+										}
+									?>
+								
 								</tbody>
 							</table>
-							<span class="sub-tot">Sub-Total : <span>$277.60</span> | <span>Vat (17.5%)</span> : $36.00 </span>
 							<br>
 							<div class="btn-popcart">
-								<a href="checkout.htm" class="btn btn-default btn-red btn-sm">Checkout</a>
-								<a href="cart.htm" class="btn btn-default btn-red btn-sm">More</a>
+								<a href="checkout.htm" class="btn btn-default btn-red btn-sm">Ödəmə Səhifəsi</a>
+								<a href="sepet.php" class="btn btn-default btn-red btn-sm">Səbətə Get</a>
 							</div>
 							<div class="popcart-tot">
 								<p>
 									Total<br>
-									<span>$313.60</span>
+									<span>$<?=$toplam_fiyat?></span>
 								</p>
 							</div>
 							<div class="clearfix"></div>
