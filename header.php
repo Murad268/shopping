@@ -198,10 +198,9 @@
 							</table>
 							<br>
 							<div class="btn-popcart">
-								<a href="checkout.htm" class="btn btn-default btn-red btn-sm">Ödəmə Səhifəsi</a>
 								<a href="sepet.php" class="btn btn-default btn-red btn-sm">Səbətə Get</a>
 							</div>
-							<div class="popcart-tot">
+							<div style="width: max-content" class="popcart-tot">
 								<p>
 									Total<br>
 									<span>$<?=$toplam_fiyat?></span>

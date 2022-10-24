@@ -35,7 +35,7 @@
 					<th>Məhsul Şəkil</th>
 					<th>Məhsul ad</th>
 					<th>Məhsul Kodu</th>
-					<th>Ədədə</th>
+					<th>Ədəd</th>
 					<th>Toplam Qiymət</th>
 				</tr>
             <?php
@@ -89,7 +89,7 @@
                      </div>-->
                      <div style="margin-left: -40px" class="total">Toplam Qiymət : <span style="margin-left: 10px" class="bigprice"><?php echo $toplam_fiyat ?> TL</span></div>
                      <div class="clearfix"></div>
-                     <a href="" class="btn btn-default btn-yellow">Ödəmə Səhifəsi</a>
+                     <a href="odeme.php" class="btn btn-default btn-yellow">Ödəmə Səhifəsi</a>
                   </div>
                   <div class="clearfix"></div>
                </div>

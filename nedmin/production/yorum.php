@@ -1,16 +1,9 @@
 <?php 
-
-include 'header.php'; 
-
-//Belirli veriyi seçme işlemi
-$yorumsor=$db->prepare("SELECT * FROM yorumlar order by yorum_onay ASC");
-$yorumsor->execute();
-
-
+  include 'header.php'; 
+  $yorumsor=$db->prepare("SELECT * FROM yorumlar order by yorum_onay ASC");
+  $yorumsor->execute();
 ?>
 
-
-<!-- page content -->
 <div class="right_col" role="main">
   <div class="">
 
@@ -26,11 +19,11 @@ $yorumsor->execute();
                 if(isset($_GET["durum"])) {
                   if ($_GET['durum']=="ok") {?>
 
-                    <b style="color:green;">İşlem Başarılı...</b>
+                    <b style="color:green;">Əməliyyat Uğurludu...</b>
       
                     <?php } elseif ($_GET['durum']=="no") {?>
       
-                    <b style="color:red;">İşlem Başarısız...</b>
+                    <b style="color:red;">Əməliyyat Uğursuzdu...</b>
       
                     <?php }
                 }
@@ -42,23 +35,20 @@ $yorumsor->execute();
 
             <div class="clearfix"></div>
 
-            <div align="right">
-              <a href="yorum-ekle.php"><button class="btn btn-success btn-xs"> Yeni Ekle</button></a>
-
-            </div>
+    
           </div>
           <div class="x_content">
 
 
-            <!-- Div İçerik Başlangıç -->
+
 
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
                 <tr>
                   <th>S.No</th>
-                  <th>Yorum</th>
-                  <th>Kullanıcı</th>
-                  <th>Ürün</th>
+                  <th>Şərh</th>
+                  <th>İstİfadəçi</th>
+                  <th>Məhsul</th>
                   <th>Durum</th>
                   <th></th>
                 </tr>
@@ -119,42 +109,23 @@ $yorumsor->execute();
                        <?php } elseif ($yorumcek['yorum_onay']==1) {?>
 
 
-                       <a href="../netting/islem.php?yorum_id=<?php echo $yorumcek['yorum_id'] ?>&yorum_one=0&yorum_onay=ok"><button class="btn btn-warning btn-xs">Kaldır</button></a>
+                       <a href="../netting/islem.php?yorum_id=<?php echo $yorumcek['yorum_id'] ?>&yorum_one=0&yorum_onay=ok"><button class="btn btn-warning btn-xs">Onaylama</button></a>
 
                        <?php } ?>
 
 
                      </center></td>
-
-
-                     
-
-
-           
             <td><center><a href="../netting/islem.php?yorum_id=<?php echo $yorumcek['yorum_id']; ?>&yorumsil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
           </tr>
 
-
-
           <?php  }
-
           ?>
-
-
         </tbody>
       </table>
-
-      <!-- Div İçerik Bitişi -->
-
-
     </div>
   </div>
 </div>
 </div>
-
-
-
-
 </div>
 </div>
 <!-- /page content -->
