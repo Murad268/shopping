@@ -87,7 +87,7 @@
                         <<p>Toplam Fiyat : $26.00</p>
                         <p>Vat 17% : $54.00</p>
                      </div>-->
-                     <div class="total">Toplam Qiymət : <span class="bigprice"><?php echo $toplam_fiyat ?> TL</span></div>
+                     <div style="margin-left: -40px" class="total">Toplam Qiymət : <span style="margin-left: 10px" class="bigprice"><?php echo $toplam_fiyat ?> TL</span></div>
                      <div class="clearfix"></div>
                      <a href="" class="btn btn-default btn-yellow">Ödəmə Səhifəsi</a>
                   </div>
