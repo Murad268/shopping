@@ -115,17 +115,20 @@
 						<?php 
 						$bankasor=$db->prepare("SELECT * FROM banka WHERE banka_durum = '1' order by banka_id ASC");
 						$bankasor->execute();
+						$say = 0;
 						while($bankacek=$bankasor->fetch(PDO::FETCH_ASSOC)) { ?>
 					
 						
-						<input type="radio" name="banka_ad" value="<?php echo $bankacek['banka_ad'] ?>">
+						<input <?=$say==0?"checked":null?> type="radio" name="banka_ad" value="<?php echo $bankacek['banka_ad'] ?>">
 						<?php echo $bankacek['banka_ad']; echo " ";?><br>
 
-					
+						<?php
+							$say++;
+						?>
 						<input type="hidden" value="<?=$toplam_fiyat?>" name="siparis_toplam">
 						<input name="urun_ids" type="hidden" value="<?=$urun_ids?>">
 	
-						<?php } ?>
+						<?php  } ?>
 						<hr>
 						<button class="btn btn-success" type="submit" name="bankasipariskaydet">Sifariş Ver</button>
 

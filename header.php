@@ -219,7 +219,7 @@
 						if(isset($_SESSION["user"])) {?>
 							<ul class="small-menu">
 								<li><a href="hesabim.php" class="myacc">Mənim hesabım</a></li>
-								<li><a href="" class="myshop">Sifarişlərim</a></li>
+								<li><a href="siparis" class="myshop">Sifarişlərim</a></li>
 								<li><a href="logout.php" class="mycheck">Güvənli Çıxış</a></li>
 							</ul>
 						<?php

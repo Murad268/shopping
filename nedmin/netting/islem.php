@@ -1368,11 +1368,11 @@ if ($_GET['bankasil']=="ok") {
 	if ($kontrol) {
 
 		
-		Header("Location:../production/banka.php?durum=ok");
+		header("Location:../production/banka.php?durum=ok");
 
 	} else {
 
-		Header("Location:../production/banka.php?durum=no");
+		header("Location:../production/banka.php?durum=no");
 	}
 
 }
@@ -1403,12 +1403,18 @@ if(isset($_POST["bankasipariskaydet"])) {
          $sepet = $sepetiSorgula->fetch(PDO::FETCH_ASSOC);
          $urun_adet = $sepet["urun_adet"];
       
-         $kaydet = $db->prepare("INSERT INTO siparis_detay(siparis_id, urun_id, urun_fiyat, urun_adet) VALUES($id, $urunler[$i], $urun_fiyat, $urun_adet)");
+         $kayd = $kaydet = $db->prepare("INSERT INTO siparis_detay(siparis_id, urun_id, urun_fiyat, urun_adet) VALUES($id, $urunler[$i], $urun_fiyat, $urun_adet)");
          $kaydet->execute();
-      ;
       }
-      $sepetiBosalt = $db->prepare("DELETE FROM sepet WHERE kullanici_id = $user_id");
-      $sepetiBosalt->execute();
+   
+      if($kayd) {
+         $sepetiBosalt = $db->prepare("DELETE FROM sepet WHERE kullanici_id = $user_id");
+         $sepetiBosalt->execute();
+         $silinme = $sepetiBosalt->rowCount();
+         header("Location:../../siparis.php?durum=ok");
+      } else {
+         header("Location:../../siparis.php?durum=no");
+      }
    } else {
       echo "ugursuz";
    }
