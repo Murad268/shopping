@@ -37,14 +37,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-
-								<td>Some Camera</td>
-								<td>PR - 2</td>
-								<td>225883</td>
-								
-								<td><a href=""><button class="btn btn-primary btn-xs">Detallar</button></a></td>
-							</tr>
+                     <?php
+                        $siparisSor = $db->prepare("SELECT * FROM siparis WHERE kullanici_id = ?");
+                        $siparisSor->execute([$user_id]);
+                        $siparisler = $siparisSor->fetchAll(PDO::FETCH_ASSOC);
+                        foreach($siparisler as $siparis) {?>
+                        	<tr>
+                           <td><?=$siparis["siparis_id"]?></td>
+                           <td><?=$siparis["siparis_zaman"]?></td>
+                           <td><?=$siparis["siparis_toplam"]?></td>
+                           <td><a href=""><button class="btn btn-primary btn-xs">Detallar</button></a></td>
+                           </tr>
+                        <?php
+                        }
+                     ?>
+						
 
 						</tbody>
 					</table>
