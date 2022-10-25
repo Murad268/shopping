@@ -33,6 +33,7 @@
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Datatables -->
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
     <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
@@ -93,7 +94,8 @@
                 <li><a href="yorum.php"><i class="fa fa-comment"></i>Şərhlər</a></li>
                 <li><a href="banka.php"><i class="fa fa-bank"></i>Bank Hesabları</a></li>
                 <li><a href="siparisler.php"><i class="fa fa-shopping-cart"></i>Sifarişlər</a></li>
-                <li><a href="sepet.php"><i class="fa fa-shopping-cart"></i>İstifadəçi səbətləri</a></li>
+                <li><a href="sepet.php"><i class="fa fa-archive"></i>İstifadəçi səbətləri</a></li>
+                <li><a href="urun-galeri.php"><i class="fa fa-image"></i>Məhsul rəsmləri</a></li>
                 </ul>
               </div>
             </div>

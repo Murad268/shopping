@@ -1458,4 +1458,78 @@ if ($_GET['sepetsil']=="ok") {
 	}
 
 }
+
+
+
+
+
+
+
+
+if (isset($_POST["setimgorder"])) {
+   $resimid = $_POST["resimid"];
+   $sira = $_POST["urunfoto_sira"];
+   $resimguncelle = $db->prepare("UPDATE urunfoto SET urunfoto_sira = ? WHERE urunfoto_id = ?");
+   $update = $resimguncelle->execute([$sira, $resimid]);
+   if ($update) {
+		header("Location:../production/resim-guncelle.php?resimid=$resimid&durum=ok");
+	} else {
+		header("Location:../production/resim-guncelle.php?resimid=$resimid&durum=no");
+	}
+
+}
+
+
+if (isset($_POST['resimduzenle'])) {
+
+   $resimid = $_GET["resimid"];
+
+   $uploads_dir = '../../dimg';
+
+   @$tmp_name = $_FILES['urunresmi']["tmp_name"];
+   @$name = $_FILES['urunresmi']["name"];
+
+   $benzersizsayi4=rand(20000,32000);
+   $refimgyol=substr($uploads_dir, 6)."/".$benzersizsayi4.$name;
+
+   @move_uploaded_file($tmp_name, "$uploads_dir/$benzersizsayi4$name");
+
+   
+   $duzenle=$db->prepare("UPDATE urunfoto SET
+      urun_fotoresimyol=:logo
+      WHERE urunfoto_id=:id");
+   $update=$duzenle->execute(array(
+      'logo' => $refimgyol,
+      'id' => $resimid
+      ));
+
+
+
+   if ($update) {
+
+      $resimsilunlink=$_POST['eski_yol'];
+      unlink("../../$resimsilunlink");
+      header("Location:../production/resim-guncelle.php?resimid=$resimid&durum=ok");
+
+   } else {
+
+      header("Location:../production/resim-guncelle.php?resimid=$resimid&durum=ok");
+   }
+
+}
+
+
+
+if ($_GET['urunresimsil']=="ok") {
+
+	$sil=$db->prepare("DELETE from urunfoto where urunfoto_id = ?");
+	$kontrol=$sil->execute([$_GET['resimid']]);
+   $resimid = $_GET["resimid"];
+	if ($kontrol) {
+		header("Location:../production/urun-galeri.php");
+	} else {
+		header("Location:../production/urun-galeri.php");
+	}
+
+}
 ?>

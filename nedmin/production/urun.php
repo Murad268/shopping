@@ -61,6 +61,7 @@ $urunsor->execute();
                   <th>Məhsul Qiyməti</th>
                   <th>Məshul Durum</th>
                   <th>Məhsulu Öne Çıxarmaq</th>
+                  <th>Rəsim İşləmləri</th>
                   <th></th>
                   <th></th>
                   <th></th>
@@ -108,7 +109,7 @@ $urunsor->execute();
               <?php
               }
             ?>
-           
+            <td><center><a href="urun-foto-yukle.php?urun_id=<?php echo $uruncek['urun_id']; ?>"><button class="btn btn-primary btn-xs">Yüklə</button></a></center></td>
             <td><center><a href="urun-duzenle.php?urun_id=<?php echo $uruncek['urun_id']; ?>"><button class="btn btn-primary btn-xs">Yenilə</button></a></center></td>
             <td><center><a href="../netting/islem.php?urun_id=<?php echo $uruncek['urun_id']; ?>&urunsil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
           </tr>
