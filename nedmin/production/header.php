@@ -92,6 +92,8 @@
                 <li><a href="slider.php"><i class="fa fa-image"></i>Slider</a></li>
                 <li><a href="yorum.php"><i class="fa fa-comment"></i>Şərhlər</a></li>
                 <li><a href="banka.php"><i class="fa fa-bank"></i>Bank Hesabları</a></li>
+                <li><a href="siparisler.php"><i class="fa fa-shopping-cart"></i>Sifarişlər</a></li>
+                <li><a href="sepet.php"><i class="fa fa-shopping-cart"></i>İstifadəçi səbətləri</a></li>
                 </ul>
               </div>
             </div>

@@ -25,11 +25,11 @@ $slidersor->execute();
               if(isset($_GET['durum'])) {
                 if ($_GET['durum']=="ok") {?>
 
-                  <b style="color:green;">İşlem Uğurludu...</b>
+                  <b style="color:green;">Əməliyyat Uğurludu...</b>
     
                   <?php } elseif ($_GET['durum']=="no") {?>
     
-                  <b style="color:red;">İşlem Uğursuzdu...</b>
+                  <b style="color:red;">Əməliyyat Uğursuzdu...</b>
     
                   <?php }
               }

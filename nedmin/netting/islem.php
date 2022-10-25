@@ -1421,4 +1421,41 @@ if(isset($_POST["bankasipariskaydet"])) {
       echo "ugursuz";
    }
 }
+
+
+
+
+if ($_GET['siparissil']=="ok") {
+	
+	$sil=$db->prepare("DELETE from siparis where siparis_id=:siparis_id");
+	$kontrol=$sil->execute(array(
+		'siparis_id' => $_GET['siparisid']
+		));
+
+	if ($kontrol) {
+
+		
+		header("Location:../production/siparisler.php?durum=ok");
+
+	} else {
+
+		header("Location:../production/siparisler.php?durum=no");
+	}
+
+}
+
+
+
+if ($_GET['sepetsil']=="ok") {
+
+	$sil=$db->prepare("DELETE from sepet where sepet_id = ?");
+	$kontrol=$sil->execute([$_GET['sepetid']]);
+   $user_id = $_GET["user_id"];
+	if ($kontrol) {
+		header("Location:../production/sepetone.php?user_id=$user_id&durum=ok");
+	} else {
+		header("Location:../production/sepetone.php?user_id=$user_id&durum=no");
+	}
+
+}
 ?>

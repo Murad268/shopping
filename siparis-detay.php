@@ -29,12 +29,14 @@
 						<thead>
 							<tr>
 						
-								<th>Sipariş No</th>
-								<th>Tarix</th>
-								<th>Tutar</th>
-								<th>Ödəmə Tipi</th>
-								<th>Durum</th>
-								<th></th>
+							<th>S.No</th>
+							<th>Tarix</th>
+							<th>Məhsulun Adı</th>
+							<th>Məhsulun Sayı</th>
+							<th>Tutar</th>
+							<th>Ödəmə Tipi</th>
+							<th>Durum</th>
+					
 								
 							</tr>
 						</thead>
@@ -58,12 +60,14 @@
 										}
 								?>
                         	<tr>
-                           <td><?=$siparisler["siparis_id"]?></td>
-                           <td><?=$siparisler["siparis_zaman"]?></td>
-                           <td><?=$toplam?></td>
-                           <td><?=$siparisler["siparis_banka"]?></td>
+									<td width="20" td><?php echo $siparisler['siparis_id']  ?></td>
+									<td><?php echo $siparisler['siparis_zaman'] ?></td>
+									<td><?php echo $urun["urun_ad"] ?></td>
+									<td><?php echo $siparis["urun_adet"] ?></td>
+									<td><?php echo $toplam ?></td>
+									<td><?php echo $siparisler["siparis_tip"] ?></td>
 									<td><?=$durum?></td>
-									<td><a href=""><button class="btn btn-primary btn-xs">Detallar</button></a></td>
+							
                            </tr>
                         <?php
                         }
