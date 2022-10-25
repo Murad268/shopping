@@ -23,15 +23,24 @@
 					$urunsor=$db->prepare("SELECT * FROM urunler WHERE urun_durum = '1' and urun_onecikar = '1'");
 					$urunsor->execute();
 					$uruncek=$urunsor->fetchAll(PDO::FETCH_ASSOC);
-					foreach($uruncek as $urun) {?>
+					foreach($uruncek as $urun) {
+						$resimleregit = $db->prepare("SELECT * FROM urunfoto WHERE urun_id = ?");
+						$resimleregit->execute([$urun["urun_id"]]);
+						$resim = $resimleregit->fetch(PDO::FETCH_ASSOC);
+						$resimsayi=$resimleregit->rowCount();
+						if($resimsayi>0) {
+							$img = $resim["urun_fotoresimyol"];
+						} else {
+							$img = "./dimg/resimyok.png";
+						}?>
 							<div class="item">
 								<div class="productwrap">
 									<div class="pr-img">
 										<div class="hot"></div>
-										<a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
+										<a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><img style="height: 150px" src="<?=$img?>" alt="" class="img-responsive"></a>
 										<div class="pricetag blue"><div class="inner"><span>$<?=$urun["urun_fiyat"]?></span></div></div>
 									</div>
-										<span class="smalltitle"><a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><?=$urun["urun_ad"]?></a></span>
+										<span class="smalltitle"><a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><?=substr($urun["urun_ad"], 0, 30)?></a></span>
 										<span class="smalldesc">Ürün Kodu.: <?=$urun["urun_id"]?></span>
 								</div>
 							</div>

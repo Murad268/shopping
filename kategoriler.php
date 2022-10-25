@@ -62,19 +62,28 @@ if (isset($_GET['sef'])) {
 					echo "Bu kateqoriyada məhsul tapılmadı";
 				}
 
-
-				while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {
+				$uruncek=$urunsor->fetchAll(PDO::FETCH_ASSOC);
+				foreach($uruncek as $urunler) {
+						$resimleregit = $db->prepare("SELECT * FROM urunfoto WHERE urun_id = ?");
+						$resimleregit->execute([$urunler["urun_id"]]);
+						$resim = $resimleregit->fetch(PDO::FETCH_ASSOC);
+						$resimsayi=$resimleregit->rowCount();
+						if($resimsayi>0) {
+							$img = $resim["urun_fotoresimyol"];
+						} else {
+							$img = "./dimg/resimyok.png";
+						}
 					?>
 
 					<div class="col-md-4">
 						<div class="productwrap">
 							<div class="pr-img">
 								<div class="hot"></div>
-								<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"]?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $uruncek['urun_fiyat']*1.50 ?> TL</span><?php echo $uruncek['urun_fiyat'] ?><span style="color: blue;" >TL</span></span></div></div>
+								<a href="urun-<?=seo($urunler["urun_ad"]).'-'.$urunler["urun_id"]?>"><img style="height: 150px" src="<?=$img?>" alt="" class="img-responsive"></a>
+								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urunler['urun_fiyat']*1.50 ?> TL</span><?php echo $urunler['urun_fiyat'] ?><span style="color: blue;" >TL</span></span></div></div>
 							</div>
-							<span class="smalltitle"><a href="product.htm"><?php echo $uruncek['urun_ad'] ?></a></span>
-							<span class="smalldesc">Məhsul Kodu.: <?php echo $uruncek['urun_id'] ?></span>
+							<span class="smalltitle"><a href="product.htm"><?php echo substr($urunler['urun_ad'] , 0, 30)?></a></span>
+							<span class="smalldesc">Məhsul Kodu.: <?php echo $urunler['urun_id'] ?></span>
 						</div>
 					</div>
 
