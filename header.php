@@ -93,11 +93,11 @@
 							<div class="srchwrap">
 								<div class="row">
 									<div class="col-md-12">
-										<form class="form-horizontal" role="form">
+										<form method="post" action="arama.php" class="form-horizontal" role="form">
 											<div class="form-group">
 												<label for="search" class="col-sm-2 control-label">Search</label>
 												<div class="col-sm-10">
-													<input type="text" class="form-control" id="search">
+													<input name="arama" type="text" class="form-control" id="search">
 												</div>
 											</div>
 										</form>
