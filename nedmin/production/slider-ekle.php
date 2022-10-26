@@ -48,8 +48,27 @@ include 'header.php';
 
             <!-- / => en kök dizine çık ... ../ bir üst dizine çık -->
             <form action="../netting/islem.php" method="POST" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
             <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Hansı Məhsula aiddir<span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+               <select id="heard" class="form-control" name="urun_id" required>
+                <?php
+                  $urunleriSorgula = $db->prepare("SELECT * FROM urunler");
+                  $urunleriSorgula->execute();
+                  $urunler = $urunleriSorgula->fetchAll(PDO::FETCH_ASSOC);
+                  foreach($urunler as $urun) {?>
+                    <option value="<?=$urun["urun_id"]?>"><?=$urun["urun_ad"]?></option>
+                  <?php
+                  }
+                ?>
+
+
+                 
+                 </select>
+               </div>
+             </div>
+              <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Resim Seç<span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">

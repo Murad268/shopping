@@ -725,13 +725,15 @@
          slider_ad=:slider_ad,
          slider_sira=:slider_sira,
          slider_link=:slider_link,
-         slider_src=:slider_src
+         slider_src=:slider_src,
+         urun_id=:urun_id
          ");
       $insert=$kaydet->execute(array(
          'slider_ad' => strip_tags(htmlspecialchars($_POST['slider_ad'])),
          'slider_sira' => strip_tags(htmlspecialchars($_POST['slider_sira'])),
          'slider_link' => strip_tags(htmlspecialchars($_POST['slider_link'])),
-         'slider_src' => $refimgyol
+         'slider_src' => $refimgyol,
+         'urun_id' => strip_tags(htmlspecialchars($_POST['urun_id'])),
          ));
    
       if ($insert) {
@@ -777,14 +779,19 @@
       } else {
          $slider_durum = "";
       }
-    
+      if(isset($_POST["urun_id"])) {
+         $urun_id = strip_tags(htmlspecialchars($_POST["urun_id"]));
+      } else {
+         $urun_id = "";
+      }
+  
 
-      if(($slider_ad == "") or ($slider_link == "") or ($slider_sira == "") or ($slider_durum == "")) {
+      if(($slider_ad == "") or ($slider_link == "") or ($slider_sira == "") or ($slider_durum == "") or ($urun_id == "")) {
          header("Location: ../production/slider-duzenle.php?slider_id=$slider_id&status=empty");
          exit();
       } else {
-         $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE carusel SET slider_ad = ?, slider_link = ?, slider_sira = ?, slider_durum = ? WHERE slider_id = ?");
-         $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$slider_ad, $slider_link, $slider_sira, $slider_durum, $slider_id]);
+         $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE carusel SET urun_id = ?, slider_ad = ?, slider_link = ?, slider_sira = ?, slider_durum = ? WHERE slider_id = ?");
+         $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$urun_id, $slider_ad, $slider_link, $slider_sira, $slider_durum, $slider_id]);
          $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
          if(!$ayarIf) {
             header("Location: ../production/slider-duzenle.php?slider_id=$slider_id&status=error");

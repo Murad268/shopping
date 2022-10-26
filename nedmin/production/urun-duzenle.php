@@ -54,36 +54,43 @@ $uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
 
           
 
-
-              <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kateqoriya Seç<span class="required">*</span>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kategori Seç<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-6">
 
-                  <?php  
+               
+                    <select class="select2_multiple form-control" required="" name="kategori_id">
+                        <?php
+                           $kategorilericek = $db->prepare("SELECT * FROM categories");
+                           $kategorilericek->execute();
+                           $kategoriler = $kategorilericek->fetchAll(PDO::FETCH_ASSOC);
+                           $kategorisayi = $kategorilericek->rowCount();
+                           $kategoriListi = listing($kategoriler);
+                           function listed($el) {
+                            global $kategorisayi;
+                            global $uruncek;
+                            if($kategorisayi>0) {
+                              foreach($el as $kategori) {
+                                if(!empty($kategori["children"])){;?>
+                                
+                                <optgroup label="<?=$kategori["category_ad"]?>"></optgroup>
+                           
+                               
+                              <?php
+                              listed($kategori["children"]);
+                              } else {?>
+                                <option <?=$kategori["category_id"]==$uruncek["kategori_id"]?"selected":null?> value="<?=$kategori["category_id"]?>">&nbsp; &nbsp; <?=$kategori["category_ad"]?></option>
+                              <?php
+                             
+                              }
+                           }
+                           }
+                          }
+                           listed($kategoriListi)
+                        ?>
 
-                  $urun_id=$uruncek['kategori_id']; 
-
-                  $kategorisor=$db->prepare("SELECT * FROM categories WHERE category_ust=:kategori_ust ORDER BY category_sira");
-                  $kategorisor->execute(array(
-                    'kategori_ust' => 0
-                    ));
-
-                    ?>
-                    <select class="select2_multiple form-control" required="" name="kategori_id" >
-
-
-                     <?php 
-
-                     while($kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC)) {
-
-                       $kategori_id=$kategoricek['category_id'];
-
-                       ?>
-
-                       <option <?php if ($kategori_id==$urun_id) { echo "selected='select'"; } ?> value="<?php echo $kategoricek['category_id']; ?>"><?php echo $kategoricek['category_ad']; ?></option>
-
-                       <?php } ?>
+               
 
                      </select>
                    </div>

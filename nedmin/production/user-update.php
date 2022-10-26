@@ -55,7 +55,7 @@
                        <br />
                        <form action="../netting/islem.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                        <?php
-                           $zaman = explode(" ", date("d.m.Y H:i:s", $__KULLANICI["user_date"]));
+                           $zaman = explode(" ", date("d.m.Y H:i:s", (int)$__KULLANICI["user_date"]));
                        ?>
                        <div class="form-group">
                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Qeydiyyat Tarixi <span class="required">*</span>
