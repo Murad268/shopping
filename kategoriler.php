@@ -89,9 +89,23 @@ if (isset($_GET['sef'])) {
 					<div class="col-md-4">
 						<div class="productwrap">
 							<div class="pr-img">
-								<div class="hot"></div>
+								<?php
+									if($urunler["discount"]>30) {?>
+									<div class="hot"></div>
+									<?php
+									}
+								?>
 								<a href="urun-<?=seo($urunler["urun_ad"]).'-'.$urunler["urun_id"]?>"><img style="height: 150px; width: 200px" src="<?=$img?>" alt="" class="img-responsive"></a>
-								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urunler['urun_fiyat']*1.50 ?>TL</span><?php echo $urunler['urun_fiyat'] ?><span style="color: blue;" >TL</span></span></div></div>
+								<?php
+									if($urunler["discount"]) {?>
+										<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urunler['urun_fiyat'] ?>TL</span><?php echo round($urunler['urun_fiyat']-($urunler['urun_fiyat']*$urunler['discount']/100), 2) ?><span style="color: blue;" >TL</span></span></div></div>
+									<?
+									} else {?>
+									<div class="pricetag"><div class="inner"><?=$urunler["urun_fiyat"]?></div></div>
+									<?php
+									}
+								?>
+								
 							</div>
 							<span class="smalltitle"><a href="product.htm"><?php echo substr($urunler['urun_ad'] , 0, 25)?></a></span>
 							<span class="smalldesc">Məhsul Kodu.: <?php echo $urunler['urun_id'] ?></span>

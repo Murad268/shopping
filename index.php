@@ -36,11 +36,24 @@
 							<div class="item">
 								<div class="productwrap">
 									<div class="pr-img">
+										<?php
+										if($urun["discount"]>30) {?>
 										<div class="hot"></div>
-										<a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><img style="height: 150px" src="<?=$img?>" alt="" class="img-responsive"></a>
-										<div class="pricetag blue"><div class="inner"><span>$<?=$urun["urun_fiyat"]?></span></div></div>
+										<?php
+										}
+									  ?>
+									  <a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><img style="height: 150px; width: 200px"  src="<?=$img?>" alt="" class="img-responsive"></a>
+										<?php
+											if($urun["discount"]) {?>
+												<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urun['urun_fiyat'] ?>TL</span><?php echo round($urun['urun_fiyat']-($urun['urun_fiyat']*$urun['discount']/100), 2) ?><span style="color: blue;" >TL</span></span></div></div>
+											<?
+											} else {?>
+											<div class="pricetag"><div class="inner"><?=$urun["urun_fiyat"]?></div></div>
+											<?php
+											}
+										?>
 									</div>
-										<span class="smalltitle"><a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><?=substr($urun["urun_ad"], 0, 30)?></a></span>
+										<span class="smalltitle"><a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><?=substr($urun["urun_ad"], 0, 15)?></a></span>
 										<span class="smalldesc">Ürün Kodu.: <?=$urun["urun_id"]?></span>
 								</div>
 							</div>

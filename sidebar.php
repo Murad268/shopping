@@ -3,7 +3,7 @@
 		<div class="title">Kateqoriyalar</div>
 	</div>
 	
-	<div style="height: 600px" class="categorybox">
+	<div style="height: 600px; width: 250px" class="categorybox">
 		
 		<ul>
 			
