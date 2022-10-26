@@ -88,7 +88,16 @@
 						$mehsullariaxtar = $db->prepare("SELECT * FROM urunler ORDER BY urun_id DESC LIMIT 6");
 						$mehsullariaxtar->execute();
 						$mehsullar = $mehsullariaxtar->fetchAll(PDO::FETCH_ASSOC);
-						foreach($mehsullar as $mehsul) {?>
+						foreach($mehsullar as $mehsul) {
+							$resimleregit = $db->prepare("SELECT * FROM urunfoto WHERE urun_id = ?");
+							$resimleregit->execute([$mehsul["urun_id"]]);
+							$resim = $resimleregit->fetch(PDO::FETCH_ASSOC);
+							$resimsayi=$resimleregit->rowCount();
+							if($resimsayi>0) {
+								$img = $resim["urun_fotoresimyol"];
+							} else {
+								$img = "./dimg/resimyok.png";
+							}?>
 								
 							<div class="col-md-4">
 								<div class="productwrap">
