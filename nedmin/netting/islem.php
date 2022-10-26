@@ -1130,7 +1130,8 @@ if (isset($_POST['urunduzenle'])) {
 		urun_keyword=:urun_keyword,
 		urun_durum=:urun_durum,
 		urun_stok=:urun_stok,	
-		urun_seourl=:seourl		
+		urun_seourl=:seourl,
+      discount=:discount		
 		WHERE urun_id={$_POST['urun_id']}");
 	$update=$kaydet->execute(array(
 		'kategori_id' => strip_tags(htmlspecialchars($_POST['kategori_id'])),
@@ -1142,7 +1143,8 @@ if (isset($_POST['urunduzenle'])) {
 		'urun_keyword' => strip_tags(htmlspecialchars($_POST['urun_keyword'])),
 		'urun_durum' => strip_tags(htmlspecialchars($_POST['urun_durum'])),
 		'urun_stok' => strip_tags(htmlspecialchars($_POST['urun_stok'])),
-		'seourl' => $urun_seourl
+		'seourl' => $urun_seourl,
+      'discount' => strip_tags(htmlspecialchars($_POST['discount'])),
 
 		));
 

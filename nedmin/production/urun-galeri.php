@@ -60,17 +60,18 @@ $resimsor->execute();
               <tbody>
 
                 <?php 
-     
-                while($resimcek=$resimsor->fetch(PDO::FETCH_ASSOC)) {
+                $resimler=$resimsor->fetchAll(PDO::FETCH_ASSOC);
+                foreach($resimler as $resimcek) {
                   $urunleregit = $db->prepare("SELECT * FROM urunler WHERE urun_id = ?");
                   $urunleregit->execute([$resimcek["urun_id"]]);
                   $urun = $urunleregit->fetch(PDO::FETCH_ASSOC);
+                  $urunAdi = $urun["urun_ad"];
                   ?>
                
 
                 <tr>
                   <td width="20" td><img width="100px" src="../../<?=$resimcek["urun_fotoresimyol"]?>" alt=""></td>
-                  <td><?php echo $urun["urun_ad"] ?></td>
+                  <td><?php echo $urunAdi ?></td>
                   <td><center><a href="../production/resim-guncelle?resimid=<?=$resimcek['urunfoto_id']?>"><button class="btn btn-primary btn-xs">Yenilə</button></a></center></td>
              
                   <td><center><a href="../netting/islem.php?urunresimsil=ok&resimid=<?=$resimcek['urunfoto_id']?>"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>

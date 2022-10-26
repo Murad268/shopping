@@ -2,7 +2,7 @@
 
 include 'header.php'; 
 	$sayfalamaIcinButonSayisi = 2;
-	$sayfaBasinaGosterilecek = 8;
+	$sayfaBasinaGosterilecek = 6;
 	$toplamKayitSayisiSorgusu = $db->prepare("select * from urunler");;
 	$toplamKayitSayisiSorgusu->execute();
 	$toplamKayitSayisi = $toplamKayitSayisiSorgusu->rowCount();
@@ -90,10 +90,10 @@ if (isset($_GET['sef'])) {
 						<div class="productwrap">
 							<div class="pr-img">
 								<div class="hot"></div>
-								<a href="urun-<?=seo($urunler["urun_ad"]).'-'.$urunler["urun_id"]?>"><img style="height: 150px" src="<?=$img?>" alt="" class="img-responsive"></a>
-								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urunler['urun_fiyat']*1.50 ?> TL</span><?php echo $urunler['urun_fiyat'] ?><span style="color: blue;" >TL</span></span></div></div>
+								<a href="urun-<?=seo($urunler["urun_ad"]).'-'.$urunler["urun_id"]?>"><img style="height: 150px; width: 200px" src="<?=$img?>" alt="" class="img-responsive"></a>
+								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urunler['urun_fiyat']*1.50 ?>TL</span><?php echo $urunler['urun_fiyat'] ?><span style="color: blue;" >TL</span></span></div></div>
 							</div>
-							<span class="smalltitle"><a href="product.htm"><?php echo substr($urunler['urun_ad'] , 0, 30)?></a></span>
+							<span class="smalltitle"><a href="product.htm"><?php echo substr($urunler['urun_ad'] , 0, 25)?></a></span>
 							<span class="smalldesc">Məhsul Kodu.: <?php echo $urunler['urun_id'] ?></span>
 						</div>
 					</div>
