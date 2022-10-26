@@ -79,7 +79,7 @@ $urunsor->execute();
 
                 <tr>
                  <td width="20"><?php echo $say ?></td>
-                 <td><?php echo $uruncek['urun_ad'] ?></td>
+                 <td><?php echo substr($uruncek['urun_ad'], 0, 21)."</br>".substr($uruncek['urun_ad'], 21) ?></td>
                  <td><?php echo $uruncek['urun_stok'] ?></td>
                  <td><?php echo $uruncek['urun_fiyat'] ?></td>
 

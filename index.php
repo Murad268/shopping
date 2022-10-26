@@ -76,7 +76,7 @@
 					<div class="title">Haqqımızda</div>
 				</div>
 				<p class="ct">
-					<?=substr($about_desc, 0, 500)?>
+					<?=donusumleriGeriDondur(substr($about_desc, 0, 500))?>...
 				</p>
 				<a href="about" class="btn btn-default btn-red btn-sm">Davamını oxu</a>
 				

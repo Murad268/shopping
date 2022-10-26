@@ -38,7 +38,7 @@
 				</div>
 				<div class="page-content">
 					<p>
-					<?=$about_desc?>
+					<?=DonusumleriGeriDondur($about_desc)?>
 					</p>
 				</div>
 				

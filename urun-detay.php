@@ -179,7 +179,7 @@ $resimsayi1=$resimlerisorgula1->rowCount();
 						}
 					?> in" id="desc">
 						<p>
-							<?php echo $uruncek['urun_detay'] ?>
+							<?php echo donusumleriGeriDondur($uruncek['urun_detay'])?>
 						</p>
 					</div>
 					<div class="tab-pane <?php

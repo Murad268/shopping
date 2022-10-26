@@ -726,7 +726,8 @@
          slider_sira=:slider_sira,
          slider_link=:slider_link,
          slider_src=:slider_src,
-         urun_id=:urun_id
+         urun_id=:urun_id,
+         slider_detay=:slider_detay
          ");
       $insert=$kaydet->execute(array(
          'slider_ad' => strip_tags(htmlspecialchars($_POST['slider_ad'])),
@@ -734,6 +735,7 @@
          'slider_link' => strip_tags(htmlspecialchars($_POST['slider_link'])),
          'slider_src' => $refimgyol,
          'urun_id' => strip_tags(htmlspecialchars($_POST['urun_id'])),
+         'slider_detay' => strip_tags(htmlspecialchars($_POST['slider_detay'])),
          ));
    
       if ($insert) {
@@ -784,14 +786,18 @@
       } else {
          $urun_id = "";
       }
-  
+      if(isset($_POST["slider_detay"])) {
+         $slider_detay = strip_tags(htmlspecialchars($_POST["slider_detay"]));
+      } else {
+         $slider_detay = "";
+      }
 
-      if(($slider_ad == "") or ($slider_link == "") or ($slider_sira == "") or ($slider_durum == "") or ($urun_id == "")) {
+      if(($slider_ad == "") or ($slider_sira == "") or ($slider_durum == "") or ($urun_id == "")) {
          header("Location: ../production/slider-duzenle.php?slider_id=$slider_id&status=empty");
          exit();
       } else {
-         $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE carusel SET urun_id = ?, slider_ad = ?, slider_link = ?, slider_sira = ?, slider_durum = ? WHERE slider_id = ?");
-         $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$urun_id, $slider_ad, $slider_link, $slider_sira, $slider_durum, $slider_id]);
+         $genelAyarlariYenilemeSorgusu = $db->prepare("UPDATE carusel SET slider_detay = ?, urun_id = ?, slider_ad = ?, slider_link = ?, slider_sira = ?, slider_durum = ? WHERE slider_id = ?");
+         $ayarIf = $genelAyarlariYenilemeSorgusu->execute([$slider_detay, $urun_id, $slider_ad, $slider_link, $slider_sira, $slider_durum, $slider_id]);
          $deyisenAyarlar = $genelAyarlariYenilemeSorgusu->rowCount();
          if(!$ayarIf) {
             header("Location: ../production/slider-duzenle.php?slider_id=$slider_id&status=error");
@@ -1484,6 +1490,10 @@ if(isset($_POST["bankasipariskaydet"])) {
       
          $kayd = $kaydet = $db->prepare("INSERT INTO siparis_detay(siparis_id, urun_fiyat, urun_adet, urun_id) VALUES($id, $urun_fiyat, $urun_adet, $urunler[$i])");
          $kaydet->execute();
+         $urunleriSatisi = $db->prepare("UPDATE urunler SET satis_sayi = satis_sayi+? WHERE urun_id = ?");
+         $urunleriSatisi->execute([$urun_adet, $urunler[$i]]);
+         $urunleriAzalt = $db->prepare("UPDATE urunler SET urun_stok = urun_stok-? WHERE urun_id = ?");
+         $urunleriAzalt->execute([$urun_adet, $urunler[$i]]);
       }
    
       if($kayd) {
