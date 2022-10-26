@@ -49,12 +49,17 @@ $usersor->execute();
 
                 <?php 
                 $say = 0;
-                while($usercek=$usersor->fetch(PDO::FETCH_ASSOC)) {$say++;?>
+                while($usercek=$usersor->fetch(PDO::FETCH_ASSOC)) {
+                  $say++;
+                  $sebetledanis = $db->prepare("SELECT * FROM sepet WHERE kullanici_id = ?");
+                  $sebetledanis->execute([$usercek["user_id"]]);
+                  $sepetIci = $sebetledanis->rowCount();
+                ?>
                 <tr>
-                  <td width="20" td><?php echo $usercek['user_id'] ?></td>
+                  <td width="20" td><?php echo $usercek['user_id']?></td>
                   <td><?php echo $usercek['user_name']?></td>
                   <td><?php echo $usercek['user_email']?></td>
-                  <td><center><a href="sepetone.php?user_id=<?=$usercek['user_id']?>"><button class="btn btn-primary btn-xs">Səbətə get</button></a></center></td>
+                  <td><center>(<?=$sepetIci?> məhsul)&nbsp;&nbsp;&nbsp;<a href="sepetone.php?user_id=<?=$usercek['user_id']?>"><button class="btn btn-primary btn-xs">Səbətə get</button></a></center></td>
                 </tr>
                 <?php  }
 

@@ -5,30 +5,30 @@
    require_once('./functions.php');
    if(isset($_POST["general"])) {
       if(isset($_POST["site_linki"])) {
-         $site_linki = $_POST["site_linki"];
+         $site_linki = strip_tags(htmlspecialchars($_POST["site_linki"]));
       } else {
          $site_linki = "";
       }
       if(isset($_POST["ayar_title"])) {
-         $ayar_title = $_POST["ayar_title"];
+         $ayar_title = strip_tags(htmlspecialchars($_POST["ayar_title"]));
       } else {
          $ayar_title = "";
       }
 
       if(isset($_POST["ayar_description"])) {
-         $ayar_description = $_POST["ayar_description"];
+         $ayar_description = strip_tags(htmlspecialchars($_POST["ayar_description"]));
       } else {
          $ayar_description = "";
       }
 
       if(isset($_POST["ayar_keywords"])) {
-         $ayar_keywords = $_POST["ayar_keywords"];
+         $ayar_keywords = strip_tags(htmlspecialchars($_POST["ayar_keywords"]));
       } else {
          $ayar_keywords = "";
       }
 
       if(isset($_POST["ayar_author"])) {
-         $ayar_author = $_POST["ayar_author"];
+         $ayar_author = strip_tags(htmlspecialchars($_POST["ayar_author"]));
       } else {
          $ayar_author = "";
       }
@@ -60,47 +60,47 @@
 
    if(isset($_POST["contacts"])) {
       if(isset($_POST["ayar_tel"])) {
-         $ayar_tel = $_POST["ayar_tel"];
+         $ayar_tel = strip_tags(htmlspecialchars($_POST["ayar_tel"]));
       } else {
          $ayar_tel = "";
       }
 
       if(isset($_POST["ayar_gsm"])) {
-         $ayar_gsm = $_POST["ayar_gsm"];
+         $ayar_gsm = strip_tags(htmlspecialchars($_POST["ayar_gsm"]));
       } else {
          $ayar_gsm = "";
       }
 
       if(isset($_POST["ayar_faks"])) {
-         $ayar_faks = $_POST["ayar_faks"];
+         $ayar_faks = strip_tags(htmlspecialchars($_POST["ayar_faks"]));
       } else {
          $ayar_faks = "";
       }
 
       if(isset($_POST["ayar_mail"])) {
-         $ayar_mail = $_POST["ayar_mail"];
+         $ayar_mail = strip_tags(htmlspecialchars($_POST["ayar_mail"]));
       } else {
          $ayar_mail = "";
       }
       if(isset($_POST["ayar_seher"])) {
-         $ayar_seher = $_POST["ayar_seher"];
+         $ayar_seher = strip_tags(htmlspecialchars($_POST["ayar_seher"]));
       } else {
          $ayar_seher = "";
       }
       if(isset($_POST["ayar_rayon"])) {
-         $ayar_rayon = $_POST["ayar_rayon"];
+         $ayar_rayon = strip_tags(htmlspecialchars($_POST["ayar_rayon"]));
       } else {
          $ayar_rayon = "";
       }
 
       if(isset($_POST["ayar_adres"])) {
-         $ayar_adres = $_POST["ayar_adres"];
+         $ayar_adres = strip_tags(htmlspecialchars($_POST["ayar_adres"]));
       } else {
          $ayar_adres = "";
       }
 
       if(isset($_POST["ayar_mesai"])) {
-         $ayar_mesai = $_POST["ayar_mesai"];
+         $ayar_mesai = strip_tags(htmlspecialchars($_POST["ayar_mesai"]));
       } else {
          $ayar_mesai = "";
       }
@@ -134,13 +134,13 @@
 
    if(isset($_POST["api"])) {
       if(isset($_POST["ayar_maps"])) {
-         $ayar_maps = $_POST["ayar_maps"];
+         $ayar_maps = strip_tags(htmlspecialchars($_POST["ayar_maps"]));
       } else {
          $ayar_maps = "";
       }
 
       if(isset($_POST["ayar_analystic"])) {
-         $ayar_analystic = $_POST["ayar_analystic"];
+         $ayar_analystic = strip_tags(htmlspecialchars($_POST["ayar_analystic"]));
       } else {
          $ayar_analystic = "";
       }
@@ -181,24 +181,24 @@
 
    if(isset($_POST["mail"])) {
       if(isset($_POST["smtp_user"])) {
-         $smtp_user = $_POST["smtp_user"];
+         $smtp_user = strip_tags(htmlspecialchars($_POST["smtp_user"]));
       } else {
          $smtp_user = "";
       }
       if(isset($_POST["ayar_smtpport"])) {
-         $ayar_smtpport = $_POST["ayar_smtpport"];
+         $ayar_smtpport = strip_tags(htmlspecialchars($_POST["ayar_smtpport"]));
       } else {
          $ayar_smtpport = "";
       }
 
       if(isset($_POST["ayar_smtphost"])) {
-         $ayar_smtphost = $_POST["ayar_smtphost"];
+         $ayar_smtphost = strip_tags(htmlspecialchars($_POST["ayar_smtphost"]));
       } else {
          $ayar_smtphost = "";
       }
 
       if(isset($_POST["ayar_smtppassword"])) {
-         $ayar_smtppassword = $_POST["ayar_smtppassword"];
+         $ayar_smtppassword = strip_tags(htmlspecialchars($_POST["ayar_smtppassword"]));
       } else {
          $ayar_smtppassword = "";
       }
@@ -231,25 +231,25 @@
 
    if(isset($_POST["social"])) {
       if(isset($_POST["ayar_facebook"])) {
-         $ayar_facebook = $_POST["ayar_facebook"];
+         $ayar_facebook = strip_tags(htmlspecialchars($_POST["ayar_facebook"]));
       } else {
          $ayar_facebook = "";
       }
 
       if(isset($_POST["ayar_twitter"])) {
-         $ayar_twitter = $_POST["ayar_twitter"];
+         $ayar_twitter = strip_tags(htmlspecialchars($_POST["ayar_twitter"]));
       } else {
          $ayar_twitter = "";
       }
 
       if(isset($_POST["ayar_google"])) {
-         $ayar_google = $_POST["ayar_google"];
+         $ayar_google = strip_tags(htmlspecialchars($_POST["ayar_google"]));
       } else {
          $ayar_google = "";
       }
 
       if(isset($_POST["ayar_youtube"])) {
-         $ayar_youtube = $_POST["ayar_youtube"];
+         $ayar_youtube = strip_tags(htmlspecialchars($_POST["ayar_youtube"]));
       } else {
          $ayar_youtube = "";
       }
@@ -280,31 +280,31 @@
 
    if(isset($_POST["about"])) {
       if(isset($_POST["about_title"])) {
-         $about_title = $_POST["about_title"];
+         $about_title = strip_tags(htmlspecialchars($_POST["about_title"]));
       } else {
          $about_title = "";
       }
 
       if(isset($_POST["about_desc"])) {
-         $about_desc = $_POST["about_desc"];
+         $about_desc = strip_tags(htmlspecialchars($_POST["about_desc"]));
       } else {
          $about_desc = "";
       }
 
       if(isset($_POST["about_video"])) {
-         $about_video = $_POST["about_video"];
+         $about_video = strip_tags(htmlspecialchars($_POST["about_video"]));
       } else {
          $about_video = "";
       }
 
       if(isset($_POST["about_vizyon"])) {
-         $about_vizyon = $_POST["about_vizyon"];
+         $about_vizyon = strip_tags(htmlspecialchars($_POST["about_vizyon"]));
       } else {
          $about_vizyon = "";
       }
 
       if(isset($_POST["about_misyon"])) {
-         $about_misyon = $_POST["about_misyon"];
+         $about_misyon = strip_tags(htmlspecialchars($_POST["about_misyon"]));
       } else {
          $about_misyon = "";
       }
@@ -337,13 +337,13 @@
 
    if(isset($_POST["admingiris"])) {
       if(isset($_POST["user_email"])) {
-         $user_email = $_POST["user_email"];
+         $user_email = strip_tags(htmlspecialchars($_POST["user_email"]));
       } else {
          $user_email = "";
       }
 
       if(isset($_POST["user_pass"])) {
-         $user_pass = md5($_POST["user_pass"]);
+         $user_pass = md5(strip_tags(htmlspecialchars($_POST["user_pass"])));
       } else {
          $user_pass = "";
       }
@@ -378,24 +378,24 @@
 
    if(isset($_POST["gullaniciguncelle"])) {
       if(isset($_POST["user_id"])) {
-         $user_id = $_POST["user_id"];
+         $user_id = strip_tags(htmlspecialchars($_POST["user_id"]));
       } else {
          $user_id = "";
       }
 
  
       if(isset($_POST["user_tc"])) {
-         $user_tc = $_POST["user_tc"];
+         $user_tc = strip_tags(htmlspecialchars($_POST["user_tc"]));
       } else {
          $user_tc = "";
       }
       if(isset($_POST["user_name"])) {
-         $user_name = $_POST["user_name"];
+         $user_name = strip_tags(htmlspecialchars($_POST["user_name"]));
       } else {
          $user_name = "";
       }
       if(isset($_POST["user_durum"])) {
-         $user_durum = $_POST["user_durum"];
+         $user_durum = strip_tags(htmlspecialchars($_POST["user_durum"]));
       } else {
          $user_durum = "";
       }
@@ -428,7 +428,7 @@
    if(isset(($_GET["kullanicisil"]))) {
       if($_GET["kullanicisil"] == "ok") {
          if(isset($_GET["userid"])) {
-            $userid = $_GET["userid"];
+            $userid = strip_tags(htmlspecialchars($_GET["userid"]));
          } else {
             $userid = "";
          }
@@ -467,7 +467,7 @@
    if(isset($_POST["menuguncelle"])) {
       include_once("functions.php");
       if(isset($_POST["menu_id"])) {
-         $menu_id = $_POST["menu_id"];
+         $menu_id = strip_tags(htmlspecialchars($_POST["menu_id"]));
       } else {
          $menu_id = "";
       }
@@ -475,28 +475,28 @@
  
       if(isset($_POST["menu_ad"])) {
          $menu_ad = $_POST["menu_ad"];
-         $seo_url = seo($_POST["menu_ad"]);
+         $seo_url = seo(strip_tags(htmlspecialchars($_POST["menu_ad"])));
       } else {
          $menu_ad = "";
          $seo_url = "";
       }
       if(isset($_POST["menu_detay"])) {
-         $menu_detay = $_POST["menu_detay"];
+         $menu_detay = strip_tags(htmlspecialchars($_POST["menu_detay"]));
       } else {
          $menu_detay = "";
       }
       if(isset($_POST["menu_durum"])) {
-         $menu_durum = $_POST["menu_durum"];
+         $menu_durum = strip_tags(htmlspecialchars($_POST["menu_durum"]));
       } else {
          $menu_durum = "";
       }
       if(isset($_POST["menu_url"])) {
-         $menu_url = $_POST["menu_url"];
+         $menu_url = strip_tags(htmlspecialchars($_POST["menu_url"]));
       } else {
          $menu_url = "";
       }
       if(isset($_POST["menu_sira"])) {
-         $menu_sira = $_POST["menu_sira"];
+         $menu_sira = strip_tags(htmlspecialchars($_POST["menu_sira"]));
       } else {
          $menu_sira = "";
       }
@@ -530,7 +530,7 @@
    if(isset($_GET["menusil"])) {
       if($_GET["menusil"] == "ok") {
          if(isset($_GET["menuid"])) {
-            $menuid = $_GET["menuid"];
+            $menuid = strip_tags(htmlspecialchars($_GET["menuid"]));
          } else {
             $menuid = "";
          }
@@ -572,28 +572,28 @@
  
       if(isset($_POST["menu_ad"])) {
          $menu_ad = $_POST["menu_ad"];
-         $seo_url = seo($_POST["menu_ad"]);
+         $seo_url = seo(strip_tags(htmlspecialchars($_POST["menu_ad"])));
       } else {
          $menu_ad = "";
          $seo_url = "";
       }
       if(isset($_POST["menu_detay"])) {
-         $menu_detay = $_POST["menu_detay"];
+         $menu_detay = strip_tags(htmlspecialchars($_POST["menu_detay"]));
       } else {
          $menu_detay = "";
       }
       if(isset($_POST["menu_durum"])) {
-         $menu_durum = $_POST["menu_durum"];
+         $menu_durum = strip_tags(htmlspecialchars($_POST["menu_durum"]));
       } else {
          $menu_durum = "";
       }
       if(isset($_POST["menu_url"])) {
-         $menu_url = $_POST["menu_url"];
+         $menu_url = strip_tags(htmlspecialchars($_POST["menu_url"]));
       } else {
          $menu_url = "";
       }
       if(isset($_POST["menu_sira"])) {
-         $menu_sira = $_POST["menu_sira"];
+         $menu_sira = strip_tags(htmlspecialchars($_POST["menu_sira"]));
       } else {
          $menu_sira = "";
       }
@@ -716,9 +716,9 @@
          slider_src=:slider_src
          ");
       $insert=$kaydet->execute(array(
-         'slider_ad' => $_POST['slider_ad'],
-         'slider_sira' => $_POST['slider_sira'],
-         'slider_link' => $_POST['slider_link'],
+         'slider_ad' => strip_tags(htmlspecialchars($_POST['slider_ad'])),
+         'slider_sira' => strip_tags(htmlspecialchars($_POST['slider_sira'])),
+         'slider_link' => strip_tags(htmlspecialchars($_POST['slider_link'])),
          'slider_src' => $refimgyol
          ));
    
@@ -737,30 +737,30 @@
 
    if(isset($_POST["sliderduzenle"])) {
       if(isset($_POST["slider_id"])) {
-         $slider_id = $_POST["slider_id"];
+         $slider_id = strip_tags(htmlspecialchars($_POST["slider_id"]));
       } else {
          $slider_id = "";
       }
  
       if(isset($_POST["slider_ad"])) {
-         $slider_ad = $_POST["slider_ad"];
+         $slider_ad = strip_tags(htmlspecialchars($_POST["slider_ad"]));
       } else {
          $slider_ad = "";
       }
 
       if(isset($_POST["slider_link"])) {
-         $slider_link = $_POST["slider_link"];
+         $slider_link = strip_tags(htmlspecialchars($_POST["slider_link"]));
       } else {
          $slider_link = "";
       }
 
       if(isset($_POST["slider_sira"])) {
-         $slider_sira = $_POST["slider_sira"];
+         $slider_sira = strip_tags(htmlspecialchars($_POST["slider_sira"]));
       } else {
          $slider_sira = "";
       }
       if(isset($_POST["slider_durum"])) {
-         $slider_durum = $_POST["slider_durum"];
+         $slider_durum = strip_tags(htmlspecialchars($_POST["slider_durum"]));
       } else {
          $slider_durum = "";
       }
@@ -850,7 +850,7 @@
    if(isset($_GET["slidersil"])) {
       if($_GET["slidersil"] == "ok") {
          if(isset($_GET["slider_id"])) {
-            $slider_id = $_GET["slider_id"];
+            $slider_id = strip_tags(htmlspecialchars($_GET["slider_id"]));
          } else {
             $slider_id = "";
          }
@@ -936,13 +936,13 @@
 
    if(isset($_POST["userenter"])) {
       if(isset($_POST["username"])) {
-         $username = $_POST["username"];
+         $username = strip_tags(htmlspecialchars($_POST["username"]));
       } else {
          $username = "";
       }
 
       if(isset($_POST["password"])) {
-         $password = md5($_POST["password"]);
+         $password = md5(strip_tags(htmlspecialchars($_POST["password"])));
       } else {
          $password = "";
       }
@@ -964,16 +964,16 @@
    }
       
    if(isset($_POST["kullaniciyenile"])) {
-      $gelen_id  = $_POST["user_id"];
-      $gelen_name = $_POST["user_name"];
-      $gelen_email = $_POST["user_email"];
-      $gelen_gsm = $_POST["user_gsm"];
-      $gelen_tel = $_POST["user_tel"];
-      $gelen_pass = md5($_POST["user_pass"]);
-      $gelen_adres = $_POST["user_adres"];
-      $gelen_seher = $_POST["user_seher"];
-      $gelen_rayon = $_POST["user_rayon"];
-      $gelen_unvan = $_POST["user_unvan"];
+      $gelen_id  = strip_tags(htmlspecialchars($_POST["user_id"]));
+      $gelen_name = strip_tags(htmlspecialchars($_POST["user_name"]));
+      $gelen_email = strip_tags(htmlspecialchars($_POST["user_email"]));
+      $gelen_gsm = strip_tags(htmlspecialchars($_POST["user_gsm"]));
+      $gelen_tel = strip_tags(htmlspecialchars($_POST["user_tel"]));
+      $gelen_pass = md5(strip_tags(htmlspecialchars($_POST["user_pass"])));
+      $gelen_adres = strip_tags(htmlspecialchars($_POST["user_adres"]));
+      $gelen_seher = strip_tags(htmlspecialchars($_POST["user_seher"]));
+      $gelen_rayon = strip_tags(htmlspecialchars($_POST["user_rayon"]));
+      $gelen_unvan = strip_tags(htmlspecialchars($_POST["user_unvan"]));
       $user_tc = $_POST["user_tc"];
       $yoxlamaSorgusu = $db->prepare("SELECT * FROM users WHERE user_email = ?");
       $yoxlamaSorgusu->execute([$gelen_email]);
@@ -1015,8 +1015,8 @@
    }
    if (isset($_POST['kategoriduzenle'])) {
 
-      $kategori_id=$_POST['category_id'];
-      $kategori_seourl=seo($_POST['category_ad']);
+      $kategori_id=strip_tags(htmlspecialchars($_POST['category_id']));
+      $kategori_seourl=seo(strip_tags(htmlspecialchars($_POST['category_ad'])));
      
       
       $kaydet=$db->prepare("UPDATE categories SET category_ad=?, keteqori_durum=?,	 category_seourl=?, category_sira=? WHERE category_id=?");
@@ -1059,7 +1059,7 @@
 
    if (isset($_POST['kategoriekle'])) {
 
-      $kategori_seourl=seo($_POST['kategori_ad']);
+      $kategori_seourl=seo(strip_tags(htmlspecialchars($_POST['kategori_ad'])));
    
       $kaydet=$db->prepare("INSERT INTO categories SET category_ad=?, keteqori_durum=?, category_seourl= ?, category_sira=?");
       $insert=$kaydet->execute(array($_POST['kategori_ad'], $_POST['kategori_durum'], $kategori_seourl, $_POST['kategori_sira']));
@@ -1082,7 +1082,7 @@ if ($_GET['urunsil']=="ok") {
 	
 	$sil=$db->prepare("DELETE from urunler where urun_id=:urun_id");
 	$kontrol=$sil->execute(array(
-		'urun_id' => $_GET['urun_id']
+		'urun_id' => strip_tags(htmlspecialchars($_GET['urun_id']))
 		));
 
 	if ($kontrol) {
@@ -1117,15 +1117,15 @@ if (isset($_POST['urunduzenle'])) {
 		urun_seourl=:seourl		
 		WHERE urun_id={$_POST['urun_id']}");
 	$update=$kaydet->execute(array(
-		'kategori_id' => $_POST['kategori_id'],
-		'urun_ad' => $_POST['urun_ad'],
-		'urun_detay' => $_POST['urun_detay'],
-		'urun_fiyat' => $_POST['urun_fiyat'],
-		'urun_video' => $_POST['urun_video'],
-		'urun_onecikar' => $_POST['urun_onecikar'],
-		'urun_keyword' => $_POST['urun_keyword'],
-		'urun_durum' => $_POST['urun_durum'],
-		'urun_stok' => $_POST['urun_stok'],
+		'kategori_id' => strip_tags(htmlspecialchars($_POST['kategori_id'])),
+		'urun_ad' => strip_tags(htmlspecialchars($_POST['urun_ad'])),
+		'urun_detay' => strip_tags(htmlspecialchars($_POST['urun_detay'])),
+		'urun_fiyat' => strip_tags(htmlspecialchars($_POST['urun_fiyat'])),
+		'urun_video' => strip_tags(htmlspecialchars($_POST['urun_video'])),
+		'urun_onecikar' => strip_tags(htmlspecialchars($_POST['urun_onecikar'])),
+		'urun_keyword' => strip_tags(htmlspecialchars($_POST['urun_keyword'])),
+		'urun_durum' => strip_tags(htmlspecialchars($_POST['urun_durum'])),
+		'urun_stok' => strip_tags(htmlspecialchars($_POST['urun_stok'])),
 		'seourl' => $urun_seourl
 
 		));
@@ -1158,14 +1158,14 @@ if (isset($_POST['urunekle'])) {
 		urun_seourl=:seourl		
 		");
 	$insert=$kaydet->execute(array(
-		'kategori_id' => $_POST['kategori_id'],
-		'urun_ad' => $_POST['urun_ad'],
-		'urun_detay' => $_POST['urun_detay'],
-		'urun_fiyat' => $_POST['urun_fiyat'],
-		'urun_video' => $_POST['urun_video'],
-		'urun_keyword' => $_POST['urun_keyword'],
-		'urun_durum' => $_POST['urun_durum'],
-		'urun_stok' => $_POST['urun_stok'],
+		'kategori_id' => strip_tags(htmlspecialchars($_POST['kategori_id'])),
+		'urun_ad' => strip_tags(htmlspecialchars($_POST['urun_ad'])),
+		'urun_detay' => strip_tags(htmlspecialchars($_POST['urun_detay'])),
+		'urun_fiyat' => strip_tags(htmlspecialchars($_POST['urun_fiyat'])),
+		'urun_video' => strip_tags(htmlspecialchars($_POST['urun_video'])),
+		'urun_keyword' => strip_tags(htmlspecialchars($_POST['urun_keyword'])),
+		'urun_durum' => strip_tags(htmlspecialchars($_POST['urun_durum'])),
+		'urun_stok' => strip_tags(htmlspecialchars($_POST['urun_stok'])),
 		'seourl' => $urun_seourl
 
 		));
@@ -1187,7 +1187,7 @@ if (isset($_POST['urunekle'])) {
 if ($_GET['məhsuluonecikar']=="ok") {
 	
 	$sil=$db->prepare("UPDATE urunler SET  urun_onecikar=? WHERE urun_id = ?");
-	$kontrol=$sil->execute(["1", $_GET['urun_id']]);
+	$kontrol=$sil->execute(["1", strip_tags(htmlspecialchars($_GET['urun_id']))]);
 
 	if ($kontrol) {
 
@@ -1204,7 +1204,7 @@ if ($_GET['məhsuluonecikar']=="ok") {
 if ($_GET['məhsuluonecikar']=="no") {
 	
 	$sil=$db->prepare("UPDATE urunler SET  urun_onecikar=? WHERE urun_id = ?");
-	$kontrol=$sil->execute(["0", $_GET['urun_id']]);
+	$kontrol=$sil->execute(["0", strip_tags(htmlspecialchars($_GET['urun_id']))]);
 
 	if ($kontrol) {
 
@@ -1240,13 +1240,13 @@ if (isset($_POST['comment'])) {
 
 if(isset($_GET["commentisil"])) {
    if ($_GET['commentisil']=="ok") {
-      $gelen_url = $_GET["url"];
+      $gelen_url = strip_tags(htmlspecialchars($_GET["url"]));
 
       $gelen_url = explode("? ",  $_GET["url"])[0]."?";
   
    
       $sil=$db->prepare("DELETE from yorumlar where yorum_id = ? AND kullanici_id = ?");
-      $kontrol=$sil->execute([$_GET["yorum_id"], $user_id]);
+      $kontrol=$sil->execute([strip_tags(htmlspecialchars($_GET["yorum_id"])), $user_id]);
    
       if ($kontrol) {
    
@@ -1264,7 +1264,7 @@ if(isset($_GET["commentisil"])) {
 
 if (isset($_POST['changecomment'])) {
    $gelen_url = $_POST["url"];
-   $gelen_url = explode("?",  $_POST["url"])[0]."?";
+   $gelen_url = explode("?",  strip_tags(htmlspecialchars($_POST["url"])))[0]."?";
 	$kommentElaveElemekSorgusu=$db->prepare("UPDATE yorumlar SET urun_detay = ? WHERE urun_id = ? AND yorum_id = ? AND kullanici_id = ?");
 	$kommentElaveElemek=$kommentElaveElemekSorgusu->execute([]);
    
@@ -1283,7 +1283,7 @@ if (isset($_POST['sepetekle'])) {
    echo $sepet;
    if($sepet > 0) {
       $sepetiGuncelle = $db->prepare("UPDATE sepet SET urun_adet = urun_adet+? WHERE kullanici_id = ? AND urun_id = ?");
-      $update = $sepetiGuncelle->execute([$_POST['urun_adet'], $user_id, $_POST['urun_id']]);
+      $update = $sepetiGuncelle->execute([strip_tags(htmlspecialchars($_POST['urun_adet'])), $user_id, strip_tags(htmlspecialchars($_POST['urun_id']))]);
       if ($update) {
          Header("Location:../../sepet?durum=ok");
       } else {
@@ -1296,7 +1296,7 @@ if (isset($_POST['sepetekle'])) {
 		urun_id=:urun_id	
 		");
 	$insert=$urunekle->execute(array(
-		'urun_adet' => $_POST['urun_adet'],
+		'urun_adet' => strip_tags(htmlspecialchars($_POST['urun_adet'])),
 		'kullanici_id' => $user_id,
 		'urun_id' => $_POST['urun_id']
 		));
@@ -1312,7 +1312,7 @@ if(isset($_GET["yorumsil"])) {
 	
       $sil=$db->prepare("DELETE from yorumlar where yorum_id=:yorum_id");
       $kontrol=$sil->execute(array(
-         'yorum_id' => $_GET['yorum_id']
+         'yorum_id' => strip_tags(htmlspecialchars($_GET['yorum_id']))
          ));
    
       if ($kontrol) {
@@ -1335,7 +1335,7 @@ if ($_GET['yorum_onay']=="ok") {
 		yorum_onay=:yorum_onay
 		WHERE yorum_id={$_GET['yorum_id']}");
 	$update=$duzenle->execute(array(
-		'yorum_onay' => $_GET['yorum_one']
+		'yorum_onay' => strip_tags(htmlspecialchars($_GET['yorum_one']))
 		));
 	if ($update) {
 		Header("Location:../production/yorum.php?durum=ok");
@@ -1355,10 +1355,10 @@ if (isset($_POST['bankaekle'])) {
 		banka_iban=:banka_iban
 		");
 	$insert=$kaydet->execute(array(
-		'ad' => $_POST['banka_ad'],
-		'banka_durum' => $_POST['banka_durum'],
-		'banka_hesapadsoyad' => $_POST['banka_hesapadsoyad'],
-		'banka_iban' => $_POST['banka_iban']		
+		'ad' => strip_tags(htmlspecialchars($_POST['banka_ad'])),
+		'banka_durum' => strip_tags(htmlspecialchars($_POST['banka_durum'])),
+		'banka_hesapadsoyad' => strip_tags(htmlspecialchars($_POST['banka_hesapadsoyad'])),
+		'banka_iban' => strip_tags(htmlspecialchars($_POST['banka_iban']))		
 		));
 
 	if ($insert) {
@@ -1385,10 +1385,10 @@ if (isset($_POST['bankaduzenle'])) {
 		banka_iban=:banka_iban
 		WHERE banka_id={$_POST['banka_id']}");
 	$update=$kaydet->execute(array(
-		'ad' => $_POST['banka_ad'],
-		'banka_durum' => $_POST['banka_durum'],
-		'banka_hesapadsoyad' => $_POST['banka_hesapadsoyad'],
-		'banka_iban' => $_POST['banka_iban']		
+		'ad' => strip_tags(htmlspecialchars($_POST['banka_ad'])),
+		'banka_durum' => strip_tags(htmlspecialchars($_POST['banka_durum'])),
+		'banka_hesapadsoyad' => strip_tags(htmlspecialchars($_POST['banka_hesapadsoyad'])),
+		'banka_iban' => strip_tags(htmlspecialchars($_POST['banka_iban']))		
 		));
 
 	if ($update) {
@@ -1410,7 +1410,7 @@ if ($_GET['bankasil']=="ok") {
 	
 	$sil=$db->prepare("DELETE from banka where banka_id=:banka_id");
 	$kontrol=$sil->execute(array(
-		'banka_id' => $_GET['banka_id']
+		'banka_id' => strip_tags(htmlspecialchars($_GET['banka_id']))
 		));
 
 	if ($kontrol) {
@@ -1427,12 +1427,12 @@ if ($_GET['bankasil']=="ok") {
 
 
 if(isset($_POST["bankasipariskaydet"])) {
-	$siparis_toplam = $_POST["siparis_toplam"];
+	$siparis_toplam = strip_tags(htmlspecialchars($_POST["siparis_toplam"]));
  
 
    $siparis_tip = "Bank Köçürməsi";
    $kullanici_id = $user_id;
-   $siparis_banka = $_POST["banka_ad"];
+   $siparis_banka = strip_tags(htmlspecialchars($_POST["banka_ad"]));
    $siparisEkle = $db->prepare("INSERT INTO siparis (siparis_toplam, siparis_tip, kullanici_id, siparis_banka) VALUES(?, ?, ?, ?)");
    $insert = $siparisEkle->execute([$siparis_toplam, $siparis_tip, $kullanici_id, $siparis_banka]);
   
@@ -1440,7 +1440,7 @@ if(isset($_POST["bankasipariskaydet"])) {
    if($eklenenSiparisSayi > 0) {
       $id = $db->lastInsertId();
    
-      $urunler = explode(" ", $_POST["urun_ids"]);
+      $urunler = explode(" ", strip_tags(htmlspecialchars($_POST["urun_ids"])));
       $lastindex = count($urunler);
       for($i=0; $i < $lastindex-1; $i++) {
          $urunleriSorgula = $db->prepare("SELECT * FROM urunler WHERE urun_id = ?");
@@ -1477,7 +1477,7 @@ if ($_GET['siparissil']=="ok") {
 	
 	$sil=$db->prepare("DELETE from siparis where siparis_id=:siparis_id");
 	$kontrol=$sil->execute(array(
-		'siparis_id' => $_GET['siparisid']
+		'siparis_id' => strip_tags(htmlspecialchars($_GET['siparisid']))
 		));
 
 	if ($kontrol) {
@@ -1498,7 +1498,7 @@ if ($_GET['sepetsil']=="ok") {
 
 	$sil=$db->prepare("DELETE from sepet where sepet_id = ?");
 	$kontrol=$sil->execute([$_GET['sepetid']]);
-   $user_id = $_GET["user_id"];
+   $user_id = strip_tags(htmlspecialchars($_GET["user_id"]));
 	if ($kontrol) {
 		header("Location:../production/sepetone.php?user_id=$user_id&durum=ok");
 	} else {
@@ -1515,8 +1515,8 @@ if ($_GET['sepetsil']=="ok") {
 
 
 if (isset($_POST["setimgorder"])) {
-   $resimid = $_POST["resimid"];
-   $sira = $_POST["urunfoto_sira"];
+   $resimid = strip_tags(htmlspecialchars($_POST["resimid"]));
+   $sira = strip_tags(htmlspecialchars($_POST["urunfoto_sira"]));
    $resimguncelle = $db->prepare("UPDATE urunfoto SET urunfoto_sira = ? WHERE urunfoto_id = ?");
    $update = $resimguncelle->execute([$sira, $resimid]);
    if ($update) {
@@ -1544,7 +1544,7 @@ if (isset($_POST['resimduzenle'])) {
      }
 
 
-   if($_FILES['urunresmi']["size"] > 1) {
+   if($_FILES['urunresmi']["size"] > 1048576) {
       header("Location:../production/resim-guncelle.php?resimid=$resimid&status=bigsize");
       exit();
    }
