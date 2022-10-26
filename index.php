@@ -78,72 +78,50 @@
 				<p class="ct">
 					<?=substr($about_desc, 0, 500)?>
 				</p>
-				<a href="about" class="btn btn-default btn-red btn-sm">Read More</a>
+				<a href="about" class="btn btn-default btn-red btn-sm">Davamını oxu</a>
 				
 				<div class="title-bg">
-					<div class="title">Lastest Products</div>
+					<div class="title">Ən son Məhsullar</div>
 				</div>
-				<div class="row prdct"><!--Products-->
-					<div class="col-md-4">
-						<div class="productwrap">
-							<div class="pr-img">
-								<a href="product.htm"><img src="images\sample-2.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice">$314</span>$199</span></div></div>
+				<div class="row prdct">
+					<?php
+						$mehsullariaxtar = $db->prepare("SELECT * FROM urunler ORDER BY urun_id DESC LIMIT 6");
+						$mehsullariaxtar->execute();
+						$mehsullar = $mehsullariaxtar->fetchAll(PDO::FETCH_ASSOC);
+						foreach($mehsullar as $mehsul) {?>
+								
+							<div class="col-md-4">
+								<div class="productwrap">
+									<div class="pr-img">
+										<?php
+											if($mehsul["discount"]>30) {?>
+											<div class="hot"></div>
+											<?php
+											}
+										?>
+										<a href="urun-<?=seo($mehsul["urun_ad"]).'-'.$mehsul["urun_id"]?>"><img style="height: 150px; width: 200px" src="<?=$img?>" alt="" class="img-responsive"></a>
+										<?php
+											if($mehsul["discount"]) {?>
+												<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $mehsul['urun_fiyat'] ?>TL</span><?php echo round($mehsul['urun_fiyat']-($mehsul['urun_fiyat']*$mehsul['discount']/100), 2) ?><span style="color: blue;" >TL</span></span></div></div>
+											<?
+											} else {?>
+											<div class="pricetag"><div class="inner"><?=$mehsul["urun_fiyat"]?></div></div>
+											<?php
+											}
+										?>
+										
+									</div>
+									<span class="smalltitle"><a href="product.htm"><?php echo substr($mehsul['urun_ad'] , 0, 15)?></a></span>
+									<span class="smalldesc">Məhsul Kodu.: <?php echo $mehsul['urun_id'] ?></span>
+								</div>
 							</div>
-							<span class="smalltitle"><a href="product.htm">Black Shoes</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-						<div class="pr-img">
-							<a href="product.htm"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
-							<div class="pricetag"><div class="inner">$199</div></div>
-						</div>
-							<span class="smalltitle"><a href="product.htm">Nikon Camera</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-						<div class="pr-img">
-							<a href="product.htm"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
-							<div class="pricetag"><div class="inner">$199</div></div>
-						</div>
-							<span class="smalltitle"><a href="product.htm">Red T- Shirt</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-						<div class="pr-img">
-							<a href="product.htm"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
-							<div class="pricetag"><div class="inner">$199</div></div>
-						</div>
-							<span class="smalltitle"><a href="product.htm">Nikon Camera</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-						<div class="pr-img">
-							<a href="product.htm"><img src="images\sample-2.jpg" alt="" class="img-responsive"></a>
-							<div class="pricetag"><div class="inner">$199</div></div>
-						</div>
-							<span class="smalltitle"><a href="product.htm">Black Shoes</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-						<div class="pr-img">
-							<a href="product.htm"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
-							<div class="pricetag"><div class="inner">$199</div></div>
-						</div>
-							<span class="smalltitle"><a href="product.htm">Red T-Shirt</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
+						<?php
+						}
+					?>
+				
+					
+			
+				
 				</div><!--Products-->
 				<div class="spacer"></div>
 			</div><!--Main content-->

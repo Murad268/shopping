@@ -21,6 +21,10 @@ $yorumlarisorgula = $db->prepare("SELECT * FROM yorumlar WHERE urun_id = ? AND y
 $yorumlarisorgula->execute([$_GET['urun_id']]);
 $yorumlar = $yorumlarisorgula->fetchAll(PDO::FETCH_ASSOC);
 $yorumSayi = $yorumlarisorgula->rowCount();
+$resimlerisorgula1 = $db->prepare("SELECT * FROM urunfoto WHERE urun_id = ? ORDER BY urunfoto_sira");
+$resimlerisorgula1->execute([$_GET['urun_id']]);
+$resimler1 = $resimlerisorgula1->fetchAll(PDO::FETCH_ASSOC);
+$resimsayi1=$resimlerisorgula1->rowCount();
 ?>
 
 <head>
@@ -62,20 +66,28 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 				<div class="title"><?php echo $uruncek['urun_ad'] ?></div>
 			</div>
 			<div class="row">
+				<?php
+					$resimlerisorgula = $db->prepare("SELECT * FROM urunfoto WHERE urun_id = ? ORDER BY urunfoto_sira limit 1, $resimsayi1");
+					$resimlerisorgula->execute([$_GET['urun_id']]);
+					$resimler = $resimlerisorgula->fetchAll(PDO::FETCH_ASSOC);
+					$resimsayi=$resimlerisorgula->rowCount();
+				?>
 				<div class="col-md-6">
 					<div class="dt-img">
 						<div class="detpricetag"><div class="inner"><?php echo $uruncek['urun_fiyat'] ?> TL</div></div>
-						<a class="fancybox" href="images\sample-1.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
+						<a class="fancybox" href="<?=$resimler1[0]["urun_fotoresimyol"]?>" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="<?=$resimler1[0]["urun_fotoresimyol"]?>" alt="" class="img-responsive"></a>
 					</div>
-					<div class="thumb-img">
-						<a class="fancybox" href="images\sample-4.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="images\sample-4.jpg" alt="" class="img-responsive"></a>
-					</div>
-					<div class="thumb-img">
-						<a class="fancybox" href="images\sample-5.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="images\sample-5.jpg" alt="" class="img-responsive"></a>
-					</div>
-					<div class="thumb-img">
-						<a class="fancybox" href="images\sample-1.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
-					</div>
+					<?php
+						foreach($resimler as $resim) {?>
+	
+						<div class="thumb-img">
+							<a class="fancybox" href="<?=$resim["urun_fotoresimyol"]?>" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="<?=$resim["urun_fotoresimyol"]?>" alt="" class="img-responsive"></a>
+						</div>
+						<?php
+						}
+					?>
+			
+					
 				</div>
 				<div class="col-md-6 det-desc">
 					<div class="productdata">

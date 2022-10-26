@@ -107,7 +107,7 @@ if (isset($_GET['sef'])) {
 								?>
 								
 							</div>
-							<span class="smalltitle"><a href="product.htm"><?php echo substr($urunler['urun_ad'] , 0, 25)?></a></span>
+							<span class="smalltitle"><a href="product.htm"><?php echo substr($urunler['urun_ad'] , 0, 15)?></a></span>
 							<span class="smalldesc">Məhsul Kodu.: <?php echo $urunler['urun_id'] ?></span>
 						</div>
 					</div>
