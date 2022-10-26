@@ -87,7 +87,7 @@ $menyusor->execute();
                         }
                      ?>
                   </td>
-                  <td><center><a href="menu-duzenle.php?menuid=<?=$menyucek['menu_id']?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
+                  <td><center><a href="menu-duzenle.php?menuid=<?=$menyucek['menu_id']?>"><button class="btn btn-primary btn-xs">Yenilə</button></a></center></td>
                   <td><center><a href="../netting/islem.php?menuid=<?=$menyucek['menu_id']?>&menusil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
                 </tr>
 

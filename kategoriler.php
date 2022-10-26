@@ -1,10 +1,16 @@
 <?php 
 
 include 'header.php'; 
-
+	$sayfalamaIcinButonSayisi = 2;
+	$sayfaBasinaGosterilecek = 8;
+	$toplamKayitSayisiSorgusu = $db->prepare("select * from urunler");;
+	$toplamKayitSayisiSorgusu->execute();
+	$toplamKayitSayisi = $toplamKayitSayisiSorgusu->rowCount();
+	$sayfalamayBaslayacaqKayotSayisi = ($sayfalama*$sayfaBasinaGosterilecek) - $sayfaBasinaGosterilecek;
+	$bulunanSafyaSayisi = ceil($toplamKayitSayisi/$sayfaBasinaGosterilecek);
 if (isset($_GET['sef'])) {
 
-
+	
 	$kategorisor=$db->prepare("SELECT * FROM categories where category_seourl=:seourl");
 	$kategorisor->execute(array(
 		'seourl' => $_GET['sef']
@@ -24,7 +30,7 @@ if (isset($_GET['sef'])) {
 
 } else {
 
-	$urunsor=$db->prepare("SELECT * FROM urunler order by urun_id DESC");
+	$urunsor=$db->prepare("SELECT * FROM urunler order by urun_id DESC LIMIT $sayfalamayBaslayacaqKayotSayisi, $sayfaBasinaGosterilecek");
 	$urunsor->execute();
    $say=$urunsor->rowCount();
 }
@@ -93,8 +99,38 @@ if (isset($_GET['sef'])) {
 
 
 
+								
 
-				</div><!--Products-->
+
+
+				
+                     </div><!--Products-->
+							<?php
+									if($bulunanSafyaSayisi>1) {?>
+										<div style="width: 700px; margin-left: 170px" class="paginationWrapper">
+											<nav aria-label="Page navigation example ">
+											<ul class="pagination">
+												<li class="page-item"><a class="page-link" href="kategoriler?sayfalama=1<?$sayfalamaKosulu?>">&laquo;</a></li>
+													<?php
+														for($i = $sayfalama-$sayfalamaIcinButonSayisi; $i <= $sayfalama+$sayfalamaIcinButonSayisi; $i++) {
+															if(($i > 0) and ($i <= $bulunanSafyaSayisi)) {
+																$curr = $i;
+															if($sayfalama == $i) {
+																echo "<li style=\"cursor: pointer\" class=\"page-item\"><a style=\"background: red; color: white;\" class=\"page-link\">$curr</a></li>";
+															} else {
+																echo "<li class=\"page-item\"><a class=\"page-link\" href=\"kategoriler?sayfalama=$curr\">$curr</a></li>";
+															}
+														}
+													}
+													?>
+													
+													<li class="page-item"><a class="page-link"  href="kategoriler?sayfalama=<?=$bulunanSafyaSayisi?>">&raquo;</a></li>
+												</ul>
+											</nav>
+										</div>
+									<?php
+									}
+								?>	
 
 <!-- 
 				<ul class="pagination shop-pag">

@@ -3,6 +3,11 @@
 	session_start();
    require_once('nedmin/netting/baglan.php');
 	require_once('./nedmin/netting/functions.php');
+	if(isset($_REQUEST["sayfalama"])) {
+      $sayfalama = $_REQUEST["sayfalama"];
+   } else {
+      $sayfalama = 1;
+   }
 ?>
 <!DOCTYPE html>
 <html lang="en">

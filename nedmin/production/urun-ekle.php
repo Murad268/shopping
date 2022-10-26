@@ -56,7 +56,7 @@ include 'header.php';
                 <div class="col-md-6 col-sm-6 col-xs-6">
 
                
-                    <select class="select2_multiple form-control" required="" name="kategori_id" >
+                    <select class="select2_multiple form-control" required="" name="kategori_id">
                         <?php
                            $kategorilericek = $db->prepare("SELECT * FROM categories");
                            $kategorilericek->execute();

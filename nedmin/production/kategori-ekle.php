@@ -44,7 +44,28 @@ include 'header.php';
             <form action="../netting/islem.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
               
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Üst Kateqoriyası<span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
 
+               <select id="heard" class="form-control" name="kategori_ust" required>
+               <?php
+                  $kategorilericek = $db->prepare("SELECT * FROM categories");
+                  $kategorilericek->execute();
+                  $kategoriler = $kategorilericek->fetchAll(PDO::FETCH_ASSOC);
+                  $kategorisayi = $kategorilericek->rowCount();
+                  if($kategorisayi>0) {
+                    foreach($kategoriler as $kategori) {?>
+                        <option value="<?=$kategori["category_id"]?>"><?=$kategori["category_ad"]?></option>
+                    <?php
+                    }
+                  }
+                ?>
+  
+               </select>
+               </div>
+             </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kateqoriya Adı <span class="required">*</span>
                 </label>
@@ -72,19 +93,12 @@ include 'header.php';
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kateqoriya Durum<span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
+
                <select id="heard" class="form-control" name="kategori_durum" required>
-
-
-
-
                   <option value="1">Aktif</option>
 
-
-
                   <option value="0" >Passif</option>
-                 
-
-
+  
                  </select>
                </div>
              </div>

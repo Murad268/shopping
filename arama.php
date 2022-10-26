@@ -1,14 +1,22 @@
 <?php 
 
 include 'header.php'; 
+$arama = $_REQUEST['arama'];
+$sayfalamaIcinButonSayisi = 2;
+$sayfaBasinaGosterilecek = 1;
+$toplamKayitSayisiSorgusu = $db->prepare("SELECT * from urunler where urun_ad LIKE ? order by urun_id DESC");;
+$toplamKayitSayisiSorgusu->execute(array('%'.$arama.'%'));
+$toplamKayitSayisi = $toplamKayitSayisiSorgusu->rowCount();
+$sayfalamayBaslayacaqKayotSayisi = ($sayfalama*$sayfaBasinaGosterilecek) - $sayfaBasinaGosterilecek;
+$bulunanSafyaSayisi = ceil($toplamKayitSayisi/$sayfaBasinaGosterilecek);
 
-if (isset($_POST['arama'])) {
-
-   $arama = $_POST['arama'];
+if (isset($_REQUEST['arama'])) {
+	$sayfalamaKosulu = "&arama=".$arama;
+ 
 	
 
 
-	$urunsor=$db->prepare("SELECT * FROM urunler where urun_ad LIKE ? order by urun_id DESC");
+	$urunsor=$db->prepare("SELECT * FROM urunler where urun_ad LIKE ? order by urun_id DESC LIMIT $sayfalamayBaslayacaqKayotSayisi, $sayfaBasinaGosterilecek");
 	$urunsor->execute(array('%'.$arama.'%'));
 
 	$say=$urunsor->rowCount();
@@ -50,7 +58,7 @@ if (isset($_POST['arama'])) {
 				<?php
 				
 				if ($say==0) {
-					echo "Bu kateqoriyada məhsul tapılmadı";
+					echo "Axtardığınız məhsul tapılmadı";
 				}
 
 				$uruncek=$urunsor->fetchAll(PDO::FETCH_ASSOC);
@@ -86,7 +94,32 @@ if (isset($_POST['arama'])) {
 
 
 				</div><!--Products-->
-
+				<?php
+					if($bulunanSafyaSayisi>1) {?>
+						<div style="width: 700px; margin-left: 170px" class="paginationWrapper">
+							<nav aria-label="Page navigation example ">
+							<ul class="pagination">
+								<li class="page-item"><a class="page-link" href="arama?sayfalama=1<?$sayfalamaKosulu?>">&laquo;</a></li>
+									<?php
+										for($i = $sayfalama-$sayfalamaIcinButonSayisi; $i <= $sayfalama+$sayfalamaIcinButonSayisi; $i++) {
+											if(($i > 0) and ($i <= $bulunanSafyaSayisi)) {
+												$curr = $i;
+											if($sayfalama == $i) {
+												echo "<li style=\"cursor: pointer\" class=\"page-item\"><a style=\"background: red; color: white;\" class=\"page-link\">$curr</a></li>";
+											} else {
+												echo "<li class=\"page-item\"><a class=\"page-link\" href=\"arama?sayfalama=$curr$sayfalamaKosulu\">$curr</a></li>";
+											}
+										}
+									}
+									?>
+									
+									<li class="page-item"><a class="page-link"  href="arama?sayfalama=<?=$bulunanSafyaSayisi.$sayfalamaKosulu?>">&raquo;</a></li>
+								</ul>
+							</nav>
+						</div>
+					<?php
+					}
+				?>	
 <!-- 
 				<ul class="pagination shop-pag">
 					<li><a href="#"><i class="fa fa-caret-left"></i></a></li>
