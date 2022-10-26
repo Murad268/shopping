@@ -621,9 +621,24 @@
 
    }
    if (isset($_POST['logoduzenle'])) {
+      
+      $yesFormat = ["png", "jpg", "jpeg"];
+      $format = explode("/", $_FILES['ayar_logo']["type"])[1];
+      
 
-	
 
+        if(in_array($format, $yesFormat)){
+            echo $format;
+        } else {
+         Header("Location:../production/generalP.php?durum=wrongformat");
+         exit();
+        }
+
+
+      if($_FILES['ayar_logo']["size"] > 1048576) {
+         Header("Location:../production/generalP.php?durum=bigsize");
+         exit();
+      }
       $uploads_dir = '../../dimg';
    
       @$tmp_name = $_FILES['ayar_logo']["tmp_name"];
@@ -650,17 +665,35 @@
          unlink("../../$resimsilunlink");
    
          Header("Location:../production/generalP.php?durum=ok");
+         exit();
    
       } else {
    
          Header("Location:../production/generalP.php?durum=no");
+         exit();
       }
    
    }
 
 
    if (isset($_POST['sliderkaydet'])) {
+      $yesFormat = ["png", "jpg", "jpeg"];
+      $format = explode("/", $_FILES['slider_resimyol']["type"])[1];
+      
 
+
+        if(in_array($format, $yesFormat)){
+            echo $format;
+        } else {
+         Header("Location:../production/slider-ekle?durum=wrongformat");
+         exit();
+        }
+
+
+      if($_FILES['slider_resimyol']["size"] > 1048576) {
+         Header("Location:../production/slider-ekle?durum=bigsize");
+         exit();
+      }
 
       $uploads_dir = '../../dimg/';
       @$tmp_name = $_FILES['slider_resimyol']["tmp_name"];
@@ -757,9 +790,24 @@
    }
 
    if (isset($_POST['caruselresimduzenle'])) {
-
+      $yesFormat = ["png", "jpg", "jpeg"];
+      $format = explode("/", $_FILES['slider_img']["type"])[1];
+      
       if(isset($_POST["slider_id"])) {
+         
          $slider_id = $_POST["slider_id"];
+         if(in_array($format, $yesFormat)){
+            echo $format;
+        } else {
+         header("Location:../production/slider-duzenle.php?slider_id=$slider_id&status=wrongformat");
+         exit();
+        }
+
+
+      if($_FILES['slider_img']["size"] > 1048576) {
+         header("Location:../production/slider-duzenle.php?slider_id=$slider_id&status=bigsize");
+         exit();
+      }
       } else {
          header("Location:../production/slider");
       }
@@ -1481,8 +1529,25 @@ if (isset($_POST["setimgorder"])) {
 
 
 if (isset($_POST['resimduzenle'])) {
-
+ 
    $resimid = $_GET["resimid"];
+   $yesFormat = ["png", "jpg", "jpeg"];
+   $format = explode("/", $_FILES['urunresmi']["type"])[1];
+   
+
+
+     if(in_array($format, $yesFormat)){
+         echo $format;
+     } else {
+      header("Location:../production/resim-guncelle.php?resimid=$resimid&status=wrongfromat");
+      exit();
+     }
+
+
+   if($_FILES['urunresmi']["size"] > 1) {
+      header("Location:../production/resim-guncelle.php?resimid=$resimid&status=bigsize");
+      exit();
+   }
 
    $uploads_dir = '../../dimg';
 
@@ -1509,11 +1574,11 @@ if (isset($_POST['resimduzenle'])) {
 
       $resimsilunlink=$_POST['eski_yol'];
       unlink("../../$resimsilunlink");
-      header("Location:../production/resim-guncelle.php?resimid=$resimid&durum=ok");
+      header("Location:../production/resim-guncelle.php?resimid=$resimid&status=ok");
 
    } else {
 
-      header("Location:../production/resim-guncelle.php?resimid=$resimid&durum=ok");
+      header("Location:../production/resim-guncelle.php?resimid=$resimid&status=ok");
    }
 
 }

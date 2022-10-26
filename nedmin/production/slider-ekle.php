@@ -15,7 +15,31 @@ include 'header.php';
           <div class="x_title">
             <h2>Slayd Əlavə Etmək <small>,
 
-            </small></h2>
+           
+                <?php
+                if(isset($_GET["durum"])) {
+                  if($_GET["durum"] == "empty") {?>
+                  <b style="padding: 10px; background: black; color: yellow">Hər Hansısa məlumat və ya bütün məlmatlar boş göndərilib.</b>
+                  <?php
+                  } else if($_GET["durum"] == "ok") {?>
+                      <b style="padding: 10px; background: black; color: green">Məlumatlar uğurla yeniləndilər.</b>
+                  <?php
+                  } else if($_GET["durum"] == "error"){?>
+                      <b style="padding: 10px; background: black; color: red">Məlumatların yenilənməsi zamanı xəta.</b>
+                  <?php
+                  } else if($_GET["durum"] == "bigsize") {?>
+                    <b style="padding: 10px; background: black; color: red">Şəklin ölçüsü 1 mbdan çox olmamalıdır.</b>
+                  <?php
+                  } else if($_GET["durum"] == "wrongformat") {?>
+                    <b style="padding: 10px; background: black; color: yellow">Düzgün şəkil formatı deyil(icaze verilən formatlar: jpeg, jpg, png).</b>
+                  <?php
+                  } else {?>
+                    <b style="padding: 10px; background: black; color: blue">Heç bir məlumat yenilənmədi.</b>
+                  <?php
+                  }
+                }
+                ?>
+                </small></h2>
             
             <div class="clearfix"></div>
           </div>

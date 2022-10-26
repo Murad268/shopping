@@ -17,15 +17,21 @@
                        <h2>Ümumi Parametrlər 
                         <small>
                            <?php
-                           if(isset($_GET["status"])) {
-                              if($_GET["status"] == "empty") {?>
+                           if(isset($_GET["durum"])) {
+                              if($_GET["durum"] == "empty") {?>
                               <b style="padding: 10px; background: black; color: yellow">Hər Hansısa məlumat və ya bütün məlmatlar boş göndərilib.</b>
                               <?php
-                              } else if($_GET["status"] == "ok") {?>
+                              } else if($_GET["durum"] == "ok") {?>
                                  <b style="padding: 10px; background: black; color: green">Məlumatlar uğurla yeniləndilər.</b>
                               <?php
-                              } else if($_GET["status"] == "error"){?>
+                              } else if($_GET["durum"] == "error"){?>
                                  <b style="padding: 10px; background: black; color: red">Məlumatların yenilənməsi zamanı xəta.</b>
+                              <?php
+                              } else if($_GET["durum"] == "bigsize") {?>
+                                <b style="padding: 10px; background: black; color: red">Şəklin ölçüsü 1 mbdan çox olmamalıdır.</b>
+                              <?php
+                              } else if($_GET["durum"] == "wrongformat") {?>
+                                <b style="padding: 10px; background: black; color: yellow">Düzgün şəkil formatı deyil(icaze verilən formatlar: jpeg, jpg, png).</b>
                               <?php
                               } else {?>
                                 <b style="padding: 10px; background: black; color: blue">Heç bir məlumat yenilənmədi.</b>

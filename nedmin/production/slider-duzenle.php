@@ -30,9 +30,12 @@
                               if($_GET["status"] == "ok") {?>
                                   <b style="padding: 10px; background: black; color: green">Məlumatlar uğurla yeniləndilər.</b>
                               <?php
-                              } else if($_GET["status"] == "no") {?>
-                                 <b style="padding: 10px; background: black; color: red">Məlumatların yenilənməsi zamanı xəta.</b>
-                              <?php
+                              } else if($_GET["status"] == "bigsize") {?>
+                                 <b style="padding: 10px; background: black; color: red">Şəklin ölçüsü 1 mbdan çox olmamalıdır.</b>
+                               <?php
+                               } else if($_GET["status"] == "wrongformat") {?>
+                                 <b style="padding: 10px; background: black; color: yellow">Düzgün şəkil formatı deyil(icaze verilən formatlar: jpeg, jpg, png).</b>
+                               <?php
                               } 
                             }
                            ?>
