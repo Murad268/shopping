@@ -1,7 +1,9 @@
 <?php
 	require_once("header.php");
 ?>
-
+<head>
+	<title>Haqqımızda</title>
+</head>
 	
 	<div class="container">
 		<div class="row">

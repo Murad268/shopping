@@ -49,7 +49,8 @@ include 'header.php';
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
 
-               <select id="heard" class="form-control" name="kategori_ust" required>
+               <select id="heard" class="form-control" name="kategori" required>
+               <option value="0">Baş Kateqoriya</option>
                <?php
                   $kategorilericek = $db->prepare("SELECT * FROM categories");
                   $kategorilericek->execute();

@@ -24,7 +24,7 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 ?>
 
 <head>
-	
+	<title><?=$uruncek["urun_ad"]?></title>
 	<!-- fancy Style -->
 	<link rel="stylesheet" type="text/css" href="js\product\jquery.fancybox.css?v=2.1.5" media="screen">
 </head>
@@ -100,7 +100,16 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 
 							<input type="hidden" name="urun_id" value="<?php echo $uruncek['urun_id'] ?>">
 							<div class="col-sm-4">
-								<button type="submit" name="sepetekle" class="btn btn-default btn-red btn-sm"><span class="addchart">Səbətə Əlavə Elə</span></button>
+								<?php
+									if(isset($_SESSION["user"])) {?>
+										<button type="submit" name="sepetekle" class="btn btn-default btn-red btn-sm"><span class="addchart">Səbətə Əlavə Elə</span></button>
+									<?php
+									} else {?>
+										<button disabled class="btn btn-default btn-red btn-sm"><span class="addchart">İlk öncə daxil olun</span></button>
+									<?php
+									}
+								?>
+								
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -118,7 +127,7 @@ $yorumSayi = $yorumlarisorgula->rowCount();
 
 
 					
-							<div  class="avatock"><span>
+							<div class="avatock"><span style="margin-left: -135px; font-size: 15px">
 
 								<?php if ($uruncek['urun_stok']>=1) {
 

@@ -2,7 +2,29 @@
 ob_start();
 session_start();
 
+function controll() {
+    if(!isset($_SESSION["admin_mail"])) {
+        header("Location: login.php");
+ 
+    }
+}
 
+function listing($elements, $id=0) {
+
+    $branch = array();
+    foreach($elements as $element) {
+       if($element["category_ust"] == $id) {
+          $children = listing($elements, $element["category_id"]);
+          if($children) {
+             $element["children"] = $children;
+          } else {
+             $element["children"] = array();
+          }
+          $branch[] = $element;
+       }
+    }
+    return $branch;
+ }
 function seo($str, $options = array())
 {
     $str = mb_convert_encoding((string)$str, 'UTF-8', mb_list_encodings());

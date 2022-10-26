@@ -18,21 +18,26 @@ if (isset($_GET['sef'])) {
 
 	$kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC);
 
-	 $kategori_id=$kategoricek['category_id'];
+	$kategori_id=$kategoricek['category_id'];
 
-
+	$kategori = $kategoricek["category_ad"];
 	$urunsor=$db->prepare("SELECT * FROM urunler where kategori_id=:kategori_id order by urun_id DESC");
 	$urunsor->execute(array(
 		'kategori_id' => $kategori_id
 		));
 
 	$say=$urunsor->rowCount();
-
+	echo "<head>
+				<title>$kategori</title>
+			</head>";
 } else {
 
 	$urunsor=$db->prepare("SELECT * FROM urunler order by urun_id DESC LIMIT $sayfalamayBaslayacaqKayotSayisi, $sayfaBasinaGosterilecek");
 	$urunsor->execute();
    $say=$urunsor->rowCount();
+	echo "<head>
+				<title>Kateqoriyalar</title>
+			</head>";
 }
 
 

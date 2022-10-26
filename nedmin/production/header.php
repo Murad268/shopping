@@ -3,6 +3,7 @@
   session_start();
   require_once("../netting/baglan.php");
   require_once("../netting/functions.php");
+  controll();
   $__ADMINSORGUSU = $db->prepare("SELECT * FROM users WHERE user_email = ?");
   $__ADMINSORGUSU->execute([$_SESSION["admin_mail"]]);
   $ADMIN = $__ADMINSORGUSU->fetch(PDO::FETCH_ASSOC);
@@ -97,6 +98,7 @@
                 <li><a href="siparisler.php"><i class="fa fa-shopping-cart"></i>Sifarişlər</a></li>
                 <li><a href="sepet.php"><i class="fa fa-archive"></i>İstifadəçi səbətləri</a></li>
                 <li><a href="urun-galeri.php"><i class="fa fa-image"></i>Məhsul rəsmləri</a></li>
+                <li><a href="exit.php"><i class="fa fa-sign-out"></i>Çıxış</a></li>
                 </ul>
               </div>
             </div>

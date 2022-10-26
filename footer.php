@@ -1,4 +1,6 @@
-
+<!-- Start of  Zendesk Widget script -->
+<script id="ze-snippet" src="<?=$ayar_zopim?>"> </script>
+<!-- End of  Zendesk Widget script -->
 	<div class="f-widget"><!--footer Widget-->
 		<div class="container">
 			<div class="row">

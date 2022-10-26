@@ -109,7 +109,8 @@
 
 					<form action="nedmin/netting/islem.php" method="post">
 
-						<p>Ödənişi həyata keçirəcəyiniz hesab nömrəsini seçməklə əməliyyatı tamamlayın.</p>
+						<p>Ödənişi həyata keçirəcəyiniz hesab nömrəsini seçməklə əməliyyatı tamamlayın. <br> IBAN nömrəsini bir yerə qeyd etməyi unutmayın!</p>
+		
 
 
 						<?php 
@@ -120,7 +121,7 @@
 					
 						
 						<input <?=$say==0?"checked":null?> type="radio" name="banka_ad" value="<?php echo $bankacek['banka_ad'] ?>">
-						<?php echo $bankacek['banka_ad']; echo " ";?><br>
+						<?php echo $bankacek['banka_ad'].'<b>/IBAN nömrəsi: '.$bankacek['banka_iban'].'</b>';?><br>
 
 						<?php
 							$say++;

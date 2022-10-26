@@ -1,5 +1,7 @@
 <?php include 'header.php' ?>
-
+<head>
+	<title>Bizimlə Əlaqə</title>
+</head>
 <div class="container">
 	
 	<div class="clearfix"></div>

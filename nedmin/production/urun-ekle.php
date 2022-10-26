@@ -62,6 +62,7 @@ include 'header.php';
                            $kategorilericek->execute();
                            $kategoriler = $kategorilericek->fetchAll(PDO::FETCH_ASSOC);
                            $kategorisayi = $kategorilericek->rowCount();
+                           $kategoriListi = listing($kategoriler);
                            if($kategorisayi>0) {
                               foreach($kategoriler as $kategori) {?>
                                  <option value="<?=$kategori["category_id"]?>"><?=$kategori["category_ad"]?></option>

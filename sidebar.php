@@ -1,9 +1,9 @@
 <div class="col-md-3"><!--sidebar-->
 	<div class="title-bg">
-		<div class="title">Kategoriler</div>
+		<div class="title">Kateqoriyalar</div>
 	</div>
 	
-	<div class="categorybox">
+	<div style="height: 600px" class="categorybox">
 		
 		<ul>
 			

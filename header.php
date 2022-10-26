@@ -14,25 +14,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?=$ayar_title?></title>
+
     <meta name="description" content="<?=$ayar_description?>">
-   <meta name="keywords" content="<?=$ayar_keywords?>">
-   <meta name="author" content="<?=$ayar_author?>">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<?=$ayar_keywords?>">
+    <meta name="author" content="<?=$ayar_author?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-	<link href='font-awesome\css\font-awesome.css' rel="stylesheet" type="text/css">
+	 <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700' rel='stylesheet' type='text/css'>
+	 <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	 <link href='font-awesome\css\font-awesome.css' rel="stylesheet" type="text/css">
 	<!-- Bootstrap -->
     <link href="bootstrap\css\bootstrap.min.css" rel="stylesheet">
 	
 	<!-- Main Style -->
-	<link rel="stylesheet" href="style.css">
+	 <link rel="stylesheet" href="style.css">
 	
 	<!-- owl Style -->
-	<link rel="stylesheet" href="css\owl.carousel.css">
-	  <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
-	<link rel="stylesheet" href="css\owl.transitions.css">
+	 <link rel="stylesheet" href="css\owl.carousel.css">
+	   <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+	 <link rel="stylesheet" href="css\owl.transitions.css">
 	
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
