@@ -79,7 +79,7 @@ if (isset($_REQUEST['arama'])) {
 							<div class="pr-img">
 								<div class="hot"></div>
 								<a href="urun-<?=seo($urunler["urun_ad"]).'-'.$urunler["urun_id"]?>"><img style="height: 150px" src="<?=$img?>" alt="" class="img-responsive"></a>
-								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urunler['urun_fiyat']*1.50 ?> TL</span><?php echo $urunler['urun_fiyat'] ?><span style="color: blue;" >TL</span></span></div></div>
+								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urunler['urun_fiyat']*1.50 ?>₼</span><?php echo $urunler['urun_fiyat'] ?><span style="color: blue;">₼</span></span></div></div>
 							</div>
 							<span class="smalltitle"><a href="product.htm"><?php echo substr($urunler['urun_ad'] , 0, 30)?></a></span>
 							<span class="smalldesc">Məhsul Kodu.: <?php echo $urunler['urun_id'] ?></span>

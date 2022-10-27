@@ -21,17 +21,17 @@
 				</div><!--footer twitter widget-->
 				<div class="col-md-4"><!--footer newsletter widget-->
 					<div class="title-widget-bg">
-						<div class="title-widget">Newsletter Signup</div>
+						<div class="title-widget">Xəbərlərə abunə olun</div>
 					</div>
 					<div class="newsletter">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							Bütün yeniliklərdən dərhal xəbərdar olmaqistəyirsən? O zaman abunə ol və hər zaman bizimlə qal.
 						</p>
-						<form role="form">
+						<form action="./nedmin/netting/islem.php" method="post" role="form">
 							<div class="form-group">
-								<label>Your Email address</label>
-								<input type="email" class="form-control newstler-input" id="exampleInputEmail1" placeholder="Enter email">
-								<button class="btn btn-default btn-red btn-sm">Sign Up</button>
+								<label>E-poçt ünvanınız</label>
+								<input name="newsRegisterEmail" type="email" class="form-control newstler-input" id="exampleInputEmail1" placeholder="Email ünvanınızı daxil edin">
+								<button name="newsSign" class="btn btn-default btn-red btn-sm">Qeyd Olun</button>
 							</div>
 						</form>
 					</div>

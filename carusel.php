@@ -21,8 +21,8 @@
                      <div class="inner">
                         <div style="width: max-content;" class="pro-pricetag big-deal">
                            <div class="inner">
-                                 <span class="oldprice"><?=$urun["urun_fiyat"]?></span>
-                                 <span><?=$urun["urun_fiyat"]-($urun["urun_fiyat"]*$urun["discount"]/100)?></span>
+                                 <span class="oldprice">₼<?=$urun["urun_fiyat"]?></span>
+                                 <span>₼<?=round($urun["urun_fiyat"]-($urun["urun_fiyat"]*$urun["discount"]/100), 2)?></span>
                                  <span class="ondeal">Ən yaxşı təklif</span>
                            </div>
                         </div>

@@ -1636,6 +1636,73 @@ if ($_GET['urunresimsil']=="ok") {
 	} else {
 		header("Location:../production/urun-galeri.php");
 	}
+}
 
+
+
+if(isset($_POST["newsSign"])) {
+   if(isset($_POST["newsRegisterEmail"])) {
+      $email = $_POST["newsRegisterEmail"];
+   } else {
+      $email = "";
+   }
+   if($email == "") {
+      header("Location: ../../index.php?addedStatus=empty");
+      exit();
+   }
+   $newsFetch = $db->prepare("SELECT * FROM newsregister WHERE email = ?");
+   $newsFetch->execute([$email]);
+   $emailCount = $newsFetch->rowCount();
+   if($emailCount > 0) {
+      header("Location: ../../index.php?addedStatus=yes");
+      exit();
+   } else {
+      $fethcForInsert = $db->prepare("INSERT INTO newsregister(email) VALUES(?)");
+      $fethcForInsert->execute([$email]);
+      $addedEmail = $fethcForInsert->rowCount();
+      if($addedEmail>0) {
+         header("Location: ../../index.php?addedStatus=ok");
+         exit();
+      } else {
+         header("Location: ../../index.php?addedStatus=no");
+         exit();
+      }
+   }
+}
+
+
+if ($_GET['mesdeyis']=="ok") {
+   controll();
+   echo $_GET['mess_id'];
+
+	$sil=$db->prepare("UPDATE newsregister SET durum = ? WHERE id  = ?");
+	$kontrol=$sil->execute(["1", $_GET['mess_id']]);
+	if ($kontrol) {
+		header("Location:../production/alerts.php");
+	} else {
+		header("Location:../production/alerts.php");
+	}
+}
+if ($_GET['mesdeyis']=="no") {
+   controll();
+	$sil=$db->prepare("UPDATE newsregister SET durum = ? WHERE id  = ?");
+	$kontrol=$sil->execute(["0", $_GET['mess_id']]);
+	if ($kontrol) {
+		header("Location:../production/alerts.php");
+	} else {
+		header("Location:../production/alerts.php");
+	}
+}
+
+if ($_GET['messil']=="ok") {
+   controll();
+	$sil=$db->prepare("DELETE from newsregister where id = ?");
+	$kontrol=$sil->execute([$_GET['mess_id']]);
+   $resimid = $_GET["resimid"];
+	if ($kontrol) {
+      header("Location:../production/alerts.php");
+	} else {
+      header("Location:../production/alerts.php");
+	}
 }
 ?>

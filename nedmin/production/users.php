@@ -84,8 +84,17 @@ $kullanicisor->execute();
                   <td><?php echo $kullanicicek['user_name'] ?></td>
                   <td><?php echo $kullanicicek['user_email'] ?></td>
                   <td><?php echo $kullanicicek['user_gsm'] ?></td>
-                  <td><center><a href="user-update.php?userid=<?=$kullanicicek['user_id']?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
-                  <td><center><a href="../netting/islem.php?userid=<?=$kullanicicek['user_id']?>&kullanicisil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
+                  <?php
+                    if($kullanicicek['user_id'] !== $ADMIN["user_id"]) {?>
+                     <td><center><a href="user-update.php?userid=<?=$kullanicicek['user_id']?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></center></td>
+                     <td><center><a href="../netting/islem.php?userid=<?=$kullanicicek['user_id']?>&kullanicisil=ok"><button class="btn btn-danger btn-xs">Sil</button></a></center></td>
+                    <?php
+                    } else {?>
+                       <td><center><button disabled class="btn btn-primary btn-xs">Düzenle</button></center></td>
+                       <td><center><button disabled class="btn btn-primary btn-xs">Sil</button></center></td>
+                    <?}
+                  ?>
+                 
                 </tr>
 
 

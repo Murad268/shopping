@@ -13,6 +13,10 @@
       header("Location: login.php");
       exit();
     } 
+  $_NEWSFETHC = $db->prepare("SELECT * FROM newsregister WHERE durum = 1");
+  $_NEWSFETHC->execute();
+  $_NEWSFETHCCOUNT = $_NEWSFETHC->rowCount();
+  $NEWS = $_NEWSFETHC->fetchAll(PDO::FETCH_ASSOC); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +56,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span><?=$ADMIN["user_name"]?></span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -60,7 +64,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img  src="../../dimg/<?=$ADMIN["user_photo"]?>" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Xoşgəldin,</span>
@@ -91,7 +95,7 @@
                 <li><a href="users.php"><i class="fa fa-user"></i>İstifadəçilər</a></li>
                 <li><a href="urun.php"><i class="fa fa-shopping-basket"></i>Məhsullar</a></li>
                 <li><a href="menuler.php"><i class="fa fa-list"></i>Menyular</a></li>
-                <li><a href="kategori.php"><i class="fa fa-list"></i>Kateqoriyalar</a></li>
+                <li><a href="kategori.php"><i class="fa fa-list-alt"></i>Kateqoriyalar</a></li>
                 <li><a href="slider.php"><i class="fa fa-image"></i>Slider</a></li>
                 <li><a href="yorum.php"><i class="fa fa-comment"></i>Şərhlər</a></li>
                 <li><a href="banka.php"><i class="fa fa-bank"></i>Bank Hesabları</a></li>
@@ -151,61 +155,59 @@
                    <li role="presentation" class="dropdown">
                      <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                        <i class="fa fa-envelope-o"></i>
-                       <span class="badge bg-green">6</span>
+                       <span class="badge bg-green"><?=$_NEWSFETHCCOUNT>0?$_NEWSFETHCCOUNT:null?></span>
                      </a>
                      <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                        <li>
-                         <a>
-                           <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                           <span>
-                             <span>John Smith</span>
-                             <span class="time">3 mins ago</span>
-                           </span>
-                           <span class="message">
-                             Film festivals used to be do-or-die moments for movie makers. They were where...
-                           </span>
-                         </a>
-                       </li>
-                       <li>
-                         <a>
-                           <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                           <span>
-                             <span>John Smith</span>
-                             <span class="time">3 mins ago</span>
-                           </span>
-                           <span class="message">
-                             Film festivals used to be do-or-die moments for movie makers. They were where...
-                           </span>
-                         </a>
-                       </li>
-                       <li>
-                         <a>
-                           <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                           <span>
-                             <span>John Smith</span>
-                             <span class="time">3 mins ago</span>
-                           </span>
-                           <span class="message">
-                             Film festivals used to be do-or-die moments for movie makers. They were where...
-                           </span>
-                         </a>
-                       </li>
-                       <li>
-                         <a>
-                           <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                           <span>
-                             <span>John Smith</span>
-                             <span class="time">3 mins ago</span>
-                           </span>
-                           <span class="message">
-                             Film festivals used to be do-or-die moments for movie makers. They were where...
-                           </span>
-                         </a>
+                        <?php
+                          if($_NEWSFETHCCOUNT>0) {
+                            foreach($NEWS as $oneNews) {
+                              // echo date_default_timezone_get();
+                              $date = new DateTime($oneNews["date"]);
+                              $date = $date->sub(new DateInterval('PT1H'));
+                              $now = new DateTime();
+                              $year = $date->diff($now)->format("%y");
+                              $day = $date->diff($now)->format("%d");
+                              $hours = $date->diff($now)->format("%h");
+                              $minuts = $date->diff($now)->format("%i");
+                              $seconds = $date->diff($now)->format("%s");
+                    
+                              echo $minuts;
+                              if($year>0) {
+                                $ago = $year;
+                                $type = "il";
+                              } elseif($day>0) {
+                                $ago = $day;
+                                $type = "gün";
+                              } elseif($hours>0) {
+                                $ago = $hours;
+                                $type = "saat";
+                              } elseif($minuts>0) {
+                                $ago = $minuts;
+                                $type = "dəqiqə";
+                              } elseif($seconds>0) {
+                                $ago = $seconds;
+                                $type = "saniyə";
+                              }
+
+
+                            
+                              ?>
+                                <a>
+                                  <span>
+                                    <span><?=$oneNews["email"]?></span>
+                                    <span class="time"><?=$ago."  ".$type?> əvvəl</span>
+                                  </span>
+                                </a>
+                            <?php
+                            }
+                          }  
+                        ?>
                        </li>
                        <li>
                          <div class="text-center">
-                           <a>
-                             <strong>See All Alerts</strong>
+                           <a href="alerts">
+                             <strong>Bütün qydiyyatlara bax</strong>
                              <i class="fa fa-angle-right"></i>
                            </a>
                          </div>

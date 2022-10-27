@@ -45,10 +45,10 @@
 									  <a href="urun-<?=seo($urun["urun_ad"]).'-'.$urun["urun_id"]?>"><img style="height: 150px; width: 200px"  src="<?=$img?>" alt="" class="img-responsive"></a>
 										<?php
 											if($urun["discount"]) {?>
-												<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urun['urun_fiyat'] ?>TL</span><?php echo round($urun['urun_fiyat']-($urun['urun_fiyat']*$urun['discount']/100), 2) ?><span style="color: blue;" >TL</span></span></div></div>
+												<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $urun['urun_fiyat'] ?>₼</span><?php echo round($urun['urun_fiyat']-($urun['urun_fiyat']*$urun['discount']/100), 2) ?><span style="color: blue;" >₼</span></span></div></div>
 											<?
 											} else {?>
-											<div class="pricetag"><div class="inner"><?=$urun["urun_fiyat"]?></div></div>
+											<div class="pricetag"><div class="inner"><?=$urun["urun_fiyat"]?>₼</div></div>
 											<?php
 											}
 										?>
@@ -111,10 +111,10 @@
 										<a href="urun-<?=seo($mehsul["urun_ad"]).'-'.$mehsul["urun_id"]?>"><img style="height: 150px; width: 200px" src="<?=$img?>" alt="" class="img-responsive"></a>
 										<?php
 											if($mehsul["discount"]) {?>
-												<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $mehsul['urun_fiyat'] ?>TL</span><?php echo round($mehsul['urun_fiyat']-($mehsul['urun_fiyat']*$mehsul['discount']/100), 2) ?><span style="color: blue;" >TL</span></span></div></div>
+												<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span style="color: red" class="oldprice"><?php echo $mehsul['urun_fiyat'] ?>₼</span><?php echo round($mehsul['urun_fiyat']-($mehsul['urun_fiyat']*$mehsul['discount']/100), 2) ?><span style="color: blue;" >₼ 	</span></span></div></div>
 											<?
 											} else {?>
-											<div class="pricetag"><div class="inner"><?=$mehsul["urun_fiyat"]?></div></div>
+											<div class="pricetag"><div class="inner"><?=$mehsul["urun_fiyat"]?>₼</div></div>
 											<?php
 											}
 										?>

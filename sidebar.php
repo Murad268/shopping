@@ -3,7 +3,7 @@
 		<div class="title">Kateqoriyalar</div>
 	</div>
 	
-	<div style="height: 600px; width: 250px" class="categorybox">
+	<div style="height: 400px; width: 250px" class="categorybox">
 		
 		<ul>
 			
@@ -38,11 +38,13 @@
 					for ($i = 0; $i < $toplamSatirSayisi; $i++) {
 						if ($tumSonuclar[$i]['category_ust'] == $kategori_id) {
 							$altKategoriSayisi++;
+						
 						}
+			
 					}
 					?>
 					<li>
-						<a href="kategori-<?=seo($kategori_ad) ?>"><?php echo $kategori_ad ?></a>
+						<a href="kategori-<?=seo($kategori_ad)?>"><?php echo $kategori_ad ?></a>
 						<?php 
 						if ($altKategoriSayisi > 0) {
 							echo "( $altKategoriSayisi )";
@@ -91,7 +93,7 @@
 							<a href="#"><img src="images\demo-img.jpg" alt="" class="img-responsive mini"></a>
 							<div class="mini-meta">
 								<a href="#" class="smalltitle2"><?=substr($bestsellers["urun_ad"], 0, 15)?></a>
-								<p class="smallprice2">Qiyməti : <?=$bestsellers["urun_fiyat"]?></p>
+								<p class="smallprice2">Qiyməti : <?=$bestsellers["urun_fiyat"]?>₼</p>
 							</div>
 						</li>
 					<?php

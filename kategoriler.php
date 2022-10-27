@@ -1,16 +1,12 @@
 <?php 
 
 include 'header.php'; 
-	$sayfalamaIcinButonSayisi = 2;
-	$sayfaBasinaGosterilecek = 6;
-	$toplamKayitSayisiSorgusu = $db->prepare("select * from urunler");;
-	$toplamKayitSayisiSorgusu->execute();
-	$toplamKayitSayisi = $toplamKayitSayisiSorgusu->rowCount();
-	$sayfalamayBaslayacaqKayotSayisi = ($sayfalama*$sayfaBasinaGosterilecek) - $sayfaBasinaGosterilecek;
-	$bulunanSafyaSayisi = ceil($toplamKayitSayisi/$sayfaBasinaGosterilecek);
+	
 if (isset($_GET['sef'])) {
 
-	
+	$adres = 'https://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+	$url = substr(explode("?", $adres)[0], 27);
+
 	$kategorisor=$db->prepare("SELECT * FROM categories where category_seourl=:seourl");
 	$kategorisor->execute(array(
 		'seourl' => $_GET['sef']
@@ -20,8 +16,20 @@ if (isset($_GET['sef'])) {
 
 	$kategori_id=$kategoricek['category_id'];
 
+
+	$sayfalamaIcinButonSayisi = 2;
+	$sayfaBasinaGosterilecek = 1;
+	$toplamKayitSayisiSorgusu = $db->prepare("SELECT * from urunler where kategori_id=:kategori_id");;
+	$toplamKayitSayisiSorgusu->execute(array(
+		'kategori_id' => $kategori_id
+		));
+
+	$toplamKayitSayisi = $toplamKayitSayisiSorgusu->rowCount();
+	$sayfalamayBaslayacaqKayotSayisi = ($sayfalama*$sayfaBasinaGosterilecek) - $sayfaBasinaGosterilecek;
+	$bulunanSafyaSayisi = ceil($toplamKayitSayisi/$sayfaBasinaGosterilecek);
+
 	$kategori = $kategoricek["category_ad"];
-	$urunsor=$db->prepare("SELECT * FROM urunler where kategori_id=:kategori_id order by urun_id DESC");
+	$urunsor=$db->prepare("SELECT * FROM urunler where kategori_id=:kategori_id order by urun_id DESC LIMIT 	 $sayfalamayBaslayacaqKayotSayisi, $sayfaBasinaGosterilecek");
 	$urunsor->execute(array(
 		'kategori_id' => $kategori_id
 		));
@@ -31,13 +39,23 @@ if (isset($_GET['sef'])) {
 				<title>$kategori</title>
 			</head>";
 } else {
-
+	$sayfalamaIcinButonSayisi = 2;
+	$sayfaBasinaGosterilecek = 6;
+	$toplamKayitSayisiSorgusu = $db->prepare("select * from urunler");;
+	$toplamKayitSayisiSorgusu->execute();
+	$toplamKayitSayisi = $toplamKayitSayisiSorgusu->rowCount();
+	$sayfalamayBaslayacaqKayotSayisi = ($sayfalama*$sayfaBasinaGosterilecek) - $sayfaBasinaGosterilecek;
+	$bulunanSafyaSayisi = ceil($toplamKayitSayisi/$sayfaBasinaGosterilecek);
 	$urunsor=$db->prepare("SELECT * FROM urunler order by urun_id DESC LIMIT $sayfalamayBaslayacaqKayotSayisi, $sayfaBasinaGosterilecek");
 	$urunsor->execute();
    $say=$urunsor->rowCount();
 	echo "<head>
 				<title>Kateqoriyalar</title>
 			</head>";
+			
+	$adres = $_SERVER['REQUEST_URI'];
+	$url = substr(explode("?", $adres)[0], 27);
+	echo $url;
 }
 
 
@@ -59,10 +77,7 @@ if (isset($_GET['sef'])) {
 		<div class="col-md-9">
 			<div class="title-bg">
 				<div class="title">Məhsullar</div>
-				<div class="title-nav">
-					<a href="javascripti:void(0);"><i class="fa fa-th-large"></i>grid</a>
-					<a href="javascripti:void(0);"><i class="fa fa-bars"></i>List</a>
-				</div>
+			
 			</div>
 			<div class="row prdct">
 
@@ -129,7 +144,7 @@ if (isset($_GET['sef'])) {
 										<div style="width: 700px; margin-left: 170px" class="paginationWrapper">
 											<nav aria-label="Page navigation example ">
 											<ul class="pagination">
-												<li class="page-item"><a class="page-link" href="kategoriler?sayfalama=1<?$sayfalamaKosulu?>">&laquo;</a></li>
+												<li class="page-item"><a class="page-link" href="<?=$url?>?sayfalama=1<?$sayfalamaKosulu?>">&laquo;</a></li>
 													<?php
 														for($i = $sayfalama-$sayfalamaIcinButonSayisi; $i <= $sayfalama+$sayfalamaIcinButonSayisi; $i++) {
 															if(($i > 0) and ($i <= $bulunanSafyaSayisi)) {
@@ -137,13 +152,13 @@ if (isset($_GET['sef'])) {
 															if($sayfalama == $i) {
 																echo "<li style=\"cursor: pointer\" class=\"page-item\"><a style=\"background: red; color: white;\" class=\"page-link\">$curr</a></li>";
 															} else {
-																echo "<li class=\"page-item\"><a class=\"page-link\" href=\"kategoriler?sayfalama=$curr\">$curr</a></li>";
+																echo "<li class=\"page-item\"><a class=\"page-link\" href=\"$url?sayfalama=$curr\">$curr</a></li>";
 															}
 														}
 													}
 													?>
 													
-													<li class="page-item"><a class="page-link"  href="kategoriler?sayfalama=<?=$bulunanSafyaSayisi?>">&raquo;</a></li>
+													<li class="page-item"><a class="page-link"  href="<?=$url?>?sayfalama=<?=$bulunanSafyaSayisi?>">&raquo;</a></li>
 												</ul>
 											</nav>
 										</div>
