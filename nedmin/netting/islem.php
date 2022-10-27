@@ -1678,9 +1678,9 @@ if ($_GET['mesdeyis']=="ok") {
 	$sil=$db->prepare("UPDATE newsregister SET durum = ? WHERE id  = ?");
 	$kontrol=$sil->execute(["1", $_GET['mess_id']]);
 	if ($kontrol) {
-		header("Location:../production/alerts.php");
+		header("Location:../production/alerts.php?durum=ok");
 	} else {
-		header("Location:../production/alerts.php");
+		header("Location:../production/alerts.php?durum=no");
 	}
 }
 if ($_GET['mesdeyis']=="no") {
@@ -1688,9 +1688,9 @@ if ($_GET['mesdeyis']=="no") {
 	$sil=$db->prepare("UPDATE newsregister SET durum = ? WHERE id  = ?");
 	$kontrol=$sil->execute(["0", $_GET['mess_id']]);
 	if ($kontrol) {
-		header("Location:../production/alerts.php");
+		header("Location:../production/alerts.php?durum=ok");
 	} else {
-		header("Location:../production/alerts.php");
+		header("Location:../production/alerts.php?durum=no");
 	}
 }
 
@@ -1700,9 +1700,9 @@ if ($_GET['messil']=="ok") {
 	$kontrol=$sil->execute([$_GET['mess_id']]);
    $resimid = $_GET["resimid"];
 	if ($kontrol) {
-      header("Location:../production/alerts.php");
+      header("Location:../production/alerts.php?durum=ok");
 	} else {
-      header("Location:../production/alerts.php");
+      header("Location:../production/alerts.php?durum=no");
 	}
 }
 ?>

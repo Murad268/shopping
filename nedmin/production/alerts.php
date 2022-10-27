@@ -19,7 +19,7 @@ $categorysor->execute();
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Kategoriyaları Listləmə <small>
+            <h2>Xəbərlərə qeydiyyat listi <small>
 
               <?php 
 
