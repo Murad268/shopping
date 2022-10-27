@@ -27,10 +27,15 @@
 				}
 				for ($i = 0; $i < $toplamSatirSayisi; $i++) {
 					if ($tumSonuclar[$i]['category_ust'] == "0") {
-						kategori($tumSonuclar[$i]['category_id'], $tumSonuclar[$i]['category_ad'], $tumSonuclar[$i]['category_ust']);
+						kategori($tumSonuclar[$i]['category_id'], $tumSonuclar[$i]['category_ad'], $tumSonuclar[$i]['altkategoriler']);
 					}
 				}
-				function kategori($kategori_id, $kategori_ad, $kategori_ust) {
+				function kategori($kategori_id, $kategori_ad, $altkategoriler) {
+					if($altkategoriler !== "empty" ) {
+						$ok = "style=\"pointer-events: none;";
+					} else {
+						$ok = "";
+					}
 					global $tumSonuclar;
 					global $toplamSatirSayisi;
 					//kategorinin, alt kategori sayısını öğreniyoruz:
@@ -44,7 +49,7 @@
 					}
 					?>
 					<li>
-						<a href="kategori-<?=seo($kategori_ad)?>"><?php echo $kategori_ad ?></a>
+						<a <?=$ok?> href="kategori-<?=seo($kategori_ad)?>"><?php echo $kategori_ad ?></a>
 						<?php 
 						if ($altKategoriSayisi > 0) {
 							echo "( $altKategoriSayisi )";
@@ -56,7 +61,7 @@
 						echo "<ul>";
 						for ($i = 0; $i < $toplamSatirSayisi; $i++) {
 							if ($tumSonuclar[$i]['category_ust'] == $kategori_id) {
-								kategori($tumSonuclar[$i]['category_id'], $tumSonuclar[$i]['category_ad'], $tumSonuclar[$i]['category_ust']);
+								kategori($tumSonuclar[$i]['category_id'], $tumSonuclar[$i]['category_ad'], $tumSonuclar[$i]['altkategoriler']);
 							}
 						}
 						echo "</ul>";

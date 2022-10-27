@@ -1071,6 +1071,10 @@
 
 
    if ($_GET['kategorisil']=="ok") {
+      $kategorilerisorgula = $db->prepare("UPDATE categories SET altkategoriler='empty' WHERE altkategoriler LIKE ?");
+      $kategorilerisorgula->execute(["%".$_GET['kategori_id']."%"]);
+      $kategori =  $kategorilerisorgula->fetchall(PDO::FETCH_ASSOC);
+    
       controll();
       $sil=$db->prepare("DELETE from categories where category_id=:category_id");
       $kontrol=$sil->execute(array(
@@ -1092,15 +1096,19 @@
 
 
    if (isset($_POST['kategoriekle'])) {
-
+  
       controll();
       $kategori_seourl=seo(strip_tags(htmlspecialchars($_POST['kategori_ad'])));
    
-      $kaydet=$db->prepare("INSERT INTO categories SET category_ad=?, keteqori_durum=?, category_seourl= ?, category_sira=?, category_ust=?");
-      $insert=$kaydet->execute(array($_POST['kategori_ad'], $_POST['kategori_durum'], $kategori_seourl, $_POST['kategori_sira'], $_POST['kategori']));
-   
+      $kaydet=$db->prepare("INSERT INTO categories SET category_ad=?, keteqori_durum=?, category_seourl= ?, category_sira=?, category_ust=?, altkategoriler = ?");
+      $insert=$kaydet->execute(array($_POST['kategori_ad'], $_POST['kategori_durum'], $kategori_seourl, $_POST['kategori_sira'], $_POST['kategori'], "empty"));
+      $id = $db->lastInsertId();
+         
+      $update = $db->prepare("UPDATE categories SET altkategoriler = CONCAT(altkategoriler, ',', ?) WHERE category_id = ?");
+      $update->execute([$id, $_POST['kategori']]);
       if ($insert) {
-   
+         
+       
          Header("Location:../production/kategori.php?durum=ok");
    
       } else {

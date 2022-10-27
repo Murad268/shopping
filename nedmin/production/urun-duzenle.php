@@ -67,6 +67,7 @@ $uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
                            $kategoriler = $kategorilericek->fetchAll(PDO::FETCH_ASSOC);
                            $kategorisayi = $kategorilericek->rowCount();
                            $kategoriListi = listing($kategoriler);
+          
                            function listed($el) {
                             global $kategorisayi;
                             global $uruncek;
