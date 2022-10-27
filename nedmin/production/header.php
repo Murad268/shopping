@@ -17,6 +17,20 @@
   $_NEWSFETHC->execute();
   $_NEWSFETHCCOUNT = $_NEWSFETHC->rowCount();
   $NEWS = $_NEWSFETHC->fetchAll(PDO::FETCH_ASSOC); 
+  $sor = $db->prepare("SELECT * FROM users WHERE user_id = ?");
+  $sor->execute([$ADMIN["user_id"]]);
+  $soru = $sor->fetch(PDO::FETCH_ASSOC);
+  $sorCount = 0;
+  $fullPecent = 0;
+  foreach($soru as $sor) {
+    $sorCount++;
+    if($sor == null) {
+      $fullPecent++;
+    }
+  }
+
+  $percent = $fullPecent/$sorCount*100;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,20 +149,23 @@
    
                  <ul class="nav navbar-nav navbar-right">
                    <li class="">
-                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                       <img src="images/img.jpg" alt=""><?=$admin_name?>
+                     <a href="./user-update.php?userid=<?=$ADMIN["user_id"]?>" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                       <img src="../../dimg/<?=$ADMIN["user_photo"]?>" alt=""><?=$admin_name?>
                        <span class=" fa fa-angle-down"></span>
                      </a>
                      <ul class="dropdown-menu dropdown-usermenu pull-right">
-                       <li><a href="javascript:;"> Profile</a></li>
+                       <li><a href="javascript:;">Profil</a></li>
                        <li>
-                         <a href="javascript:;">
-                           <span class="badge bg-red pull-right">50%</span>
-                           <span>Settings</span>
+                         <a href="./user-update.php?userid=<?=$ADMIN["user_id"]?>">
+                          <?php
+                         
+                          ?>
+                           <span class="badge bg-red pull-right"><?=$percent?>%</span>
+                           <span>Hesab Parametrləri</span>
                          </a>
                        </li>
-                       <li><a href="javascript:;">Help</a></li>
-                       <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                       
+                       <li><a href="exit.php"><i class="fa fa-sign-out pull-right"></i>Çıxış</a></li>
                      </ul>
                    </li>
    
@@ -172,7 +189,7 @@
                               $minuts = $date->diff($now)->format("%i");
                               $seconds = $date->diff($now)->format("%s");
                     
-                              echo $minuts;
+             
                               if($year>0) {
                                 $ago = $year;
                                 $type = "il";
@@ -207,7 +224,7 @@
                        <li>
                          <div class="text-center">
                            <a href="alerts">
-                             <strong>Bütün qydiyyatlara bax</strong>
+                             <strong>Bütün qeydiyyatlara bax</strong>
                              <i class="fa fa-angle-right"></i>
                            </a>
                          </div>

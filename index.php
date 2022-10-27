@@ -3,7 +3,14 @@
 	require_once("header.php");
 ?>
 	<div class="container">
-	
+		<?php
+			if(isset($_GET["durum"])) {
+				if($_GET["durum"] == "nouser") {?>
+					<script>alert("Əvvəlcə bir hesaba daxil olamısınız!")</script>
+				  <?php
+				}
+			}
+		?>
 		<div class="clearfix"></div>
 		<div class="lines"></div>
 		<?php require_once("carusel.php")?>

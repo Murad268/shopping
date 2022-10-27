@@ -7,6 +7,7 @@
       ));
    $toplam_fiyat = 0;
    $sepetSayi = $sepetsor->rowCount();
+	noUser();
 ?>
 <div class="container">
 

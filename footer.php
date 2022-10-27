@@ -8,16 +8,9 @@
 					<div class="title-widget-bg">
 						<div class="title-widget">Twitter Updates</div>
 					</div>
-					<ul class="tweets">
-						<li>Check out this great #themeforest item for you
-						'Simpler Landing' <a href="#">http://t.co/LbLwldb6 </a>
-						<span>2 hours ago</span></li>
-						<li class="lastone">Check out this great #themeforest item for you
-						'Simpler Landing' <a href="#">http://t.co/LbLwldb6 </a>
-						<span>2 hours ago</span></li>
-					</ul>
+			
 					<div class="clearfix"></div>
-					<a href="#" class="btn btn-default btn-follow"><i class="fa fa-twitter fa-2x"></i><div>Follow us on twitter</div></a>
+					<a href="<?=$ayar_twitter?>" class="btn btn-default btn-follow"><i class="fa fa-twitter fa-2x"></i><div>Follow us on twitter</div></a>
 				</div><!--footer twitter widget-->
 				<div class="col-md-4"><!--footer newsletter widget-->
 					<div class="title-widget-bg">
@@ -55,11 +48,10 @@
 			<div class="row">
 				<div class="col-md-9">
 					<ul class="footermenu"><!--footer nav-->
-						<li><a href="index-1.htm">Home</a></li>
-						<li><a href="cart.htm">My Cart</a></li>
-						<li><a href="checkout.htm">Checkout</a></li>
-						<li><a href="order.htm">Completed Orders</a></li>
-						<li><a href="contact.htm">Contact us</a></li>
+						<li><a href="index.php">Ana Səhifə</a></li>
+						<li><a href="sepet.php">Mənim səbətim</a></li>
+						<li><a href="siparis.php">Sifarişlərim</a></li>
+						<li><a href="iletisim.php">Bizimlə əlaqə</a></li>
 					</ul><!--footer nav-->
 					<div class="f-credit">&copy;<?=$ayar_author?> <a href="http://itmurad.epizy.com/myportfolio/ ">itmurad.epizy.com</a></div>
 					<a href=""><div class="payment visa"></div></a>
@@ -68,7 +60,7 @@
 					<a href=""><div class="payment nh"></div></a>
 				</div>
 				<div class="col-md-3"><!--footer Share-->
-					<div class="followon">Follow us on</div>
+					<div class="followon">Bizi izləyin</div>
 					<div class="fsoc">
 						<a href="<?=$ayar_twitter?>" class="ftwitter">twitter</a>
 						<a href="<?=$ayar_facebook?>" class="ffacebook">facebook</a>

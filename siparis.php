@@ -1,4 +1,4 @@
-<?php include 'header.php'; 
+<?php include 'header.php';noUser();; 
          $siparisSor = $db->prepare("SELECT * FROM siparis WHERE kullanici_id = ?");
 			$siparisSor->execute([$user_id]);
 			$siparisler = $siparisSor->fetchAll(PDO::FETCH_ASSOC);

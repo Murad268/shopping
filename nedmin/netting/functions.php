@@ -5,7 +5,11 @@ session_start();
 function controll() {
     if(!isset($_SESSION["admin_mail"])) {
         header("Location: login.php");
- 
+    }
+}
+function noUser() {
+    if(!isset($_SESSION["user"])) {
+        header("Location: index.php?durum=nouser");
     }
 }
 

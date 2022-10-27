@@ -8,6 +8,8 @@
    } else {
       $sayfalama = 1;
    }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -238,16 +240,16 @@
 	<?php
 		if(isset($_GET["addedStatus"])) {
 			if($_GET["addedStatus"]=="ok") {?>
-				<b style="color: green; margin-left: 200px; font-size: 16px">Siz xəbərlərə uğurla qeydiyyatdan keçdiz.</b>	
+				<script>alert("Siz xəbərlərə uğurla abunə oldunuz.")</script>
 			<?php
 			} elseif($_GET["addedStatus"]=="empty") {?>
-				<b style="color: yellow; margin-left: 200px; font-size: 16p">Email göndərilməyib</b>	
+				<script>alert("Email ünvanı daxil edilməyib!")</script>
 			<?php
 			} elseif($_GET["addedStatus"]=="yes") {?>
-				<b style="color: purple; margin-left: 200px; font-size: 16p">Siz artıq qeydiyyatdan keçmisiniz.</b>
+				<script>alert("Siz artıq abunə olmusunuz.")</script>
 			<?php
 		}	else {?>
-				<b style="color: red; margin-left: 200px; font-size: 16p">Qeydiyyat zamanı xəta. Xahiş edirik, bir az sonra təkrar yoxlayın.</b>
+				<script>alert("Abunə olunma zamanı xəta. Xahiş edirik, bir az sonra təkrar yoxlayın.")</script>
 			<?php
 			}
 		}
