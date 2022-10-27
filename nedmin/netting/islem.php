@@ -457,6 +457,12 @@
                exit();
             };
             if($adminCount > 0) {
+               $sepetinibosalt = $db->prepare("DELETE FROM sepet WHERE kullanici_id = ?");
+               $sepetinibosalt->execute([$userid]);
+               $siparisleribosalt = $db->prepare("DELETE FROM siparis WHERE kullanici_id = ?");
+               $siparisleribosalt->execute([$userid]);
+               $yorumlaribosalt = $db->prepare("DELETE FROM yorumlar WHERE kullanici_id = ?");
+               $yorumlaribosalt->execute([$userid]);
                header("Location: ../production/users.php");
                exit();
             } else {

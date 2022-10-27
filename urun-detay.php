@@ -143,7 +143,7 @@ $resimsayi1=$resimlerisorgula1->rowCount();
 
 								<?php if ($uruncek['urun_stok']>=1) {
 
-									echo "Stok Adeti : ".$uruncek['urun_stok'];
+									echo "Stok Ədədi : ".$uruncek['urun_stok'];
 								} else {
 
 									echo "Ürün Kalmadı";

@@ -109,7 +109,7 @@
                        <?php } elseif ($yorumcek['yorum_onay']==1) {?>
 
 
-                       <a href="../netting/islem.php?yorum_id=<?php echo $yorumcek['yorum_id'] ?>&yorum_one=0&yorum_onay=ok"><button class="btn btn-warning btn-xs">Onaylama</button></a>
+                       <a href="../netting/islem.php?yorum_id=<?php echo $yorumcek['yorum_id'] ?>&yorum_one=0&yorum_onay=ok"><button class="btn btn-warning btn-xs">Qadağan elə</button></a>
 
                        <?php } ?>
 
