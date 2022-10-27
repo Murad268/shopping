@@ -18,7 +18,7 @@ if (isset($_GET['sef'])) {
 
 
 	$sayfalamaIcinButonSayisi = 2;
-	$sayfaBasinaGosterilecek = 1;
+	$sayfaBasinaGosterilecek = 6;
 	$toplamKayitSayisiSorgusu = $db->prepare("SELECT * from urunler where kategori_id=:kategori_id");;
 	$toplamKayitSayisiSorgusu->execute(array(
 		'kategori_id' => $kategori_id

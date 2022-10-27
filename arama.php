@@ -3,7 +3,7 @@
 include 'header.php'; 
 $arama = $_REQUEST['arama'];
 $sayfalamaIcinButonSayisi = 2;
-$sayfaBasinaGosterilecek = 1;
+$sayfaBasinaGosterilecek = 6;
 $toplamKayitSayisiSorgusu = $db->prepare("SELECT * from urunler where urun_ad LIKE ? order by urun_id DESC");;
 $toplamKayitSayisiSorgusu->execute(array('%'.$arama.'%'));
 $toplamKayitSayisi = $toplamKayitSayisiSorgusu->rowCount();
