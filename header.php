@@ -79,7 +79,7 @@
 											</div>
 											<div class="form-group">
 												<button name="userenter" class="btn btn-default btn-red btn-sm">Daxil Ol</button>
-												<a href="sifre-guncelle" name="userenter" class="btn btn-default btn-red btn-sm">Şifrəni unutmuşam</a>
+												<a href="register" name="userenter" class="btn btn-default btn-red btn-sm">Şifrəni unutmuşam</a>
 											</div>
 										</form>
 									</div>

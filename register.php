@@ -17,9 +17,10 @@
 		</div>
 	</div>
 
-	<form action="nedmin/netting/islem.php" method="POST" class="form-horizontal checkout" role="form">
+
 		<div class="row">
 			<div class="col-md-6">
+			<form action="nedmin/netting/islem.php" method="POST" class="form-horizontal checkout" role="form">
 				<div class="title-bg">
 					<div class="title">Qeydiyyat Bilgiləri</div>
 				</div>
@@ -83,18 +84,70 @@
 
 
 				<button type="submit" name="kullanicikaydet" class="btn btn-default btn-red">Qeydiyyatdan keçin</button>
+			</form>
 			</div>
-			<div class="col-md-6">
-				<div class="title-bg">
-					<div class="title">Şifrəni unutmusan?</div>
+			<?php
+				if(!isset($_SESSION["user"])) {?>
+				<div class="col-md-6">
+					<form action="./forgotPassword.php" method="POST" class="form-horizontal checkout" role="form">
+						<div class="title-bg">
+							<div class="title">Şifrəmi Unutmuşam</div>
+						</div>
+
+						<?php 
+
+							if(isset($_GET["req"])) {
+								if ($_GET['req']=="ok") {?>
+
+									<div class="alert alert-success">
+										<strong>Ok!</strong>E-mail ünvanınıza yeni şifrəniz göndərilmişdir. 
+									</div>
+										
+									<?php } elseif ($_GET['req']=="error") {?>
+					
+									<div class="alert alert-danger">
+										<strong>Xəta!</strong> Şifrə sıfırlanması zamanı xəta xahiş edirik, bir az sonra yenidən cəhd edin.
+									</div>
+										
+									<?php } elseif ($_GET['req']=="noacc") {?>
+					
+									<div class="alert alert-danger">
+										<strong>Xəta!</strong> Belə bir istifadəçi tapılmadı.
+									</div>
+										
+									<?php } elseif ($_GET['req']=="noemail") {?>
+					
+									<div class="alert alert-danger">
+										<strong>Xəta!</strong> Belə bir istifadəçi tapılmadı.
+									</div>
+										
+									<?php }
+							}
+						?>
+
+
+				
+
+
+				<div class="form-group dob">
+					<div class="col-sm-12">
+						<input type="email" class="form-control"  required="" name="user_email" placeholder="Elektron poçtunuzu daxil edin...">
+					</div>
+					
 				</div>
+		
 
 
-				<center><img width="400" src="http://www.emrahyuksel.com.tr/dimg/sifremi-unuttum.jpg"></center>
+
+				<button type="submit" name="kullanicikaydet" class="btn btn-default btn-red">Şifrəni sıfırlama bildirişi</button>
+			</form>
 			</div>
+				<?php
+				}
+			?>
 		</div>
 	</div>
-</form>
+
 <div class="spacer"></div>
 </div>
 
