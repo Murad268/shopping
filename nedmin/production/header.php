@@ -70,17 +70,15 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span><?=$ADMIN["user_name"]?></span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span><?=$ayar_title?></span></a>
             </div>
 
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
             <div class="profile clearfix">
-              <div class="profile_pic">
-                <img  src="../../dimg/<?=$ADMIN["user_photo"]?>" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
+           
+              <div style="margin-left: 14px" class="profile_info">
                 <span>Xoşgəldin,</span>
                 <h2><?=$admin_name?></h2>
               </div>
@@ -116,7 +114,6 @@
                 <li><a href="siparisler.php"><i class="fa fa-shopping-cart"></i>Sifarişlər</a></li>
                 <li><a href="sepet.php"><i class="fa fa-archive"></i>İstifadəçi səbətləri</a></li>
                 <li><a href="urun-galeri.php"><i class="fa fa-image"></i>Məhsul rəsmləri</a></li>
-                <li><a href="exit.php"><i class="fa fa-sign-out"></i>Çıxış</a></li>
                 </ul>
               </div>
             </div>
@@ -124,17 +121,17 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              <a href="./user-update.php?userid=<?=$ADMIN["user_id"]?>" data-toggle="tooltip" data-placement="top" title="Parametrlər">
+                <i class="fa fa-cog" aria-hidden="true"></i>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              <a href="../../index.php" data-toggle="tooltip" data-placement="top" title="Sayta nəzər yetir">
+                <i class="fa fa-globe" aria-hidden="true"></i>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              <a href="alerts" data-toggle="tooltip" data-placement="top" title="Bildirişlərə bax">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              <a href="exit.php" data-toggle="tooltip" data-placement="top" title="Çıxış">
+                <i class="fa fa-sign-out"></i>
               </a>
             </div>
             <!-- /menu footer buttons -->
@@ -150,7 +147,7 @@
                  <ul class="nav navbar-nav navbar-right">
                    <li class="">
                      <a href="./user-update.php?userid=<?=$ADMIN["user_id"]?>" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                       <img src="../../dimg/<?=$ADMIN["user_photo"]?>" alt=""><?=$admin_name?>
+                       <?=$admin_name?>
                        <span class=" fa fa-angle-down"></span>
                      </a>
                      <ul class="dropdown-menu dropdown-usermenu pull-right">
