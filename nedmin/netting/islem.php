@@ -1071,8 +1071,15 @@
 
 
    if ($_GET['kategorisil']=="ok") {
-      $kategorilerisorgula = $db->prepare("UPDATE categories SET altkategoriler='empty' WHERE altkategoriler LIKE ?");
-      $kategorilerisorgula->execute(["%".$_GET['kategori_id']."%"]);
+      $kategorileregit = $db->prepare("SELECT altkategoriler FROM categories WHERE altkategoriler LIKE ?");
+      $kategorileregit->execute(["%".$_GET['kategori_id']."%"]);
+      $lazimkategori = $kategorileregit->fetch(PDO::FETCH_ASSOC);
+      $lazimsoz=",".$_GET['kategori_id'];
+      $reg = str_replace($lazimsoz, "",  $lazimkategori["altkategoriler"]);
+  
+
+      $kategorilerisorgula = $db->prepare("UPDATE categories SET altkategoriler=? WHERE altkategoriler LIKE ?");
+      $kategorilerisorgula->execute([$reg, "%".$_GET['kategori_id']."%"]);
       $kategori =  $kategorilerisorgula->fetchall(PDO::FETCH_ASSOC);
     
       controll();
